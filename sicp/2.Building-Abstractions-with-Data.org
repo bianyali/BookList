@@ -1,25 +1,37 @@
 #+TITLE: Chapter 2: Building Abstraction with Data
 
 
-* COMMNET
+* Section 1: Introduction to Data Abstraction
 
-      为什么有括号，每个括号，代表一层访问是从哪里开始的，执行是在那一层。 对于数据来说，括号，代表的是层次，是更加标准的对于数据的描述。 对于程序来说，括号是运算的孙逊，一定要这么理解，比如(+ (* 1 2) 3), 这样，是个人都知道他的运算顺序. 只有一个潜规则就行： 执行是从外括号向内括号扩展的。 而 1*2+3*4， 这只能进行分析，告诉电脑如何分析才行，简直就是过度设计的结果。
+  1. Procedural representation of pairs
+
+     The point of exhibiting the procedural representation of pairs is not that our language works this way (Scheme, and Lisp systems in general, implement pairs directly, for efficiency reasons), but that it could work this way. The procedural representation, although obscure, is a perfectly adequate way to represent pairs, since it fulfills the only conditions that pairs need to fulfill. This example also demonstrates that the ability to manipulate procedures as objects automatically provides the ability to manipulate procedures as objects automatically provides the ability to represent compound data. This may seem a curiosity now, but procedural representaions of data will play a central role in our programming repertoire. This style of programming is often called message passing, and we will using it as a basic tool in Chaper 3 when we address the issues of modeling and simulation.
+
+  2. Closure
+
+     The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the closure porperty of cons. In general, an operation for combining data object satisfies the closure property if the results of combining  things with that operation can themselves be combined using the same operation. Closure is the key to power in any means of combination because it permits us to create hierarchical structures -- structures made up of parts, which themselves are made up of parts, and so on.
+
+  3. Combination
+
+     In this section, we take up the consequences of closure for compound data. We describe some conventional techniques for using pairs to represent sequences and trees, and we exhibit a graphics language that illustrates closure in a vivid way.
+
+     The notion that a means of combination should satisfy closure is straightfoward idea. Unfortunately, the data combiners provide in many popular programming languages do not satify closure, or make closure cumbersome to exploit. In Fortran or Basic, one typically combines data elements by assembling them into arrays -- but one cannot form arrays whose elements are themselves arrays. Pascal and C admit structures whose elements are structures. However, this requires that the programmer manipulate pointers explicitly, and adhere to the restriction that each field of a structurecan contain only elements of a prespecified form. Unlike Lisp with its pairs, these languages have no built-in general-popurpose glue that makes it easy to manipulate compound data in a uniform way. This limitation lies behind Alan Perlis's comment in his foreword to this book: "In Pascal the plethora of declarble data structures induces a specialization within functions that inhibits and penalizes casual cooperation. It is better to have 100 functions operate on one data structure than to have 10 functions operate on 10 data structures."
 
 
-* QUOTE
+* Section 2: Hierchical Data and the Closure Property
 
-    1. Procedural representation of pairs
-       The point of exhibiting the procedural representation of pairs is not that our language works this way (Scheme, and Lisp systems in general, implement pairs directly, for efficiency reasons), but that it could work this way. The procedural representation, although obscure, is a perfectly adequate way to represent pairs, since it fulfills the only conditions that pairs need to fulfill. This example also demonstrates that the ability to manipulate procedures as objects automatically provides the ability to manipulate procedures as objects automatically provides the ability to represent compound data. This may seem a curiosity now, but procedural representaions of data will play a central role in our programming repertoire. This style of programming is often called message passing, and we will using it as a basic tool in Chaper 3 when we address the issues of modeling and simulation.
+  1. Levels of language for robust design
+     We have also obtained a glimpse of another crucial idea about  languages and program design. This is the approach of stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is contructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitive at that level,a dn the parts constructed at each level are used as primitives at the next level. The language used at each level of a stratified design has primitives, means of combination, and means of abstraction appropriate to that level of detail
 
-    2. Closure
-       The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the closure porperty of cons. In general, an operation for combining data object satisfies the closure property if the results of combining  things with that operation can themselves be combined using the same operation. Closure is the key to power in any means of combination because it permits us to create hierarchical structures -- structures made up of parts, which themselves are made up of parts, and so on.
+     Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.
 
-    3. Combination
-       In this section, we take up the consequences of closure for compound data. We describe some conventional techniques for using pairs to represent sequences and trees, and we exhibit a graphics language that illustrates closure in a vivid way.
-       The notion that a means of combination should satisfy closure is straightfoward idea. Unfortunately, the data combiners provide in many popular programming languages do not satify closure, or make closure cumbersome to exploit. In Fortran or Basic, one typically combines data elements by assembling them into arrays -- but one cannot form arrays whose elements are themselves arrays. Pascal and C admit structures whose elements are structures. However, this requires that the programmer manipulate pointers explicitly, and adhere to the restriction that each field of a structurecan contain only elements of a prespecified form. Unlike Lisp with its pairs, these languages have no built-in general-popurpose glue that makes it easy to manipulate compound data in a uniform way. This limitation lies behind Alan Perlis's comment in his foreword to this book: "In Pascal the plethora of declarble data structures induces a specialization within functions that inhibits and penalizes casual cooperation. It is better to have 100 functions operate on one data structure than to have 10 functions operate on 10 data structures."
 
-    4. Levels of language for robust design
-       We have also obtained a glimpse of another crucial idea about  languages and program design. This is the approach of stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is contructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitive at that level,a dn the parts constructed at each level are used as primitives at the next level. The language used at each level of a stratified design has primitives, means of combination, and means of abstraction appropriate to that level of detail
-       Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.
+* Section 3: Symbolic Data
 
-    5. Symbolic Data
+  1. Symbolic Data
+
+     为什么有括号，每个括号，代表一层访问是从哪里开始的，执行是在那一层。 对于数据来说，括号，代表的是层次，是更加标准的对于数据的描述。 对于程序来说，括号是运算的孙逊，一定要这么理解，比如(+ (* 1 2) 3), 这样，是个人都知道他的运算顺序. 只有一个潜规则就行： 执行是从外括号向内括号扩展的。 而 1*2+3*4， 这只能进行分析，告诉电脑如何分析才行，简直就是过度设计的结果。
+
+  2. Sets as ordered lists
+
+     将无序的数据对象，assign a unique number 来让该数据对象成为有序的，以减少查找过程中的时间消耗。
