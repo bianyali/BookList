@@ -1,0 +1,39 @@
+* Programming Languages
+
+
+
+
+** Referenctial transparency VS referential opacity
+
+Referential transparency and referential opaticy are properties of parts of computer programs. An expression is said to be referentially trnasparent if it can replaced with its value without changing the behavior of a program (in other words, yielding a program that has the same effects and output on the same input). The opposite term is referential opaqueness.
+
+While in mathematics all function apppplications are referentially transparent, in programming this is not alway the case. The importance of referential transparency is that it allows the programer and the compiler to reason about program behavior. This can help in proving correctness, simplifying an algorithm, assisting in modifying code without breaking it, or optimizing code by means of memoization, common subexpression elimination, lazy evaluation, or parallelization.
+
+Referential transparency is one of the principles of function programming; only referentially transparent function can be memoized (transformed into equivalent functions which cache results). Some programming lanagues provive means to guarantee referential transparency. Some functional programming language enforce reforce referential transparency for all functions.
+
+As referential transparency requires the same results for a given set of inputs at any point in time, a referentially transparent expression is therefore deterministic.
+
+If all functions involved in the expression are pure functions, then the expression is referentially transparent. Also, some impure functions can be included in the expression if their values are discarded and their side effects are insignificant.
+With referential transparency, no distinction is made or difference recogized between a reference to a thing and the corresponding thing itself. Without referential transparency, such difference can be easily made and ulilized in programs.
+
+** Pure function
+
+In computer programming, a function may be described as a pure function if both there statements about the function hold:
+ * The function always evaluates the same result value given the same argument values. The function result value cannot depend on any hidden information or state that may change as program execution  proceeds or between different executions of the program, nor can it depend on any external input from I/O devices.
+ * Evaluation of the result does not cause any semantically observable side effect or output, such as mutaion of mutable objects or output to I/O devices.
+
+** Memoization
+In computing, memoization is an optimization technique used primarily to speed up computer programs by sorting the results of expensive funciton calls and returning the cached result when the same inputs occur again.
+
+** Evaluation strategy
+A prorammnig language uses an evaluation strategy to determine when to evaluate the arguments of a function call and what kind of value to pass to the function. For example, call-by-value/pass-by-reference specifies that a function application evaluates the argument before it proceeds to the evaluation of the function's body and that it passes two capabilities to the function, namely, the ability to look up the current value of the argument and to modify it via an assignment statement.
+
+*** boxing
+Boxing is the processing of placing a primative type within an object so that the primative can be used as a reference object.
+
+*** reduction strategy
+
+** Modular Programming
+Modular programming is a software design technique that emphasizes separating the functionality of a program into independent, interchangable modulers, such that wach contains everything necessay to execute only one aspect of the desired functionality.
+
+A module interface expresses the elements that are provided and required by the module. The elements defined in the interface are detectable by other modules. The implementation contains the workding code that corresponds to the elements declared in the interface. Modular programing is closely related to structured programming and object-oriented programming, all have the same gaol of facilitating contruction of large software programs and systems by deconposition into smaller pieces, and all originating around 1960s.

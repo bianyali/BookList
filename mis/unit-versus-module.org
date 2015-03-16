@@ -1,0 +1,57 @@
+* Unit Versus Module
+
+As a form for modularity, unit complements modules:
+ * The module form is primarily for managing a universal namesapce. For example, it allows a code fragment to refer specifially to the car operation from racket/base -- the one that extracts the first element of an instance of the built-in pair datatype -- as opposed to any number of other functions with the name car. In other worlds, the module construct lets you refer to the binding that you want.
+ * The unit form is for parameterizing a code fragment with respect to most any kind of run-time value. For example, it allows a code fragment to work with a car function that accepts a single argument, where the specific function is determined later by linking the fragment to another. In other words, the unit contruct lets you refer to a binding that meets some specification.
+
+
+* Reflection and Dynamic Evaluation
+
+  Racket is a dynamic language. It offers numberous facilities for loading, compiling, and even contructing new code at run time.
+
+** local scopes
+The eval function cannot see local bindings in the context where it is called. For example, calling eval inside an unquoted let form to evaluate a formula does not make values visible for x and y:
+#+BEGIN_SRC scheme
+  (define (broken-eval-fomula formula)
+    (let ([x 3]
+          [y 2])
+      (eval formula)))
+
+  (broken-eval-formula '(+ x y))
+
+#+END_SRC
+
+The eval function cannot see the x and y bindings precisely because it it a funciton, and Racket is a lexically scoped language. Imagine if eval were implemented as
+
+In general, it's a bad idea to use eval with whatever namespace happends to be installed. Instead, create a namespace explicitly and install it for the call to eval.
+
+#+BEGIN_SRC scheme
+  (define ns (make-base-namespace)
+    (eval '(cons 1 2)) ns) ;works
+
+#+END_SRC
+
+** manipulating namespace
+A namespace encapsulates two pieces of information:
+ * A mapping from identifiers to bindings. For example, a namespace might map the identifier lambda to the lamda form. An "empty" namesapce is one that maps every identifier to an uninitialized top-level variable.
+ * A mapping from module names to module declarations and instances.
+
+
+* Macro
+  A macro is a syntactic form with an associated transfomer that expands the original form into existing forms. To put it another way, a macro is an extension to the Racket compiler. Most of the syntactic forms of racket/base and racket are actually macros that expand into a small set of core contructs.
+  Like may language, Racket provides pattern-based macros that make simple transfomations easy to implement and reliable to use. Racket also supports arbitrary macro transformers that are implemened in Racket---or in a macro-extended variant of Racket.
+
+** Pattern-based Macros
+A pattern-based macro replaces any code that matches a pattern to an expansion that uses parts of the original syntax that match parts of the pattern.
+
+*** define-syntax-rule
+The simplest way to create a macro is to use define=syntax-rule.
+
+#+BEGIN_SRC scheme
+  (define-syntax-rule pattern template)
+#+End_SRC
+
+The macro is "un-Rackety" in the sense that it involves side effects on variables, but the point of macros is to let you add syntactic forms that some other language designer might not approve.
+
+*** define-syntax and syntax-rules
+The define-syntac-rule form binds a macro that matchers a single pattern, but Racket's macro system supports transformers that match multiple patterns starting with the same identifiers. To write such macros, the programmers must use the more general define-syntax form along with the syntax-rules tranformer form.

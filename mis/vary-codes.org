@@ -1,0 +1,33 @@
+* Native code/Byte code/Source code
+
+** machine/CPUS - virtual machine/ abstract computing machines/interpreter
+
+** Native code/machine code/basic code/machine language
+   是在真正的本地的平台上运行的机器代码，而不是和虚拟平台相关的设备上实现的。
+   Mathine code or mathine language is a set of instructions executed directly by a computer's central processing unit(CPU). Each instruction performs a very specific task, such as a load, a jump, or an ALU operation on a unit of data in a CPU register or memory. Every program directly executed by a CPU is made up of a series of such instructions.
+
+*** Opcode/Operation code
+In computing, an opcode (abbreviated from operation code) is the portion of a machine language intruction that specifies the operation to be performed. Beside the opcode itself, instructions ususally specify the data they will process, in form of operands.In addition to opcodes used in intruction set architectures of various CPUs, which are hardware devices, they can also be used in abstract computing machines as part of their byte code specifications.
+
+*** relationships to bytecode
+    Machine code should not be confused with so-called "bytecode" (or the older term p-code), which is either executed by an interpreter or itself compiled into machine code for faster (direct) excution. Machine code and assembly code are sometimes called native code when refering to platform-dependent parts of language features or libraries.
+
+
+** Intermediate reptrsentations/Byte code/object code/virtual machine/jit compiler/intermediate language(IL)/bytecode instructions
+   Bytecode, also known as p-code (portable code), is a form of instruction set designed for efficient execution by a software interpreter. Unlike human-readable source code, bytecode are compact numeric codes, constants, and references (normally numeric addresses) which encode the result of parsing and semantic analysis of things like type, scope, and nesting depths of program objects. They therefore allow much better performance than direct interpretation of source code.
+   The name bytecode stems from instruction sets which have one-byte opcodes followed by optional parameters. Intermediate representations such as bytecode may be output by programming language implementations to ease interpretation, or it may be used to reduce hardware and operating system dependence by allowing the same code to run on different platforms. Bytecode may often be either directly executed on a virtual mathine (i.e. interpreter), or it may be further compilerd into machine code for better performance.
+   Since bytecode instructions are processed by software, they may be arbitrarily complex, but are nonethless often akin to traditional hardware instructions; virtual stack machines are the most common, but virtual register machines have also been built. Different parts may often be stored in separate files, similar to object modules, but dynamically loaded during execution.
+
+*** bytecode interpreter - dynamic tranlator/just-in-time (JIT) compiler
+    A bytecode program may be executed by parsing and directly executing the instructions, one at a time. This kind of bytecode interpreter is very portable. Some systems, called dynamic translators, or "just-in-time" (JIT) compilers, translate bytecode into machine language as necessary at runtime: this makes the virtual machine hardware-specific, but doesn't lose the portability of the bytecode itself. For example, Java and Smalltalk code is typically stored in bytecoced format, which is typically then JIT compiled to translate the bytecode to machine code before execution. This introduces a delay before a program is run, when bytecode is compiled to native mathine code, but improves excution speed considerablely compared to direct interpretation of the source code - normally by several magnitudes.
+    Because of its performance advantage, today many language implementations execute a program in two phases, first compiling the source code into bytecode, and then passing the bytecode to the virtual machine. There are bytecode based virtual machines of this sort for java, python, php, tcl, and Forth.
+    More recently, the authors of the v8 and Dart languages have chanllenged the notion that intermediate bytecode is a necessity for fast and efficicent VM implementation. Both of these language implementaions currently do direct JIT compilation from source to machine code without any bytecode intermediary.
+
+
+** Source code/
+
+** Direct interpretation of source code
+
+** compile/intepret
+
+** Object language/Intruction set

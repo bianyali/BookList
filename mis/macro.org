@@ -1,0 +1,4 @@
+* macro
+** 何为macro
+   macro 就是一种list数据处理行为，而这种行为出现在程序的运行中，而不是显示使用listprocedure操作进行操作的。
+** 为什么macro
