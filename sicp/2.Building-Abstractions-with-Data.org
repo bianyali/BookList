@@ -34,4 +34,43 @@
 
   2. Sets as ordered lists
 
-     将无序的数据对象，assign a unique number 来让该数据对象成为有序的，以减少查找过程中的时间消耗。
+     将无序的数据对象，assign a unique number 来让该数据对象成为有序的，以减少查找过程中的时间消耗。One advantage of ordering shows up in element-of-set?: In checking for the presence of an item, we no longer have to scan the entire set. 默认的查找范围在缩小，缩小大到和 查找元素的大小 相关。 尽管时间复杂度还是 n 级别的，但却是减少的 一半。 接下来可以使用二分法(话说在 list set 中如何使用二分法？)，将时间复杂度变成 log(n) 级别. 但进行intersection的时候，时间复杂度变成了 n.
+
+  3. Sets as binary trees
+
+     二叉树，是更有序的 ordered list，就像是一个list 表现了 二分法。 不需要在 算法 procedure中实现，因为 在list 中，已经使用 binary trees 实现这种二分。
+     We can do better than the ordered-list representatio by arranging the set elements in the form of a tree. Each node of the tree holds one element of the set, called the "entry" at that node, and a link to each of two other(possibly empty) nodes. The "left" link points to elements smaller than the one at the node, and the "right" link to elements greater than the one at the node.
+
+     只有这个二叉树的层数最少时，才是使用的 二分法。 根节点，从最大最小节点的平均值的节点开始。 If the tree is "balanced", each of these subtrees will be about half the size of the original. Thus, in one step we have reduced the problem of searching a tree of size n to search a tree of size n/2. Since the size of the tree is halved at each step, we should expect that the number of steps needed to search a tree of size n grows as ø(long n). For large sets, this will be a significant speedup over the previous representations. 所谓提高查询速度，就是在查询之前，将数据整理的越加有序，越加有层次性，就更加容易查找，就像将衣服分门别类的放到衣橱中。
+
+     万物皆是 list。 We are representing sets in terms of trees, and trees in terms of lists -- in effect, a data abstraction built upon a data abstraction.We can regard the procedures entry, left-branch, right-branch, and make-tree as a way of isolating the abstraction of a "binary tree" from the particular way we might wish to represent such a tree in terms of lsit structure.
+
+     * balanced tree
+
+       Searching a tree can be performed in a logarithmic number of steps rests on the assumption that the tree is "balanced", that the left and the right substree of every tree have approximately the same number of elements, so that each subtree contains about half the elements of its parent. But how can we be certain that the trees we construct will be balanced?  Even if we start with a balanced tree, adding elements with adjoin-set may produce an unbalanced result. Since the position with the items already in the set, we can expect that if we add elemts "randomly", the tree will tend to be balanced on the average. But this is not a guarantee. 要想让数据统一结构，统一规则，在每天修改元数据的时候，都要对 tree 进行重新整理。 We can perform transformations to keep our set in balance. There are also other ways to solve this problem, most of which involve designing new data structures for which searching and insertion both can be done in ø(log n) steps. Examples of such structure include B=trees and red-black trees. There is a large literature on data structures devoted to this problem. 目的都是为了，将数据，按规则整理，然后，方便快速的查询和存储。
+
+  4. Sets and information retrieval
+
+     We have examined options for using lists to represent sets and have seen how the choice of representation for a data object can have a large impact on the performance of the programs that use the data. Another reason for concerning on sets is that the techniques discussesd here appear again and again in applications involving information retrieval.
+
+     * data base
+
+       Consider a data base containning a large number of individual records, such as the personnel files for a company or the transactions in an accounting system. A typical data-management system spends a large amount of time accessing or modifying the data in the records and therefore requires an efficient method for accessing records. This is done by identifying a part of each record  to serve as an identifying key. A key can be anything that uniquely identifies the record. For a personnel file, it might be an employee's ID number. For an accounting system, it might be a transaction number. Whatever the key is, when we define the record as a data strucure we should include a key selector procedure that retrives the key associated with a given record.
+
+     * Information-retrieval system
+
+       Information-retrieval systems in which records have to be "randomly accessed" are typically implemented by a tree-based method, such as the binary-tree representation discuessed previously. In designing such a system the methodology of data abstraction can be a great help. (tree-based 分层的数据存储)
+
+  5. Huffman Encoding Trees
+
+     This section provides practice in the use of list structure and data abstraction to manipulate sets and trees.
+
+     * Prefix Code
+
+       Design the code in such a way that no complete code for any symbol is the beginning (or prefix) of the code for another symbol. Such a code is called a prefix code.
+
+     * Huffman encoding method
+
+       In general, we can attain significant savings if we use variable-length prefix codes that take advantage of the relative frequencies of the symbols in message to be encoded. One particular scheme for doing this is called the Huffman encoding method.
+
+       平衡二叉树是对所有元素出现概率都相同时，使用的策略。 Huffman tree 针对的是每个元素出现的不同频率。
