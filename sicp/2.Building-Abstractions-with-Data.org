@@ -74,3 +74,43 @@
        In general, we can attain significant savings if we use variable-length prefix codes that take advantage of the relative frequencies of the symbols in message to be encoded. One particular scheme for doing this is called the Huffman encoding method.
 
        平衡二叉树是对所有元素出现概率都相同时，使用的策略。 Huffman tree 针对的是每个元素出现的不同频率。
+
+  6. Multiple Representation for Abstract Data
+
+     The data-abstraction barriers are powerful tools for controlling complexity. By isolating the underlying representations of data objects, we can divide the task of designing a large program into smaller tasks that can be performed separately. But this kind of data is not yet powerful enough, because it may not always make sense to speak of "the underlying representation" for a data object.
+
+     For one thing, there might be more than one useful representation for a data object, and we might like to design systems that can be deal with multiple representations.  In this section, we will learn how to cope with data that may be represented in dirrerent ways by different parts of a program. This requires constructing generic procedures -- procedures that can operate on data that may be represented in more than one way.
+
+     * The horizontal and vertical abstraction barrier
+
+       The "horizontal" abstraction barriers isolate "higher-level" operations from "lower-level" representations. In addition, there is a "vetical" barier that gives us the ability to separately design and install  alternative representation.
+
+     * Tagged data
+
+       The abstraction data barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice a concrete representation for our data objects and thus retain maximum flexibility in our system design.
+
+       The discipline of stripping off and attaching tags as data objects are passed from level to level can be an important organizational strategy.
+
+     * Data-directed programming
+
+       The key idea of data-directed programming is to handle generic operations in programs by dealing explicitly with operation-and-type tables.
+
+       所谓数据导向的程序设计，是针对不同的类型数据的一集公共通用操作。也就是说，数据导向，（具有同样一组操作的不同类型的数据），不管数据的类型如何增加，都使用这组操作，因为，只要有数据类型的增加，我们只需要向 table 中添加这种数据类型，对应的相同的操作即可。
+
+       当数据类型经常变化， 而这些变换的数据，总是有着几个统一的操作接口时，最恰当的是数据导向的程序设计。
+       当数据类型固定，而这种数据类型上的操作经常添加时，消息传递方式更好。
+       当数据类型比较少，数据的操作比较统一时，使用显式分派的通用类型操作比较方便（无需定义table）
+
+     * Message passing
+
+       As a large system with generic oiperations evolves, new types of data objects or new operations may be needed. For each of the three stragies -- generic operations with explicit dispatch, data-directed style, and message-passing-style -- describe the changes that must be made to a system in order to add new types or new operations.
+
+  7. Systems with Generic Operations
+
+     * Combining Data of Different Types
+
+       We have gone to great pains to introduce barriers between parts of our programs so that they can be developed and understood separately. We would like to introduce the cross-type operations in some carefully controlled way, so that we can support them without seriously violating our module boundaries.
+
+     * Coercion
+
+       In the general situation of completely unrelated operations acting on completely unrelated types, implementing explicit cross-type operations, cumbersome though it may be, is the best that one can hope for. Fortunately, we can usually do better by taking advantage of additional strucure that may be latent in our type system. Often the different data types are not completely independent, and there may be ways by which objects of one type may be viewed as being another type. This process is called coercion.
