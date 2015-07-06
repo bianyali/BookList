@@ -1,0 +1,4 @@
+#+TITLE:       Stack and Heap
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-07-06 Mon

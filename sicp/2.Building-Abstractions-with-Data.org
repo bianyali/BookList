@@ -120,3 +120,27 @@
        If we are clever, we can usually get by with fewer that (* n n) coercion procedures. For instance, if we know how to convert from type 1 to type 2 and from type 2 to type 3, then we can use this knowledge to convert from type 1 to type 3. This can greatly decrease the number of coercion procedures we need to supply explicitly when we add a new type to the system. If we are willing to build the required amount of sophistication into our system, we can have it search the  "graph" of relations among types and automatically generate those coercion procedures that can be inferred from the ones that are suplied explicitly.
 
        On the other hand, there may be applications for which our coercion schemer is not general enough. Even when neither of the objects to be combined can be converted to the type of the other it may still be possible to perform the operation by converting both objects to a third type. In order to deal with such complexity and still preserve modularity in our programs, it is usually necessary to build systems that take advantage of still further structure in the relation among types, as we discuss next.
+
+     * Hierarchies of types
+
+       The coercion scheme presented above relied on the existence of natural relations between pairs of types. Often there is more "global" structure in how the different types related to each other.
+
+       What we actually have is a so-called hierarchy of types.
+
+       * tower
+
+         The particular hierarchy we have here is of a very simple kind, in which each type has at most one supertype and at most one subtype. Such a structure, called a tower.
+
+         If we have a tower strucutre, then we can greatly simplify the problem of adding a new type to the hierarchy, for we need only specify how the new type is embedded in the next supertype above it and how it is the supertype of the type blow it.
+
+         Another advantage of a tower is that we can easily implement the notion that every type "inherits" all operations define on a supertype.
+
+         Yet another advantage of a tower over a more general hierarchy is that it gives us a simple way to "lower" a data object to the simplest representation.
+
+       * Inadequacies of hierarchies
+
+         If the data types in our system can be naturally arranged in a tower this greatly simplifies the problems of dealing with generic operations on different types, as we have seen. Unfortunatyly, this is usually not he case.
+
+         Dealing with large numbers of interrelated types while still preserving modularity in the desing of large systems is very difficult, and is an area of much current research.
+
+         This statement, which also appears in the first edition of this book, is just as true now as it was when we wrote it twelve years ago. Developing a useful, general framework for expressing the relations among different types of entities (what philosophers call "ontology") seems intractably difficult. The main difference between the confustion that existed ten years ago and the confusion that exists now is that now a veriety of inadequate ontological theories have been embodied in a plethora of corresponding inadequate programming languages. For example, much of the complexity of of object-oriented programming languages -- and the subtle and confusing differences amoung contemporary object-oriented languages -- centers on the treatment of generic operations on interrelated types. Our own discussion of computational objects in Chapter 3 avoids these issues entirely. Readers familiar with object-oriented programming will notice that we have much to say in chapter 3 about local state, but we do not even mention "classes" or "inheritance". In fact, we suspect that these problems cannot be adequatly addressed in terms of computer-language design alone, without also drawing on work in knowledge representation and automated reasoning.

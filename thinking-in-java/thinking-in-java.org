@@ -1,0 +1,196 @@
+#+TITLE:       Thinking in Java 笔记
+#+AUTHOR:      Yali Bian
+#+EMAIL:       bianyali.zju@gmail.com
+#+DATE:        2015-06-29 Mon
+
+
+
+* 0. Preface
+
+  虽然几年前，在上大学的时候，也看过基础的java知识，随后则使用 java 开发，没有再进行过系统性的学习。
+  希望这次，系统性的对java的学习，能够学习很多很的东西，因为在这之间，我看了很多关于 plt 的知识。
+
+
+
+  书籍选取：主要是在 core java 和 thinking in java 之间选取，看了一下两者的目录，对比了一下豆瓣评分（请看管莫喷，主要是小边我选择焦虑症）。
+  thinking in java 中竟然还包含关于 java 虚拟机，这正是我以前所未看过的！好，就这本了。
+
+  笔记内容主要包含：
+    摘抄我认为好的句子
+    写一下自己的思考体会
+    做一些习题解析
+
+  如果有内容错误，请submit issues到该 [[https://github.com/bianyali/blog.lisp.one][blog.lisp.one]] 中。
+
+* 1. Introduction to Objects
+
+** summary
+
+   对象，就是将一组相关联的程序形成一组。与程序化设计相比，对象的设计过程更具挑战性：特别是在尝试创建课重复使用的对象，为了复用，就必须要进行继承之类的复用方案。
+
+   很难很好的设计出对象，从而很难设计好任何东西。只有数量相当少的专家能设计出最好的对象，然后让其他人享用，对于我这种渣渣来说，只要学会使用这些对象库也就够了。
+
+   一个成功的语言：语言的语法，编译器，开发环境，库。
+
+** The progress of abstraction
+
+   The complexity of the problems you are able to solve is directly related to the kind and quality of abstraction.
+
+   The alternative to modeling the machine is to model the problem you are trying to solve. Language like Lisp and APL chose particular views of the world ("All problems are ultimately lists" or "All problems are algorithmic", respectively).
+
+   The great language allows you to describe the problem in terms of the problem, rather than in terms of the computer where the solution will run. There is still a connection back to the computer: Each object looks quite a bit like a little computer -- it has a state, and it has operations that you can ask it to perform. However, this does not seem like such a bad analogy to objects in the real world -- they all have characteristics and behaviors.
+
+   Think object as a fancy variable; it stores data, but you can "make requests" to that object, asking it to perform operations on itself. In theory, you can take any conceptual component in the problem you are trying to solve and represent it as an object in your program.
+
+   The most important distinguishing characteristic of a class is "What messages can you send to it?".
+
+   An object has state, behavior and identity. This means an object can have internal data (which gives it states), methods (to produce behavior), and each object can be uniquely distinguished from every other object -- to put this in a concrete sense, each object has a unique address in memory.
+
+** An object has an interface
+   类型与接口的等价或对应关系是面向对象程序的基础。
+
+   #+begin_src java
+   Light lit = new Light ();
+   lit.on();
+   #+end_src
+
+   如果是在lisp中，会有更加好的表示方案：
+   #+begin_src lisp
+   (Light 'on)
+   #+end_src
+
+** The singly rooted hierarchy
+
+   使用 Object 对象，根继承的原因：
+   All objects in a single rooted hierarchy can be guaranteed to have certain functionality. You know you can perform certain basic operations on every object in your system. All objects can easily be created on the heap, and argument passing is greatly simplified.
+
+   A singly rooted hierarchy makes it much easier to implement a garbage collector, which is one of the fundamental improvements of Java over C++. And since information about the type of an object is guaranteed to be in all objects, you will never end up with an object whose type you cannot determine. This is especially important with system-level operations, such as exception handing, and to allow greater flexibility in programming.
+
+
+** Garbage collectors VS. efficienty and flexibility
+
+Java create objects only one way, on the heap, which makes the process of programming in Java mach simpler than programming in C++.
+
+In c++, you can create objects on the stack, and in this case they are automatically cleaned up (but you do not have the flexibitlity of creating as many as you want at run-time). Creating objects on the stack is the most efficient way to allocate storage for objects and to free that storage. Creating objects on the heap can be much more expensive. Always inheriting from a base class and making all function calls polymorphic also exacts a small toll. But the garbage collector is a particular problem because you never quite know when it's going to start up or how long it will take. This means that there is an inconsistency in the rate of execution of a Java program, so you cannot use it in certain situations, such as when the rate of execution of a program is uniformly critical. (There are generally called real time programs, although not all real-time programming problems are this stringent.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 2. Everything is an Object
+
+* 3. Operators
+
+* 4. Controlling Execution
+
+* 5. Initialization & Cleanup
+
+* 6. Access Control
+
+* 7. Reusing Classes
+
+* 8. Polymorphism
+
+* 9. Interfaces
+
+* 10. Inner Classes
+
+* 11. Holding Your Objects
+
+* 12. Error Handing with Exceptions
+
+* 13. Strings
+
+* 14. Type Information
+
+* 15. Generics
+
+* 16. Arrays
+
+* 17. Containers in Depth
+
+* 18. I/O
+
+* 19. Enumerated Types
+
+* 20. Annotations
+
+* 21. Concurrency
+
+* Graphical User Interfaces
+
+* A: Supplements
+
+* B: Resources
+
+* pom.xml文件中的一些node的作用：
+
+  POM全称Project Object Model，在pom.xml中，以下结点是常用的，意义如下（摘自Maven Manual）：
+
+  - =project= This is the top-level element in all Maven pom.xml files.
+
+  - =modelVersion= This element indicates what version of the object model this POM is using. The version of the model itself changes very infrequently but it is mandatory in order to ensure stability of use if and when the Maven developers deem it necessary to change the model.
+
+  - =groupId= This element indicates the unique identifier of the organization or group that created the project. The groupId is one of the key identifiers of a project and is typically based on the fully qualified domain name of your organization. For example org.apache.maven.plugins is the designated groupId for all Maven plug-ins.
+
+  - =artifactId= This element indicates the unique base name of the primary artifact being generated by this project. The primary artifact for a project is typically a JAR file. Secondary artifacts like source bundles also use the artifactId as part of their final name. A typical artifact produced by Maven would have the form <artifactId>-<version>.<extension> (for example, myapp-1.0.jar).
+
+  - =packaging= This element indicates the package type to be used by this artifact (e.g. JAR, WAR, EAR, etc.). This not only means if the artifact produced is JAR, WAR, or EAR but can also indicate a specific lifecycle to use as part of the build process. (The lifecycle is a topic we will deal with further on in the guide. For now, just keep in mind that the indicated packaging of a project can play a part in customizing the build lifecycle.)  The default value for the packaging element is JAR so you do not have to specify this for most projects.
+
+  - =version= This element indicates the version of the artifact generated by the project. Maven goes a long way to help you with version management and you will often see the SNAPSHOT designator in a version, which indicates that a project is in a state of development. We will discuss the use of snapshots and how they work further on in this guide.
+
+  - =name= This element indicates the display name used for the project. This is often used in Maven's generated documentation.
+
+  - =url= This element indicates where the project's site can be found. This is often used in Maven's generated documentation.
+
+  - =description= This element provides a basic description of your project. This is often used in Maven's generated documentation.
+
+
+* Create a web project:
+
+  : mvn archetype:generate -DarchetypeArtifactId=maven-archetype-webapp
+
+  This will create a web project, and goes into interactive mode, to read groupId etc. from the standard input.
