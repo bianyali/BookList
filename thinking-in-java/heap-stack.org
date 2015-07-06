@@ -2,3 +2,9 @@
 #+AUTHOR:      Yali Bian
 #+EMAIL:       byl.lisp@gmail.com
 #+DATE:        2015-07-06 Mon
+
+Stack 和 Heap 是涉及到操作系统，高级语言已经将其封装到语言之中，程序员并不能看到。但是在 C/C++ 抽象性比较低的语言中还是可以直接调用的。
+
+In Java, 中已经对于对象的创建和销毁封装起来，如何放置到内存中，JVM说了算，无需编写Java程序的codist考虑。如果只是声明一个对象（毕竟 Java 皆对象, except basic variables like: int, char...），就在 Stack 中，为这个对象创建一个地址空间，当前为空，为了以后指向一个对象地址。 当真正使用 new 来创建一个对象的时候，则在 Heap 中为这个对象腾出一块地方，来安置这个 object。 这个时候，就可以将 Stack 中的地址空间指向这个 Heap 地址了。
+
+In C or Cpp, when you state variables or functions, those objects will be stored in stack by default. On the other hand, If you malloc or new a variable, then the variable will be put into the heap, and you should release (free/delete) this space when the variable is no longer in need. In Operating System, when execute a program, the os will allocate a memory space to this program automatically and this space will be used to store variables created by each function (include the main() function). So codist can use the stack by default, you cannot control it directly. The Stack has size limits. The heap, on the other hand, is a region of your computer's memory that is not managed automatically for you. You can manage heap use malloc or calloc in C lang. Unlike the stack, the heap does not have size restrictions on variable size (apart from the obvious physical limitations of your computer). Heap memory is slightly slower to be read from and written to, because one has to use pointers to access memory on the heap.
