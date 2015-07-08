@@ -66,7 +66,6 @@
 
    A singly rooted hierarchy makes it much easier to implement a garbage collector, which is one of the fundamental improvements of Java over C++. And since information about the type of an object is guaranteed to be in all objects, you will never end up with an object whose type you cannot determine. This is especially important with system-level operations, such as exception handing, and to allow greater flexibility in programming.
 
-
 ** Garbage collectors VS. efficienty and flexibility
 
 Java create objects only one way, on the heap, which makes the process of programming in Java mach simpler than programming in C++.
@@ -118,9 +117,16 @@ In c++, you can create objects on the stack, and in this case they are automatic
 
 
 
+** Web Server/Client
+   A more complicated request to a server generally involves a database transaction. A common scenario involves a request for a generally involves a request for a complex database research, which the server then formats into an HTML page and sends to you as the result. Of course, if the client has more intelligence via JavaScript, the raw data can be sent and formatted at the client end, which will be faster and less load on the server. Java-based Web Servers allow you to perform all your server-side programming in Java by writing what are called servlets.
 
 
 * 2. Everything is an Object
+
+** Summary
+
+   The Java language assumes that you want to do only object-oriented programming. This means that before you can begin you must shift your mindset into an objected-oriented world (unless it is already there). The benefit of this initial effort is the ability to program in a language that is simpler to learn and to use than many other OOP languages.
+
 
 * 3. Operators
 
