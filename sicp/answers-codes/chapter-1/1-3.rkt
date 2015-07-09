@@ -1,0 +1,7 @@
+; Exercise 1.3:
+;          Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.
+
+(define (fun x y z)
+  (cond ((and (< x y) (< x z)) (+ (* y y) (* z z)))
+        ((and (< y z) (< y x)) (+ (* x x) (* z z)))
+        (else (+ (* x x) (* y y)))))
