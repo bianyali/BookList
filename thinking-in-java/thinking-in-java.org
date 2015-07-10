@@ -120,12 +120,85 @@ In c++, you can create objects on the stack, and in this case they are automatic
 ** Web Server/Client
    A more complicated request to a server generally involves a database transaction. A common scenario involves a request for a generally involves a request for a complex database research, which the server then formats into an HTML page and sends to you as the result. Of course, if the client has more intelligence via JavaScript, the raw data can be sent and formatted at the client end, which will be faster and less load on the server. Java-based Web Servers allow you to perform all your server-side programming in Java by writing what are called servlets.
 
-
 * 2. Everything is an Object
 
 ** Summary
 
    The Java language assumes that you want to do only object-oriented programming. This means that before you can begin you must shift your mindset into an objected-oriented world (unless it is already there). The benefit of this initial effort is the ability to program in a language that is simpler to learn and to use than many other OOP languages.
+
+** Scope
+
+   In C, CPP and Java, scope is determined by the placement of curly braces {}.
+
+** Free form language
+
+   Indentation makes Java code easier to read. Since Java is a free form language, the extra space, tabs and carriage returns do not affect the resulting program.e
+
+
+** Garbage collector
+
+   Java has a garbage collector, which looks at all the objects that were created with new and figures out which ones are not being referenced anymore. Then it releases the memory for those objects, so the memory can be used for new objects. This means that you never neeed to worry about reclaiming memory youself. You simply create objects, and when you no longer need them they will go away by themselves. This eliminates a certain class of programming problem: the so-called "memory leak", in which a programmer forgets to relsease memory.
+
+** Default Values for primitvie members
+
+   When a primitive data type is a member of  a class, it is guaranteed to get a default value for you do not initialize it. However, when the primitive is not a member of a class, and you use it without initiated, an error will occur. Because a primitive member will be stored in heap, it should be initiated before allocate the memory space. However, in function or other stuff, a primitive will be stored in stack, there is no need to allocated them with a new heap.
+   However, this guarantee does not apply to "local" variables - those that are not fields of a class. Thus, if within a function definition you have:
+   #+begin_src java
+   int x;
+   #+end_src
+
+   Then x will get some random values (as in C and C++); it will not automatically be initialized to zero. You are responsible for assigning an appropriate value before you use x. If you forget, Java definitely improves on C++: you get a compile-time error telling you the variable might not have been initialized. (Many C++ compilers will warn you about uninitialized variables, but in Java there are errors.)
+
+** The argument list
+
+   As in any situation in Java where you seem to be handing objects around, you are actually passing handles. (With the usual exception of the aforementioned "special" data types boolean, char, byte, short, int, long, float and double. In general, though, you pass objects, which really means you pass handles to objects.)
+
+** Forward referencing
+
+Whenever you want to use a predefined class in you program, the compiler must know how to locate it. Of course, the class might already exist in the same source code file that it is being called from. In that case, you simply use the class - even if the class doesn't get defined until later in the file. Java eliminates the "forward referencing" problems so you do not need to think about it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 * 3. Operators
