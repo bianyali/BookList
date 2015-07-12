@@ -32,8 +32,9 @@
 ## Plugin-specific files:
 
 # IntelliJ
-/out/
-
+*/out/
+thinking-in-java/codes/ch3/out/
+*.class
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
