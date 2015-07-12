@@ -1,10 +1,11 @@
 package one.lisp;
 
 import java.util.*;
+
 import static net.mindview.util.Print.*;
 
 public class Exe1 {
-    public static void main (String [] args){
+    public static void main(String[] args) {
         print("hello, world");
         System.out.printf("Hello, world");
 
@@ -20,6 +21,6 @@ public class Exe1 {
         4 = a;
         */
         Tank t = new Tank();
-        t.level  = 12;
+        t.level = 12;
     }
 }

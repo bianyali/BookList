@@ -13,11 +13,11 @@ class Letter {
 
 public class PassObject {
 
-    static void f (Letter y) {
+    static void f(Letter y) {
         y.c = 'z';
     }
 
-    static void fg (Letter y) {
+    static void fg(Letter y) {
         Letter x = new Letter();
         x.c = 'm';
         y = x;

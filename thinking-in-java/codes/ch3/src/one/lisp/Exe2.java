@@ -12,7 +12,7 @@ class Tank1 {
 
 public class Exe2 {
 
-    public static void main (String [] args) {
+    public static void main(String[] args) {
 
         Tank1 t1 = new Tank1();
         t1.level = -12;
@@ -23,11 +23,11 @@ public class Exe2 {
 
         t1 = t2;
         print("2: t1.level: " + t1.level +
-            ", t2.level" + t2.level);
+                ", t2.level" + t2.level);
 
         t1.level = 321;
         print("3: t1.level: " + t1.level +
-            ", t2.level" + t2.level);
+                ", t2.level" + t2.level);
     }
 
 }
