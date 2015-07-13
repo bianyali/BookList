@@ -43,3 +43,8 @@
 ** Standard printed representation
 
    Some Scheme values, such as procedures and ports, do not have standard printed representations and can thus never appear as a constant in the printed syntax of a program. #<description> would be used as a notation when showing the output of an operation that returns such a value, e.g., #<procedure> or #<port>
+* CH2. Getting Started
+
+** data structures and control mechanisms
+
+   其实程序里面除了要考虑 data structure，还要考虑 control mechanisms. However 由于将 control mechanisms 硬性的规定成了 顺序流动，for循环，while 循环，if 语句分支选择，差不多没有别的了。 不可否认，这样确实很好的让 programmer 和 code reader 理解程序，但却将 programs 的种类也硬性死板了。缺少了 goto 的这种胆大妄为。
