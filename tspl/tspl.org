@@ -77,3 +77,32 @@
    You might wonder why applications and variables share notations with lists and symbols. The shared notation allows Scheme programs to be represented as Scheme data, simplifying the writing of interpreters, compilers, editors, and other tools in Scheme.
 
    Just as "car" and "cdr" are often used as nouns, "cons" is often used as a verb. Creating a new list by adding an element to the beginning of a list is referred to as consing the element onto the list.
+** Evaluating scheme expression
+
+   Let's turn to a discussion of how Scheme evaluates the expression you type. We have already established the rules for constant objects such as strings and numbers: the object itself is the value. You have probably also worked out in your mind a rule for evaluating procedure applications of the form
+
+#+begin_src racket
+(procedure arg1 ... argn)
+#+end_src
+
+
+   Here, procedure is an expression representing a Scheme procedure, amd arg1 ... argn are expressions representing its arguemts. One possibility is the following:
+
+#+begin_src racket
+; Find the value of procedure.
+; Find the value of arg1
+; ...
+; Find the value of argn
+; Apply the value of procedure to the values of arg1 ... argn.
+#+end_src
+
+   For example, consider the simple procedure application (+ 3 4). The value of + is the addition procedure, the value of 3 is the number 3, and the value of 4 is the number 4. Apply the addition procedure to 3 and 4 yields 7, so our value is the object 7.
+
+** Procedure and other syntactic forms
+
+   The procedure evaluation rule works for procedure applications but not for quote expression because the subexpressions of a procedure application are evaluated, whereas the subexpression of a quote expression is not. The evaluation of a quote expression is more similar to the evaluation of constant objects. The value of a quote expression of the form (quote object) is simply object.
+
+   Constant objects, procedure applications, and quote expressions are only three of the many syntactic forms by Scheme. Fortunately, only a few of the other syntactic forms need to be understood directly by a Schemer programmer; there are referred as core syntactic forms. The remaining syntactic forms are syntactic extensions defined, ultimately, in terms of the core syntactic forms. We will discuss the remaining sections of this chapter. Section 3.1 summarizes the core syntactic forms and introduces the syntactic extension mechanism.
+
+
+**
