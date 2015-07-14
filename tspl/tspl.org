@@ -55,7 +55,7 @@
    In some cases, the distinction might seem obvious. The list of numbers (1 2 3 4 5) could hardly be confused with a procedure application, since 1 is a number. So, the answer might be that Scheme looks at the fist element of the list or procedure application and makes its decision based on whether that first element is a procedure or not. This answer is not good enough, since we might even want to treat a valid procedure application such as (+ 3 4) as a list. The answer is that we must tell Scheme explicitly to treat a list as a data rather than as a procedure application. We do this with quote.
 
    #+begin_src racket
-(quote 1 2 3 4 5)
+(quote (1 2 3 4 5))
 (quote ("this" "is" "a" "list"))
 (quote (+ 3 4))
    #+end_src
@@ -105,4 +105,20 @@
    Constant objects, procedure applications, and quote expressions are only three of the many syntactic forms by Scheme. Fortunately, only a few of the other syntactic forms need to be understood directly by a Schemer programmer; there are referred as core syntactic forms. The remaining syntactic forms are syntactic extensions defined, ultimately, in terms of the core syntactic forms. We will discuss the remaining sections of this chapter. Section 3.1 summarizes the core syntactic forms and introduces the syntactic extension mechanism.
 
 
-**
+** Let syntactic form
+
+   We say the variable are bound to the values by the let. We refer to variables bound by let as let-bound variables.
+
+   A let expression is often used to simplify an expression that would contain two identical subexpressions. Doing so also ensures that the value of the common subexpression is computed only once.
+
+#+begin_src racket
+
+(+ (* 4 4) (* 4 4))
+(let ((a (* 4 4)))
+     (+ a a))
+
+#+end_src
+
+   The variable bound by let are visible only within the body of the let.
+
+   Although choosing different names can sometimes prevent confusion, showing can help prevent the accidental use of an "old" value. For example, with the original version of the preceding example, it would be impossible for us to mistakenly refer to the outer x within the body of the inner let.
