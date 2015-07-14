@@ -34,6 +34,8 @@
 # IntelliJ
 */out/
 thinking-in-java/codes/ch3/out/
+tij/codes/ch3/out/
+*/out/*
 *.class
 # mpeltonen/sbt-idea plugin
 .idea_modules/

@@ -3,13 +3,27 @@
 #+EMAIL:       byl.lisp@gmail.com
 #+DATE:        2015-07-06 Mon
 
-* 读书笔记
 
-** SICP
-   Structure and Interpretation of Computer Programs
+* Structure and Interpretation of Computer Programs
 
-** Thinking in Java
-   Thinking in Java
+**** Name: Structure and Interpretation of Computer Programs.
+**** Direcotry: sicp
 
-** PLT
-   Programming Language Technology
+
+
+* Thinking in Java
+
+**** Name: Thinking in Java
+**** Directory: tij
+
+* Programming Language Technology
+
+**** Name: Programming Language Technology
+**** Directory: plt
+
+
+* The Scheme Programming Language
+
+
+**** Name: The Scheme Programming Language
+**** Directory: tspl
