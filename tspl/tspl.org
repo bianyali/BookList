@@ -168,3 +168,11 @@
 #+end_src
 
    In fact, a let expression is a syntactic extension defined in terms of lambda and procedure application, which are both core syntactic forms.
+
+** Top-level definitions
+
+   A top-level definition many be established for any object, not just for procedures.
+
+   As suggested above, top-level definitions may be shadowed by let or lambda bindings.
+
+   Variables with top-level definitions act almost as if they were bound by a let expression enclosing all of the expression you type.
