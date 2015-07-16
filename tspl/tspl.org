@@ -176,3 +176,8 @@
    As suggested above, top-level definitions may be shadowed by let or lambda bindings.
 
    Variables with top-level definitions act almost as if they were bound by a let expression enclosing all of the expression you type.
+** Simple Recursion
+
+   Readers who are familiar with other languages that provide special iteration constructs, e.g., while or for loops, might wonder whether similar constructs are required in Scheme. Such constructs are unnecessary; iteration in Scheme is expressed more clearly and succinctly via recursion.
+
+   Recursion is more general and eliminates the need for the variable assignments required by many other languages' iteration constructs, resulting in code that is more reliable and easier to follow.

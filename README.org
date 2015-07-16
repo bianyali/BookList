@@ -4,26 +4,27 @@
 #+DATE:        2015-07-06 Mon
 
 
-* Structure and Interpretation of Computer Programs
+** Structure and Interpretation of Computer Programs
 
-**** Name: Structure and Interpretation of Computer Programs.
-**** Direcotry: sicp
-
-
-
-* Thinking in Java
-
-**** Name: Thinking in Java
-**** Directory: tij
-
-* Programming Language Technology
-
-**** Name: Programming Language Technology
-**** Directory: plt
+   + Name: Structure and Interpretation of Computer Programs.
+   + Direcotry: sicp
+   + Date: 2015-03-15 to Now
 
 
-* The Scheme Programming Language
+** Thinking in Java
 
+   + Name: Thinking in Java
+   + Directory: tij
+   + Date: 2015-06-27 to Now
 
-**** Name: The Scheme Programming Language
-**** Directory: tspl
+** Programming Language Technology
+
+   + Name: Programming Language Technology
+   + Directory: plt
+   + Date: 2015-03-16 to Now
+
+** The Scheme Programming Language
+
+   + Name: The Scheme Programming Language
+   + Directory: tspl
+   + Date: 2015-06-12 to Now

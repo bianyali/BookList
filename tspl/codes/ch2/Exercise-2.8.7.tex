@@ -1,0 +1,48 @@
+% Created 2015-07-16 Thu 15:31
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{bialy}
+\date{\today}
+\title{Exercise-2.8.7}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+; Exercise 2.8.7
+; transpose
+
+\#lang racket
+
+(define transpose
+  (lambda (x)
+    (map (lambda (x)
+           (cons (list x)))
+         x)))
+
+
+; test
+(define li '((a . 1) (b . 2) (c . 3)))
+
+(transpose li)
+% Emacs 24.5.1 (Org mode 8.2.10)
+\end{document}
