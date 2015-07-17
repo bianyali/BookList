@@ -181,3 +181,31 @@
    Readers who are familiar with other languages that provide special iteration constructs, e.g., while or for loops, might wonder whether similar constructs are required in Scheme. Such constructs are unnecessary; iteration in Scheme is expressed more clearly and succinctly via recursion.
 
    Recursion is more general and eliminates the need for the variable assignments required by many other languages' iteration constructs, resulting in code that is more reliable and easier to follow.
+** Assignment
+
+   Assignments do not create new bindings, as with let or lambda, but rather change the values of existing bindings.
+
+   Many languages require the use of assignments to initialize variables, separate from the declaration or binding of the variables. In Scheme, all local variables are given a value immediately upon binding. Besides making the separate assignment to initialize local variables unnecessary, it ensures that the programmer cannot forget to initialize them, a common source of errors in most languages.
+
+   In fact, most of the assignments that are either necessary or convenient in other languages are both unnecessary and inconvenient in Scheme, since there is typically a clearer way to express the same algorithm without assignments. One common practice in some languages is to sequence expression evaluation with a series of assignments, as in the following procedure that finds the roots of a quadratic equation.
+
+#+begin_src racket
+(define quadratic-formula
+   (lambda (a b c)
+       (let ([root1 0] [root2 0] [minusb 0] [radical 0] [divisor 0])
+          (set! minusb (- 0 b))
+          (set! radical (sqrt (- (* b b) (* 4 (* a c)))))
+          (set! divisor (* 2 a))
+          (set! root1 (/ (+ minusb radical) divisor))
+          (set! root2 (/ (- minusb radical) divisor))
+)))
+#+end_src
+
+   Assignments are commonly used to implement procedures that must maintain some internal state.
+** Lazy evaluation
+
+   Lazy evaluation is especially useful for values that require considerable time to compute. By delaying the evaluation, we might avoid computing the value altogether, and by saving the value, we avoid computing it more than once.
+
+* Ch3. Going Further
+
+** Syntactic Extension
