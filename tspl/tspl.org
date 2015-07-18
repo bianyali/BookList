@@ -208,4 +208,13 @@
 
 * Ch3. Going Further
 
-** Syntactic Extension
+** Syntactic extension
+** More recursion
+
+   Recursion in general  and named let in particular provide a natural way to implement many algorithms, whether iterative, recursive, or partly iterative and partly recursive; the programmer is not burdened with two distinct mechanisms.
+
+   It often happens that one recursive call within the same expression is tail-recursive while another is not.
+
+** Tail position
+
+   A call is in tail position with respect to a lambda expression if its value is returned directly from the lambda expression, i.e., if nothing is left to do after the call but to return from the lambda expression. For example, a call in tail position if it is the last expression in the body in the body of a lambda expression, the consequent or alternative part of an if expression in tail position, the last subexpression of an and or or expression in tail position, the last expression in the body of a let or let rec in tail position, etc. Each of the calls to f in the expressions below are tail calls, but the calls to g are not.
