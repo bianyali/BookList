@@ -10,7 +10,6 @@
    + Direcotry: sicp
    + Date: 2015-03-15 to Now
 
-
 ** Thinking in Java
 
    + Name: Thinking in Java
@@ -28,3 +27,9 @@
    + Name: The Scheme Programming Language
    + Directory: tspl
    + Date: 2015-06-12 to Now
+
+   + Material: A page about call/cc
+   + Directory: a-page-about-call_cc.org
+
+   + Material: CPS Notes
+   + Directory: cps-notes.org
