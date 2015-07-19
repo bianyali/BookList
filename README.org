@@ -26,10 +26,10 @@
 
    + Name: The Scheme Programming Language
    + Directory: tspl
-   + Date: 2015-06-12 to Now
+   + Date: 2015-06-12 to Now\\
 
    + Material: A page about call/cc
-   + Directory: a-page-about-call_cc.org
+   + Directory: a-page-about-call_cc.org\\
 
    + Material: CPS Notes
    + Directory: cps-notes.org
