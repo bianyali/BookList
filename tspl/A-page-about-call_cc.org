@@ -1,0 +1,66 @@
+#+TITLE: A Page about call/cc
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-07-18 Sat
+
+
+* What is call/cc?
+
+  call/cc stands for "call with current continuation"; it is a function that exists in certain programming languages. What is does is not very easy to describe; in fact, think it is one of the strangest inventions of computer science.
+
+* A first introduction
+
+  At its heart, call/cc is something like the goto instruction (or rather, like a label for a goto instruction); but a Grand High Exalted goto instruction. I can see your hair turning green at this point: ever since Dijkstra's famous Turing award speech, we know that goto is Evil and can never be Grand, High and Exalted. Well, until you know more about call/cc.
+
+  The point about call/cc is that it is not a static(lexical) goto instruction but a dynamic one. Just exactly what is meant by this should become clear later on. The call/cc function introduces some rather mysterious objects in the programming language, first-class reified continuations; these fundamentally alter the way the program is understood (some would say, making it much harder to understand - and admittedly there is truth in this).
+
+* Who invented call/cc?
+
+  A Correspondence between algol 60 and Church's Lambda-notation, introduces the "J" operator that is quite like call/cc.
+
+* What does call/cc stand for?
+
+  It means "call-with-current-continuation". At least, that is its official name in Scheme (and though the call/cc abbreviation is common, it has not achieved universal recognition and some Scheme implementations, such as guile, accept only the longer name). This refers to the fact that call/cc captures the current continuation, and applies its argument to this continuation (however, before you try to make sense of this please wait for me to explain what continuations are).
+
+* Which programming languages have a call/cc function?
+
+  Scheme is the canonical language having a call/cc function: it is officially called call-with-current-continuation, although the call/cc notation is semi-standard.
+
+  The Standard ML of New Jersey also also has a call/cc function, that is called SMLofNJ.Cont.call.
+
+  The Unlambda programming language also has a call/cc function (introduced simply because it is something that is difficult to understand and Unlambda is an obfuscated programming language): it is called "c".
+
+  To the best of my knowledge, these are the only languages with a full-fledged call/cc function. Many other languages (notably Java, CAML or C++) incorporate a weaker form of call/cc ("outgoing-only continuation") called exceptions: we will explain what exceptions are and why they are weaker than true continuations.
+
+  At a lower level, some OS's have support for a kind of call/cc function: the only that I know of is the Solaris form of Unix which supports the getcontext() function that is strongly related to call/cc. And processor Task State Segments (used in multitasking) could be though of as a manner of continuations.
+
+  Finally, a call/cc function can be added to the Coq project by simply entering Axiom call/cc: (P:Type) ((P->EmptyT)->P)->P.: however, since Coq is not Turing-complete, this can be considered cheating.
+
+* Outgoing-only continuations: exceptions
+
+  Exceptions are present in many programming languages, and most people seem to have no problem understanding them. We review them briefly.
+
+  An exception signals that a spacial condition (generally an error) was encountered in the course of the execution of a program. Signaling the condition (highly inappropriate term) is called raising the exception (most people use the term "throwing" here, but I prefer the former term). When this happens, normal execution ceases: the function in which the exception was raised terminates immediately, raising the exception again in its caller (parent), which terminates in turn, and so on until either the entire program is terminated or until it is caught. Catching the exception involves putting the code which might raise it in a special block; if the exception is raised, control is transferred to the exception handler which decides what to do; after the exception handler has returned, normal execution is resumed (at the end of the block, not where the exception was raised), as if the code had terminated normally.
+
+  True exception (the raise/catch sort and not the break/block one) are of a different  nature: any block can raise an exception, it does need to have to be lexically embedded within a catch block. And the exception will be caught (if at all) by the innermost catch that is dynamically surrounding the raise.
+
+* A digression on lexical vs dynamic scoping of exceptions
+
+  The duration of closures is greater than simply the execution time of the function, and the simple stack-based model of computation fails (garbage-collection must be used, the closures must be stored on the heap rather than on the stack). I mention this here because there is analogy with escaping continuations: escaping continuations do to return addresses what escaping inner functions do to data (i.e. making lifetimes become unpredictable and forcing a replacement of the simple stack model by a more complex, garbage-collected graph).
+
+* Exception in C: setjmp() and longjmp()
+
+  The C programming language (or, rather, the POSIX standard) defines two functions, setjmp() and longjmp() which are the nearest thing C has to exception or continuations. We shall look at them in some detail because they have some interesting common points with call/cc and throw respectively.
+
+  The setjmp() function stores the so-called "stack context" (not a very appropriate name for outgoing-only continuations like these, but let us stick to it) in a variable passed to it, the "jump buffer"; it then returns 0. The longjmp() function takes a jump buffer and a (non zero). These functions are used to implement exceptions in C: an exception handler is installed with the setjmp(), and the exception is raised with longjmp(). What the functions actually do is that setjmp() stores the size of the stack in the jump buffer, and longjmp() restores it. (Of course, there is a heavy amount of black magic involved, notably on the compiler's part, so that this not mess up with the various optimizations, and there are some complicated restrictions on the use of these functions; in the case where the longjmp() function is called from a signal handler, things get pretty messy indeed. But we are floating far above such worries.)
+
+  One important restriction of the setjmp() and longjmp() functions is that the function that called setjmp() must not have returned between the call to setjmp() and that to longjmp(). The following code, for example, is invalid:
+
+  Think of a setjmp() function that would not have this limitation and you have a good approximation of call/cc. If you adhere to a stack-based paradigm of computation, or things to work in all cases we would need a full copy of the stack as per getcontext().
+* What call/cc does: a first description
+
+  The call/cc function takes one argument. That argument should itself be a function f (hence, our programming language should allow first-class citizenship of functions). call/cc will apply f to the current continuation. The current continuation is something which looks a lot like a function (at lease in the Scheme version of call/cc it does; in the SML/NJ version it is a bit different but that is unimportant). If a continuation is applied to a value (or, as some prefer to say, thrown a value), it has the effect of making the call/cc (which produced that continuation) return that value. But other approaches are possible, so this should not be taken as part of the "fundamental" nature of call/cc but only as a contingent property of its main implementations.
+
+* What are continuations?
+
+  It is time by now
