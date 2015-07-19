@@ -125,3 +125,11 @@
    - Implementing call/cc. CPS interpreters. Thoughts on continuations and tasks.
    - call/cc and the Curry-Howard isomorphism: Pierce's law, "going back in time", double negation and the meaning of disjunction.
    - call/cc in linear programming/logic
+
+** Links
+
+   - FOLDOC
+   - Introduction to Scheme and its implementation
+   - Teach youself Scheme in fixnum days
+   - R5RS
+   - SML/NJ
