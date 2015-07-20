@@ -1,0 +1,142 @@
+#+TITLE:       Teach Yourself Scheme in Fixnum Days
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-07-20 Mon
+
+
+* Enter Scheme
+* Data types
+
+  A data type is a collection of related values. These collections need not to be disjoint, and they are often hierarchical. Scheme has a rich set of data types: some are simple (indivisible) data types and others are compound data types made by combining other data types.
+
+** Simple data types
+
+   The simple data types of Scheme include booleans, numbers, characters, and symbols.
+
+*** Booleans
+
+    Scheme's booleans are #t for true and #f for false.
+
+    The procedure not negates its argument, considered as a boolean.
+
+    In a context that requires a boolean, Scheme will treat any value that is not #f as a true value.
+
+#+BEGIN_SRC racket
+
+(not "Hello, World!") ; => #f
+
+#+END_SRC
+
+*** Numbers
+
+    Scheme numbers can be integers (eg, 42), rationals (22/7), reals (3.1416), or complex (2+2i). An integer is a rational is a real is a complex number is a number.
+
+    Scheme integers need not be specified in decimal (base 10) format. They can be specified in binary by prefixing the numeral with #b. Thus #b1100 is the number twelve. The octal prefix is #o and the hex prefix is #x. (The optional decimal prefix is #d.)
+
+    Numbers can tested for equality using the general-purpose equality predict eqv?
+
+*** Characters
+
+    Scheme character data are represented by prefixing the character with #\. Thus #\c is the character c.
+
+**** Non-graphic characters
+
+    Some non-graphic characters have more descriptive names, eg, #\newline, #\tab. The character for space can be written #\ , or more readably, #\space.
+
+    #+BEGIN_SRC racket
+    (char? #\;)
+    #+END_SRC
+
+    Note that a semicolon character datum does not trigger a comment.
+
+*** Symbols
+
+    The simple data types we saw above are self-evaluating. Ie, if you typed any object from these data types to the listener, the evaluated result returned by the listener will be the same as what you typed in.
+
+    #+BEGIN_SRC racket
+    #t
+    42
+    #\c
+    #+END_SRC
+
+    Symbols do not behave the same way. This is because symbols are used by Scheme programs as identifiers for variables, and thus will evaluate to the value that the variable holds. Nevertheless, symbols are a simple data type, and symbols are legitimate values that Scheme can traffic in, along with characters,numbers, and the rest.
+
+    To specify a symbol without making Scheme think it is a a variable, you should quote the symbol:
+
+    #+BEGIN_SRC racket
+
+    (quote xyz)
+
+    #+END_SRC
+
+    Since this type of quoting is very common in Scheme, a convenient abbreviation is provided. The expression
+    #+BEGIN_SRC racket
+    'E
+    #+END_SRC
+
+    Scheme symbols are named by a sequence of characters. About the only limitation on a symbol's name is that it shouldn't be mistakable for some other data, eg, characters or booleans or numbers or compound data.
+
+    Scheme symbols are normally case-insensitive. Thus the symbols Calorie and calorie are identical:
+
+    #+BEGIN_SRC racket
+    (define x 9)
+    (symbol? x)
+    #+END_SRC
+
+** Compound data types
+
+   Compound data types are built by combining values from other data types in structured ways.
+
+*** Strings
+
+    Strings are sequences of characters (not to be confused with symbols, which are simple data that _have a sequence of characters as their name_). You can specify strings by enclosing the constituent characters in double-quotes.
+
+*** Vector
+
+    Vectors are sequences like strings, but their elements can be anything, not just characters. Indeed, the elements can be vectors themselves, which is a good way to generate multidimensional vectors.
+
+*** Dotted pairs and lists
+
+    A dotted pair is a compound value made my combining any two arbitrary values into an *ordered couple*. The first element is called the car, the second element is called the cdr, and the combining procedure is cons.
+
+    Dotted pairs are not *self-evaluating*, and so to specify them directory as data (ie, without producing them via a cons-call), one must explicitly quote them:
+
+    '(1 . #t)
+
+    Scheme provides a further abbreviation if the last cdr is a special object called the empty list, which is represented by the expression (). The empty list is not considered self-evaluating, and so one should quote it when supply it as a value in a program.
+
+    This special kind of nested dotted pair is called a list.
+
+*** Conversions between data types
+
+    Characters can be converted into integers using char->integer, and integers can be converted into characters using integer->char.
+    The integer corresponding to a character is usually its ascii code.
+
+** Other data types
+
+   Scheme contains some other data types. One is the procedure.
+
+   The procedures we have seen thus far are primitive procedures, with standard global variables holding them.
+
+   Yet another data type is the port. A port is the conduit through which input and output is performed. Ports are usually associated with files and consoles.
+
+
+** S-expression
+
+   All the data types discussed here can be lumped together into a single all-encompassing data type called the s-expression (s for symbolic). Thus 43, #\c, (1 . 2), #(a b c), "hello", (quote xyz), (string-number "16"), and (begin (display "hello, world!")(newline)) are all s-expression.
+
+* Forms
+
+  The reader will have note that the Scheme example programs provided thus far are also s-expression. This is true of all Scheme programs: Programs are data.
+
+  Thus, the character datum #\c is a program, or a form. We will use the more general term form instead of program, so that we can deal with program fragments too.
+
+  Scheme evaluates the form #\c to the value #\c, because #\c is self-evaluating. Not all s-expressions are self-evaluating. For instance the symbol s-expression /xyz/ evaluates to the value held by the variable /xyz/. The list s-expression (string->number "16") evaluates to the number 16.
+
+  Not all s-expressions are valid programs. If you typed the dotted-pair s-expression (1 . 2), at the Scheme listener, you will get an error.
+
+  Scheme evaluates a list form by examining the first element, or head, of the form. If the head evaluates to a procedure, the rest of the form is evaluated to get the procedure's arguments, and the procedure is applied to the arguments.
+
+  If the head of the form is a *special form*, the evaluation proceeds in a manner idiosyncratic to that form. Some special forms we have already seen are begin, define, and set!. begin causes its subforms to be evaluated in order, the result of the entire form being the result of the last subform. define introduces and initializes a variable. set! changes the binding of a variable.
+
+** Procedures

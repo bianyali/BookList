@@ -7,27 +7,37 @@
 ** Structure and Interpretation of Computer Programs
 
    + Name: Structure and Interpretation of Computer Programs.
-   + Direcotry: sicp
+   + Directory: sicp
+   + Tag: Lisp, PLT
    + Date: 2015-03-15 to Now
 
 ** Thinking in Java
 
    + Name: Thinking in Java
    + Directory: tij
+   + Tag: Java, Language
    + Date: 2015-06-27 to Now
 
 ** Programming Language Technology
 
    + Name: Programming Language Technology
    + Directory: plt
+   + Tag: PLT
    + Date: 2015-03-16 to Now
 
 ** The Scheme Programming Language
 
    + Name: The Scheme Programming Language
    + Directory: tspl
+   + Tag: Lisp, Scheme, PLT
    + Date: 2015-06-12 to Now
    + Reference:
      1. A page about call/cc
      2. CPS Notes
-     3. Teach yourself Scheme in fixnum days
+
+** Teach Yourself Scheme in Fixnum Days
+
+   + Name: Teach Yourself Scheme in Fixnum Days
+   + Directory: tyscheme
+   + Tag: Scheme
+   + Date: 2015-07-2o to Now
