@@ -1,6 +1,7 @@
 #+TITLE: Books I Read TimeLine
 
-* ANSI Common Lisp
+* Read
+** ANSI Common Lisp
 
   * TIME
     1. 2014年12月07日 - 2014年12月17日
@@ -9,8 +10,7 @@
 
   * QUOTE
 
-
-* How to Design Programs
+** How to Design Programs
 
   * TIME
     1. 2014年12月22日 - 2014年12月28日
@@ -19,8 +19,7 @@
 
   * QUOTE
 
-
-* The Racket Guide
+** The Racket Guide
 
   * TIME
 
@@ -31,8 +30,7 @@
 
   * QUOTE
 
-
-* 从一到无穷大
+** 从一到无穷大
 
   * TIME
 
@@ -42,8 +40,7 @@
 
   * QUOTE
 
-
-* 图灵的秘密
+** 图灵的秘密
 
   * TIME
 
@@ -53,8 +50,7 @@
 
   * QUOTE
 
-
-* An Emacs Tutorial for Vim User
+** An Emacs Tutorial for Vim User
 
   * TIME
     1. 2015年01月04日 - 2015年01月04日
@@ -63,8 +59,7 @@
 
   * QUOTE
 
-
-* The little Schemer
+** The little Schemer
 
   * TIME
     1. 2015年01月04日 - 2015年01月06日
@@ -73,8 +68,7 @@
 
   * QUOTE
 
-
-* [[www.norvig.com/21-days.html][Teach Yourself Programming in Ten years]]
+** [[www.norvig.com/21-days.html][Teach Yourself Programming in Ten years]]
 
   * TIME
     1. 2015年01月08日 - 2015年01月08日
@@ -89,8 +83,7 @@
       * Anyone can cook, but only the fearless can be great.
     #+END_QUOTE
 
-
-* [[http://shop.oreilly.com/product/9781565925090.do#][HTTP: The Definitive Guide]]
+** [[http://shop.oreilly.com/product/9781565925090.do#][HTTP: The Definitive Guide]]
 
   * TIME
     1. 2015年01月07日 - 2015年01月18日
@@ -213,8 +206,7 @@
         * Basic authentication is convenient and flezible but completely insecure. Usernames and passwords are sent in the clear (Usernames and passwords are scrambled using a trivial base-64 encoding, which can be decoded easily. This protects against unintentional accidental viewing but offers no protection against malicious parties), and there is no attempt to protect message from tampering. The only way to use basic authentication securely is to use it in comjunction with SSL.
     #+END_QUOTE
 
-
-* [[http://igstan.ro/posts/2010-12-01-deriving-the-y-combinator-in-7-easy-steps.html][Deriving the Y Combinator in 7 Easy Steps]]
+** [[http://igstan.ro/posts/2010-12-01-deriving-the-y-combinator-in-7-easy-steps.html][Deriving the Y Combinator in 7 Easy Steps]]
 
   * TIME
     1. 2015年01月11日-2015年01月11日
@@ -226,8 +218,7 @@
       * 在没有原生递归支持的语言中，Y结合子 (Y Combinator) 是一种实现递归的方式 （事实上，它更常被作为一种锻炼程序思维的方式）。 要实现Y结合子， 要求这种语言支持匿名函数。
     #+END_QUOTE
 
-
-* [[www.ccs.neu.edu/home/matthias/BTSS][The Seasoned Schemer]]
+** [[www.ccs.neu.edu/home/matthias/BTSS][The Seasoned Schemer]]
 
   * TIME
     1. 2015年01月08日 - now
@@ -251,8 +242,7 @@
 
 
 
-
-* [[docs.racket-lang.org/web-server/][Web Application in Racket]]
+** [[docs.racket-lang.org/web-server/][Web Application in Racket]]
 
   * TIME
 
@@ -424,8 +414,7 @@
     6. Formlets: Functional Form Abstraction
     7. Servlets communicate to Web Server by returing HTTP responses.
 
-
-* [[http://www-verimag.imag.fr/~plafourc/teaching/latex.pdf][LaTeX: A Document Preparation System]]
+** [[http://www-verimag.imag.fr/~plafourc/teaching/latex.pdf][LaTeX: A Document Preparation System]]
 
   * TIME
 
@@ -443,8 +432,7 @@
     6. list of tables files (".lot" extension)
     7. list of figures files (".lof" extension)
 
-
-* [[http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html][SSL/TLS协议运行机制的概述]]
+** [[http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html][SSL/TLS协议运行机制的概述]]
 
   * TIME
 
@@ -462,8 +450,7 @@
 
 
 
-
-* [[http://docs.racket-lang.org/web-server-internal/index.html][Web Server: HTTP Server]]
+** [[http://docs.racket-lang.org/web-server-internal/index.html][Web Server: HTTP Server]]
 
   * TIME
 
@@ -483,8 +470,7 @@
     1. start is loaded as a servlet and responds to requests that match servlet-regexp. The current directory of serlet execution is servlet-current-directory.
 
 
-
-* [[dl.acm.org/ccs/cfm][The ACM Computing Classification System]]
+** [[dl.acm.org/ccs/cfm][The ACM Computing Classification System]]
 
   * TIME
 
@@ -668,8 +654,7 @@
         3. People in computing
         4. Technologies
 
-
-* [[http://cs.brown.edu/~sk/Publications/Papers/Published/khmgpf-impl-use-plt-web-server-journal/paper.pdf][Implementation and Use of the PLT Scheme Web Server]]
+** [[http://cs.brown.edu/~sk/Publications/Papers/Published/khmgpf-impl-use-plt-web-server-journal/paper.pdf][Implementation and Use of the PLT Scheme Web Server]]
 
   * TIME
 
@@ -693,8 +678,7 @@
     2. A web server provides operating system-style services.
        Like an operating system, a server runs programs (namely servlets). Like an operating system, a server should protect these programs from each other. And like an operating system, a server manages resources (such as network connections) for the programs it runs. Most existing Web servers rely on the underlying operating system to implement these services: they create a fresh OS process for each incoming request which necessitates the creation of a new address space, loading code and so on. The PLT Scheme Web Server instead uses user-level threads, and relies on the operating system-like facilities provided by the underlying language to offer protection to individual servlet instances (as discussed in section 2.6). For these two reasons, we should expect higher performance from our Web server than from conventional servers that use CGI.
 
-
-* [[Http://pagesperso-systeme.lip6.fr/Christian.Queinnec/PDF/webcont.pdf][The influence of Browsers on Evaluators or, Continuation to Program Web Servers]]
+** [[Http://pagesperso-systeme.lip6.fr/Christian.Queinnec/PDF/webcont.pdf][The influence of Browsers on Evaluators or, Continuation to Program Web Servers]]
 
   * TIME
 
@@ -704,8 +688,7 @@
 
   * QUOTE
 
-
-* [[http://docs.racket-lang.org/continue/index.html][Continue: Web Applications in Racket]]
+** [[http://docs.racket-lang.org/continue/index.html][Continue: Web Applications in Racket]]
 
 
   * TIME
@@ -736,8 +719,7 @@
        We've been in the habit of pressing the Run button to run our application in DrRacket. But if we were actually to deploy an application, we'd need to launch it by a different method.
        The simplest alternatives is to use web-server/servlet-env.
 
-
-* [[http://docs.racket-lang.org/more/][More: Systems Programming with Racket]]
+** [[http://docs.racket-lang.org/more/][More: Systems Programming with Racket]]
 
   * TIME
 
@@ -774,8 +756,7 @@
 
 
 
-
-* [[docs.racket-lang.org/xrepl][XREPL: eXtended REPL]]
+** [[docs.racket-lang.org/xrepl][XREPL: eXtended REPL]]
 
   * TIME
 
@@ -844,8 +825,7 @@
          XREPL is mainly a convenience tool, and as such you might want to hack it to better suit your needs. Currently, there is no convient way to customize and extend it, but this will be added in the future.
          While this is not intended as the way to extend and customize XREPL, it is a useful debugging tool should you want to do so.
 
-
-* [[docs.racket-lang.org/reference/][The Racket Reference]]
+** [[docs.racket-lang.org/reference/][The Racket Reference]]
 
   * TIME
 
@@ -948,8 +928,7 @@
 
 
 
-
-* [[docs.racket-lang.org/json][JSON in Racket]]
+** [[docs.racket-lang.org/json][JSON in Racket]]
 
   * TIME
 
@@ -967,8 +946,7 @@
     2. JS-Expression - jsexpr
        Some names in this library use “jsexpr” and some use “json”. The rationale that the first is used for our representation, and the second is used as information that is received from or sent to the outside world.
 
-
-* [[http://planet.racket-lang.org/package-source/jaymccarthy/mongodb.plt/1/4/planet-docs/mongodb/][MongoDB in Racket]]
+** [[http://planet.racket-lang.org/package-source/jaymccarthy/mongodb.plt/1/4/planet-docs/mongodb/][MongoDB in Racket]]
 
   * TIME
 
@@ -985,8 +963,7 @@
 
   * QUOTE
 
-
-* [[http://pkg-build.racket-lang.org/doc/pkg][Package Management in Racket]]
+** [[http://pkg-build.racket-lang.org/doc/pkg][Package Management in Racket]]
 
   * TIME
 
@@ -996,8 +973,7 @@
 
   * QOUTE
 
-
-* [[mitpress.mit.edu/scip][Structure and Interpretation of Computer Programs]]
+** [[mitpress.mit.edu/scip][Structure and Interpretation of Computer Programs]]
 
   * TIME
 
@@ -1007,8 +983,7 @@
 
   * QUOTE
 
-
-* 暗时间
+** 暗时间
 
   * TIME
 
@@ -1039,8 +1014,7 @@
     4. 自利归因
        归结于客观原因，推卸自己的责任。一旦你说出“这件事不是我的原因”这样的话之后，除了心里好受了之外，你也开始相信这件事情的失败真的与你无关，你自己这方面不需要做任何改变（因为你觉得不是你的问题），于是结果你下次同样也不回成功。增大成功的几率，本来就是我们付出的时间的原因。我们每个人内心的观念都会对我们看待周围的事物起一个滤镜的作用，过滤一切所见之物。扭曲它们以使它们符合我们内心的主观意识。
 
-
-* 黑客
+** 黑客
 
   * TIME
 
@@ -1052,8 +1026,7 @@
 
   * QUOTE
 
-
-* 浪潮之巅
+** 浪潮之巅
 
   * TIME
 
@@ -1063,8 +1036,7 @@
 
   * QUOTE
 
-
-* 编码：隐匿在计算机软硬件背后的语言
+** 编码：隐匿在计算机软硬件背后的语言
 
   * TIME
 
@@ -1080,27 +1052,40 @@
 
 
 
-* ---------------------------to read---------------------
+-----
 
 
-* [[www.dreamsongs.com/Files/HOPL2-Uncut.pdf][Evolution of Lisp]]
+
+
+
+
+
+
+* PLT
+
+** [[www.dreamsongs.com/Files/HOPL2-Uncut.pdf][Evolution of Lisp]]
   * To be read
   #+BEGIN_QUOTE
   *
   #+END_QUOTE
 
-
-* [[http://www.amazon.com/Out-Control-Biology-Machines-Economic/dp/0201483408][Out of Control: The New Biology of Biology of Machines, Social Systems, and the Economic World]]
-  * 2015年01月15日 - now
-
-
-* [[www.ccs.neu.edu/home/matthias/BRS][The Reasoned Schemer]]
+** [[www.ccs.neu.edu/home/matthias/BRS][The Reasoned Schemer]]
   * Time Line
   * to read
 
+** Compiling with Continuations
 
+   [[http://www.amazon.com/Compiling-Continuations-Andrew-W-Appel/dp/052103311X][Info]]
+   - State :: To read
+** [[www.eopl3.com][Essentials of Programming Languages]]
 
-* [[http://shop.oreilly.com/product/9780596805838.do][REST in Practice]]
+  * TIME
+  * COMMENT
+  * QUOTE
+
+* Web
+
+** [[http://shop.oreilly.com/product/9780596805838.do][REST in Practice]]
 
   * TIME
 
@@ -1109,15 +1094,12 @@
   * QUOTE
 
 
-* [[http://shop.oreilly.com/product/9780596529260.do][RESTful Web Services]]
+** [[http://shop.oreilly.com/product/9780596529260.do][RESTful Web Services]]
 
   * TIME
   * COMMENT
   * QUOTE
+* Tech
 
-
-* [[www.eopl3.com][Essentials of Programming Languages]]
-
-  * TIME
-  * COMMENT
-  * QUOTE
+** [[http://www.amazon.com/Out-Control-Biology-Machines-Economic/dp/0201483408][Out of Control: The New Biology of Biology of Machines, Social Systems, and the Economic World]]
+  * 2015年01月15日 - now

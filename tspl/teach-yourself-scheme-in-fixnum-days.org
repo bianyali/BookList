@@ -1,0 +1,14 @@
+#+TITLE:       Teach Yourself Scheme in Fixnum Days
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-07-20 Mon
+
+
+* Enter Scheme
+* Data types
+
+  A data type is a collection of related values. These collections need not to be disjoint, and they are often hierarchical. Scheme has a rich set of data types: some are simple (indivisible) data types and others are compound data types made by combining other data types.
+
+** Simple data types
+
+   The simple data types of Scheme include booleans, numbers, characters, and symbols.

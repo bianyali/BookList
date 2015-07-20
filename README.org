@@ -26,10 +26,8 @@
 
    + Name: The Scheme Programming Language
    + Directory: tspl
-   + Date: 2015-06-12 to Now\\
-
-   + Material: A page about call/cc
-   + Directory: a-page-about-call_cc.org\\
-
-   + Material: CPS Notes
-   + Directory: cps-notes.org
+   + Date: 2015-06-12 to Now
+   + Reference:
+     1. A page about call/cc
+     2. CPS Notes
+     3. Teach yourself Scheme in fixnum days

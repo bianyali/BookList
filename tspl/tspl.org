@@ -218,6 +218,7 @@
 ** Tail position
 
    A call is in tail position with respect to a lambda expression if its value is returned directly from the lambda expression, i.e., if nothing is left to do after the call but to return from the lambda expression. For example, a call in tail position if it is the last expression in the body in the body of a lambda expression, the consequent or alternative part of an if expression in tail position, the last subexpression of an and or or expression in tail position, the last expression in the body of a let or let rec in tail position, etc. Each of the calls to f in the expressions below are tail calls, but the calls to g are not.
+
 ** Continuations
 
    During the evaluation of a Scheme expression, the implementation must keep track of two things: (1) what to evaluate and (2) what to do with the value. Consider the evaluation of (null? x) within the expression below.
@@ -246,3 +247,60 @@
    Scheme allows the continuation of any expression to be captured with the procedure call/cc. call/cc must be passed a procedure p of one argument. call/cc constructs a concrete representation of the current continuation and passes it to p. The continuation itself is represented by a procedure k. Each time k is applied to a value, it returns the value to the continuation of the call/cc application. This value becomes, in essence, the value of the application of call/cc.
 
    If p returns without invoking k, the value returned by the procedure becomes the value of the application of call/cc.
+** Demos of continuation
+
+   The following variation of the example above is probably the most confusing Scheme program of its size; it might be easy to guess what it returns, but it takes some thought to figure out why.
+
+#+BEGIN_SRC racket
+
+; most confusing Scheme program of its size;
+(((call/cc (lambda (k) k))
+  (lambda (x) x))
+ "HEY!")
+
+#+END_SRC
+
+   The value of the call/cc is its own continuation, as in the preceding example. This is applied to the identity procedure (lambda (x) x), so the call/cc returns a second time with this value. Then, the identity procedure is applied to itself, yielding the identity procedure. This finally applied to "HEY!", yielding "HEY!".
+
+-----
+
+   Continuations used in this manner are not always so puzzling. Consider the following definition of factorial that saves the continuation at the base of the recursion before returning 1, by assigning the top-level variable retry.
+
+#+BEGIN_SRC racket
+
+; most confusing Scheme program of its size;
+(((call/cc (lambda (k) k))
+  (lambda (x) x))
+ "HEY!")
+
+
+; factorial
+(define retry #f)
+
+(define factorial (lambda (x)
+                    (if (= x 0) (call/cc (lambda (k) (set! retry k) 1))
+                        (* x (factorial (- x 1))))))
+
+
+#+END_SRC
+
+   With this definition, factorial works as we expect factorial to work, except it has the side effect of assigning retry.
+
+#+BEGIN_SRC racket
+
+(factorial 4) ; -> 24
+(retry 1)     ; -> 24
+(retry 2)     ; -> 48
+
+#+END_SRC
+
+   The continuation bound to retry might be described as "Multiply the value by 1, then multiply this result by 2, then multiply this result by 3, then multiply this result by 4." If we pass the continuation a different value, i.e., not 1, we will cause the base value to be something other than 1 and hence change the end result.
+
+#+BEGIN_SRC racket
+
+(retry 2)     ; -> 48
+(retry 4)     ; -> 120
+
+#+END_SRC
+
+   This mechanism could be the basis for a breakpoint package implemented with call/cc; each time a breakpoint is encountered, the continuation of the breakpoint is saved so that the computation may be restarted from the breakpoint (more than once, if desired).
