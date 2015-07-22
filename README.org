@@ -32,8 +32,9 @@
    + Tag: Lisp, Scheme, PLT
    + Date: 2015-06-12 to Now
    + Reference:
-     1. A page about call/cc
-     2. CPS Notes
+     - A page about call/cc
+     - CPS Notes
+     - [[http://martin-liu.github.io/#!/article/7][漫谈程序控制流]]
 
 ** Teach Yourself Scheme in Fixnum Days
 

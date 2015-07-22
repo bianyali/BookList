@@ -140,3 +140,234 @@
   If the head of the form is a *special form*, the evaluation proceeds in a manner idiosyncratic to that form. Some special forms we have already seen are begin, define, and set!. begin causes its subforms to be evaluated in order, the result of the entire form being the result of the last subform. define introduces and initializes a variable. set! changes the binding of a variable.
 
 ** Procedures
+
+   We used the *begin* special form to bunch together a group of subforms that need to be evaluated in sequence. (在平常的 procedure 里面，所有的参数，都是无序的进行 evaluate 的， 要想进行将所有的参数，务必进行由左到右的 evaluate，我们则需要使用 special form *begin*.)
+
+   #+BEGIN_SRC racket
+
+(define display-seq (lambda (arg1 arg2 arg3)
+                   (begin
+                     [display arg1]
+                     [display " "]
+                     [display arg2]
+                     [display " "]
+                     [display arg3]
+                     [newline])))
+
+   #+END_SRC
+
+   In Scheme, lambda-bodies are implicit beginS. Thus, the begin in display3's body isn't needed, although it doesn't hurt. display3, more simply, is:
+
+   #+BEGIN_SRC racket
+
+(define display-seq (lambda (arg1 arg2 arg3)
+                     [display arg1]
+                     [display " "]
+                     [display arg2]
+                     [display " "]
+                     [display arg3]
+                     [newline]))
+
+   #+END_SRC
+
+* Conditionals
+
+  Like all languages, Scheme provides conditionals.
+
+** when and unless
+
+** Cond
+
+   The cond is a multi-branch conditional.
+
+
+* Lexical variables
+* Recursion
+
+** letrec
+** Named let
+
+   Scheme allows a variant of let called named let to write this kind of loop more compactly:
+
+** Iteration
+
+#+BEGIN_SRC Scheme
+
+(let countdown ((i 0))
+   (if (= i 0) 'liftoff
+       (begin
+          (display i)
+          (newline)
+          (countdown (- i 1)))))
+
+#+END_SRC
+
+   /countdown/ defined above is really a recursive procedure. Scheme can define loops only through recursion. There are no special looping or iteration constructs.
+
+   Nevertheless, the loop as defined above is a genuine loop, in exactly the same way that other language bill their loops. Ie, Scheme takes special care to ensure that recursion of the type used above will not generate the procedure call/return overhead.
+
+   Scheme does this by a process called tail-call elimination. If you look closely at the countdown procedure, you will note that when the recursive call occurs in countdown's body, it is the tail call, or the very last thing done - each invocation of /countdown/ either does not call itself, or when it does, it does so as its very last act. To a Scheme implementation, this makes the recursion indistinguishable from iteration. So go ahead, use recursion to write loops. It's safe.
+
+   Here's another example of a useful tail-recursive procedure:
+
+   #+BEGIN_SRC Scheme
+
+   (define list-position (lambda (o l)
+                             (let loop ((i 0) (l l))
+                                (if (null? l) #f
+                                    (if (eqv? (car l) o) i
+                                        (loop (+ i 1) (cdr l)))))))
+
+   #+END_SRC
+
+   /list-position/ finds the index of the first occurrence of the object /o/ i the list /l/. If the object is not found in the list, the procedure returns #f.
+
+   Here's yet another tail-recursive procedure, one that reverses its argument list "in place", ie., by mutating the contents of the existing list, and without allocating a new one:
+
+   #+BEGIN_SRC Scheme
+
+   (define reverse! (lambda (s)
+                        (let loop ((s s) (r '()))
+                          (if (null? s) r
+                              (let ((d (cdr s)))
+                                   (set-cdr! s r)
+                                   (loop d s))))))
+
+   #+END_SRC
+
+   (/reverse!/ is a useful enough procedure that it is provided primitively in many Scheme dialects, eg, MzScheme and Guile.)
+** Mapping a procedure across a list
+* I/O
+
+  Scheme has input/output (I/O) procedures that will let you read from an input port or write to an output port. Ports can be associated with console, files or strings.
+
+** Reading
+
+   Scheme's reader procedures take an optional input port argument. If the port is not specified, the current input port port (usually the console) is assumed.
+
+   Reading can be character-, line- or s-expression-based. Each time a read is performed. the port's state changed so that the next read will read material following what was already read. If the port has no more material to be read, the reader procedure returns a specific datum called the end-of-file or eof object.
+
+** Writing
+
+   The procedure write and display both write the given s-expression to the port, with one different: write attempts to use a machine-readable format and display doesn't. Eg, write uses double quotes for strings and the #\ syntax for characters. displays doesn't.
+
+   The procedure newline starts a new line on the output port.
+
+** File ports
+
+   Scheme's I/O procedures do not need a port argument if the port happens to be standard input or standard output. However, if you need these ports explicitly, the zero-argument procedures current-input-port and current-output-port furnish them. Thus,
+
+   #+BEGIN_SRC Scheme
+
+   (display 9)
+   (display 9 (current-output-port))
+
+   #+END_SRC
+
+   have the same behavior.
+
+** String ports
+** Loading files
+
+   Loading a file consists in evaluating in sequence every Scheme form in the file. The pathname argument given to /load/ is reckoned relative to the current working directory of Scheme, which is normally the directory in which the Scheme executable was called.
+
+* Macros
+
+  Users can create their own special forms by defining /macros/. A macro is a symbol that has a transformer procedure associated with it.  When Scheme encounters a macro-expression - ie, a form whose head is a macro-, it applies the macro's transformer to the subforms in the macro-expression, and evaluates the result of the transformation.
+
+  Ideally, a macro specifies a purely textual transformation from code text to other code text. This kind of transformation is useful for abbreviating an involved and perhaps frequently occurring *textual pattern*.
+
+  A macro is defined using the special form define-macro. For example, if your Scheme lacks the conditional special form /when/, you could define /when/ as the following macro:
+
+  #+BEGIN_SRC Scheme
+
+  (define-macro when
+     (lambda (test . branch)
+       (list 'if test
+         (cons 'begin branch))))
+
+  #+END_SRC
+
+  This defines a when-transformer that would convert a when-expression into equivalent if-expression. With this macro definition in place, the when-expression:
+
+  #+BEGIN_SRC Scheme
+
+  (when (< (pressure tube) 60)
+    (open-value tube)
+    (attach floor-pump tube)
+    (depress floor-pump 5)
+    (detach floor-pump tube)
+    (close-valve tube))
+
+  #+END_SRC
+
+  will be converted to another expression, the result of applying the when-transformer to the when-expression's subforms:
+
+  #+BEGIN_SRC Scheme
+
+  (apply (lambda (test . branch)
+           (list 'if test (cons 'begin branch)))
+         '((< (pressure tube) 60)
+           (open-value tube)
+           (attach floor-pump tube)
+           (depress floor-pump 5)
+           (detach floor-pump tube)
+           (close-valve tube))))
+
+  #+END_SRC
+
+  The transformation yields the list:
+
+  #+BEGIN_SRC Scheme
+
+   (if (< (pressure tube) 60)
+       (begin
+         (open-value tube)
+         (attach floor-pump tube)
+         (depress floor-pump 5)
+         (detach floor-pump tube)
+         (close-valve tube)))
+
+  #+END_SRC
+
+  Scheme will then evaluate this expression, as it would any other.
+
+** Specifying the expansion as a template
+
+   A macro transformer takes some s-expressions and produces an s-expression that will be used as a form. Typically this output is a list. In our /when/ example, the output list is created using
+
+   #+BEGIN_SRC Scheme
+
+   (list 'if test
+     (cons 'begin branch))
+
+   #+END_SRC
+
+   Output lists can be quite complicated. It is easy to see that a more ambitious macro than /when/ could lead to quite an elaborate construction process for the output list. In such cases, it is more convenient to specify the macro's output form as a template, with the macro arguments inserted at appropriate places to fill out the template for each particular use of the macro. Scheme provides the backquote syntax to specify such templates. Thus the expression
+
+   #+BEGIN_SRC Scheme
+   (list 'IF test
+     (cons 'BEGIN branch))
+   #+END_SRC
+
+   is more conveniently written as
+
+   #+BEGIN_SRC Scheme
+   `(IF ,test
+      (BEGIN ,@branch))
+   #+END_SRC
+
+   We can refashion the /when/ macro-definition as:
+
+   #+BEGIN_SRC Scheme
+
+   (define-macro when
+     (lambda ((test . branch)
+       `(IF ,test
+            (BEGIN ,@branch)))))
+
+   #+END_SRC
+
+   Note that the template format, unlike the earlier list construction, gives immediate visual indication of the shape of the output list. The backquote (`) introduces a template for a list. The elements of the template appear /verbatim/ in the resulting list, except when they are prefixed by a comma (',') or a comma-splice (',@'). (For the purpose of illustration, we have written the verbatim elements of the template in UPPER_CASE)
+
+   The comma and the comma-splice are used to insert the macro arguments into the template. The comma inserts the result of evaluating its following expression. The comma-splice inserts the result of evaluating its following expression after splicing it, ie, it removes the outermost set of parentheses. (This implies that an expression introduced by comma-splice must be a list.)
