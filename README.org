@@ -18,12 +18,13 @@
    + Tag: Java, Language
    + Date: 2015-06-27 to Now
 
-** Programming Language Technology
+** Programming Language Theory
 
    + Name: Programming Language Technology
    + Directory: plt
    + Tag: PLT
    + Date: 2015-03-16 to Now
+   + PS: *it's not a book, it's lots of materials about PLT*
 
 ** The Scheme Programming Language
 

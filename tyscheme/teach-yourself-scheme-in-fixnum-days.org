@@ -371,3 +371,5 @@
    Note that the template format, unlike the earlier list construction, gives immediate visual indication of the shape of the output list. The backquote (`) introduces a template for a list. The elements of the template appear /verbatim/ in the resulting list, except when they are prefixed by a comma (',') or a comma-splice (',@'). (For the purpose of illustration, we have written the verbatim elements of the template in UPPER_CASE)
 
    The comma and the comma-splice are used to insert the macro arguments into the template. The comma inserts the result of evaluating its following expression. The comma-splice inserts the result of evaluating its following expression after splicing it, ie, it removes the outermost set of parentheses. (This implies that an expression introduced by comma-splice must be a list.)
+
+** Avoid variable capture inside macros
