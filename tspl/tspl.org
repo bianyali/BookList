@@ -247,7 +247,8 @@
    Scheme allows the continuation of any expression to be captured with the procedure call/cc. call/cc must be passed a procedure p of one argument. call/cc constructs a concrete representation of the current continuation and passes it to p. The continuation itself is represented by a procedure k. Each time k is applied to a value, it returns the value to the continuation of the call/cc application. This value becomes, in essence, the value of the application of call/cc.
 
    If p returns without invoking k, the value returned by the procedure becomes the value of the application of call/cc.
-** Demos of continuation
+
+*** Demos of continuation
 
    The following variation of the example above is probably the most confusing Scheme program of its size; it might be easy to guess what it returns, but it takes some thought to figure out why.
 
@@ -304,3 +305,31 @@
 #+END_SRC
 
    This mechanism could be the basis for a breakpoint package implemented with call/cc; each time a breakpoint is encountered, the continuation of the breakpoint is saved so that the computation may be restarted from the breakpoint (more than once, if desired).
+
+** Continuation Passing Style
+
+   As we discussed in the preceding section, a continuation waits for the value of each expression. In particular, a continuation is associated with *each procedure call*. When one procedure invokes another via *nontail call*, the *called procedure* receives an implicit continuation that is responsible for completing what is left of the *calling procedure's body* plus returning to the *calling procedure's continuation*. If the call is a tail call, the called procedure simply receives the *continuation of the calling procedure*.
+
+   We can make the continuation explicit by encapsulating "What to do" in an exaplicit procedural argument passed along on each call. For example, the continuation of the call to f in
+
+   #+BEGIN_SRC Scheme
+
+; explicit continuation
+; -> (d b a c)
+(letrec ([f (lambda (x)
+              (cons 'a x))]
+         [g (lambda (x)
+              (cons 'b (f x)))]
+         [h (lambda (x)
+              (g (cons 'c x)))])
+  (cons 'd (h '())))
+
+   #+END_SRC
+
+   conses the symbol /b/ onto the value returned to it, then returns the result of this cons to the continuation of the call to g.
+
+
+   Expression written in CPS are more complicated, of course, but this style of programming has some useful applications. CPS allows a procedure to pass more than one result to its continuation, because the procedure that implements the continuation can take any number of arguments.
+
+    At this point you might be wondering about the  relationship between CPS and the continuations captured via call/cc. It turns out that any program that uses call/cc can be rewritten in CPS without call/cc, but a total rewrite of the program (sometimes including even system-defined primitives) might be necessary.
+** Internal Definitions
