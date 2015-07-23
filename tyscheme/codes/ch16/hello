@@ -1,0 +1,7 @@
+#! /usr/local/bin/racket
+
+#lang racket
+;":"; exec racket -r $0 "$@"
+
+(display "Hello, World!")
+(newline)

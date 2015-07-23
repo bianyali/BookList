@@ -373,3 +373,263 @@
    The comma and the comma-splice are used to insert the macro arguments into the template. The comma inserts the result of evaluating its following expression. The comma-splice inserts the result of evaluating its following expression after splicing it, ie, it removes the outermost set of parentheses. (This implies that an expression introduced by comma-splice must be a list.)
 
 ** Avoid variable capture inside macros
+*** store if-test result in a local variable
+*** choose local variables inside macro definitions
+*** generated symbols
+
+    A more reliable, if verbose, approach is to use generated symbols that are guaranteed not to be obtainable by other means. The procedure gensym generates unique symbols each time it is called.
+
+** fluid-let
+* Structures
+
+  The fields could be accessed using vector-ref and modified using vector-set!. Nevertheless, we wouldn't want to be saddled with the burden of remembering which vector index corresponds to which field. That would be a thankless and error-prone activity, especially if fields get excluded or included over the course of time. We will therefore use a Scheme Macro /defstruct/ to define a structure data type, which is basically a vector, but which comes with an appropriate suite of procedures for creating instances of the structure, and for accessing and modifying its fields.
+
+* Alists and tables
+* System interface
+
+  Useful Scheme programs often need to interact with the underlying operating system.
+
+** Checking for and deleting files
+** Calling operating-system commands
+** Environment variables
+* Objects and classes
+* Jumps
+
+  One of the signal features of Scheme is its support for jumps or nonlocal control. Specifically, Scheme allows program control to jump arbitrary locations in the program, in contrast to the more restrained forms of program control flow allowed by *conditionals and procedure calls*. Scheme's nonlocal control operators is a procedure named call-with-current-continuation. We will see how this operator can be used to create a breathtaking variety of *control idioms*.
+
+** call-with-current-continuation
+
+   The operator call-with-current-continuation /calls/ its argument, which must be a unary procedure, with a value called the "current continuation". If nothing else, this explains the name of the operator. But it is a long name, and is often abbreviated call/cc.
+
+   The current continuation at any point in the execution of a program is an abstraction of the rest of the program. Thus in the program
+
+   #+BEGIN_SRC Scheme
+
+   (+ 1 (call/cc (lambda (k)
+                   (+ 2 (k 3)))))
+
+   #+END_SRC
+
+   the rest of the program, from the point of view of the call/cc-application, is the following program-with-a-hole (with [] representing the hole):
+
+   #+BEGIN_SRC Scheme
+
+   (+ 1 [])
+
+   #+END_SRC
+
+   In other words, this continuation is a program that will add 1 to whatever is used to fill its hole.
+
+   This is what the argument of call/cc is called with. Remember that the argument of call/cc is the procedure
+
+   #+BEGIN_SRC Scheme
+
+   (lambda (k)
+     (+ 2 (k 3)))
+
+   #+END_SRC
+
+   This procedure's body applies the continuation (bound now to the parameter k) to the argument 3. This is when the unusual aspect of the continuation springs to the fore.
+
+   The continuation call abruptly abandons its own computation and replaces it with the rest of the program saved in k! In other words, the part of the procedure involving the addition of 2 is jettisoned, and k's argument 3 is sent directly to the program-with-the-hole:
+
+   #+BEGIN_SRC Scheme
+   (+ 1 [])
+   #+END_SRC
+
+   The program now running is simply
+
+   #+BEGIN_SRC Scheme
+
+   (+ 1 3)
+
+   #+END_SRC
+
+   which returns 4. In sum,
+
+   #+BEGIN_SRC Scheme
+   (+ 1 (call/cc (lambda (k)
+                   (+ 2 (k 3)))))
+   #+END_SRC
+
+   The above illustrates that what is called an escaping continuation, one used to exit out of a computation (here: the (+ 2 []) computation). This is useful property, but Scheme's continuations can also be used to return to previously abandoned contexts, and indeed to invoke them many times. The "rest of the program" ("the rest of the program" 的真正的含义，哪里是rest program的开始，哪里是program 的结束。) enshrined in a continuation is available whenever and how many ever times we choose to recall it, and this is what contributes to the great and sometimes confusing versatility of call/cc. As a quick example, type the following at the listener:
+
+   #+BEGIN_SRC Scheme
+
+   (define r #f)
+
+   (+ 1 (call/cc (lambda (k)
+                   (set! r k)
+                   (+ 2 (k 3)))))
+
+   #+END_SRC
+
+   The latter expression returns 4 as before. The difference between this use of call/cc and the previous example is that here we also store the continuation k in a global variable r.
+
+   Now we have a permanent record of the continuation in r. If we call it on a number, it will return that number incremented by 1:
+
+   #+BEGIN_SRC Scheme
+   (r 5)
+   ; ==> 6
+   #+END_SRC
+
+   Not that r will abandon its own continuation, which is better illustrated by embedding the call to r inside some context:
+
+   #+BEGIN_SRC Scheme
+
+   (+ 3 (r 5))
+
+   #+END_SRC
+
+   The continuations provided by call/cc are thus abortive continuations.
+
+   但是我在begin中使用continuation的时候，就不会abortive后面的内容：
+
+   #+BEGIN_SRC Scheme
+
+   (begin (r 6)
+     (display "Hello World!"))
+   ; display will be evaluated
+   ; "Hello, World!" will be printed.
+
+   #+END_SRC
+
+所以，对于程序执行过程中，每个 continuation 的创建，在它创建后，他的子 continuation 的创建，而不是一个新的continuation 对它的覆盖，这个整个机制，我需要理解开来。 或者是begin syntax 这个 special form的理解？？？！！！！
+
+** Escaping continuations
+
+   Escaping continuations are the simplest use of call/cc and are very useful for programming procedure or loop exits. Consider a procedure list-product that takes a list of numbers and multiplies them. A straightforward recursive definition for list-product is:
+
+   #+BEGIN_SRC Scheme
+
+   (define list-product (lambda (s)
+                          (let recur ((s s))
+                            (if (null? s) 1
+                                (* (car s) (recur (cdr s)))))))
+
+   #+END_SRC
+
+   This is a problem with this solution. If one of the elements in this list is 0, and if there are many elements after 0 in the list, then the answer is foregone conclusion. Yet, the code will have us to through many fruitless recursive calls to recur before producing the answer. This is where an escape continuation comes in handy. Using call/cc, we can rewrite the procedure as:
+
+   #+BEGIN_SRC Scheme
+
+   (define list-product (lambda (s)
+                          (call/cc
+                            (lambda (exit)
+                              (let recur ((s s))
+                                    (if (null? s) 1
+                                        (if (= (car s) 0) (exit 0)
+                                            (* (car s) (recur (cdr s))))))))))
+
+   #+END_SRC
+
+   If a 0 element is encountered, the continuation /exit/ is called with 0, thereby avoiding further calls to recur.
+
+** Tree matching
+
+   A more involved example of continuation usage is the problem of determining if two trees (arbitrarily nested dotted pairs) have the same fringe, ie., the same elements (or leaves) in the same sequence. Eg,
+
+   #+BEGIN_SRC Scheme
+
+   (same-fringe? '(1 (2 3) '((1 2) 3)))
+   ; -> #t
+
+   (same-fringe? '(1 2 3) '(1 (3 2)))
+   ; -> #f
+
+   #+END_SRC
+
+   The purely functional approach is to flatten both trees and check if the results match.
+
+   #+BEGIN_SRC Scheme
+
+(define same-fringe? (lambda (tree1 tree2)
+                       (let loop ((ftree1 (flatten tree1))
+                                  (ftree2 (flatten tree2)))
+                         (cond
+                           [(and (null? ftree1) (null? ftree2)) #t]
+                           [(or (null? ftree1) (null? ftree2)) #f]
+                           [(eqv? (car ftree1) (car ftree2)) (loop (cdr ftree1) (cdr ftree2))]
+                           [else #f]
+                           ))))
+
+(define flatten (lambda (tree)
+                    (cond
+                      [(null? tree) '()]
+                      [(pair? (car tree)) (append (flatten (car tree))
+                                                  (flatten (cdr tree)))]
+                      [else (cons (car tree)
+                                  (flatten (cdr tree)))])))
+
+   #+END_SRC
+
+   However, this traverses the trees completely to flatten them, and then again till it finds non-matching elements. Furthermore, even the best flattening algorithms will require consES equal to the total number of leaves. (Destructively modifying the input trees is not an option.)
+
+   We can use call/cc to solve the problem without needless traversal and without any consING. Each tree is mapped to a generator, a procedure with internal state that successively produces the leaves of the tree in left-to-right order that they occur in the tree.
+
+   #+BEGIN_SRC Scheme
+
+; tree->generator
+(define tree->generator (lambda (tree)
+                          (let ((caller '*))
+                            (letrec ((generate-leaves (lambda ()
+                                                        (let loop ((tree tree))
+                                                          (cond
+                                                            [(null? tree) 'skip]
+                                                            [(pair? tree)
+                                                             (loop (car tree))
+                                                             (loop (cdr tree))]
+                                                            [else (call/cc (lambda (rest-of-tree)
+                                                                             (set! generate-leaves (lambda ()
+                                                                                                     (rest-of-tree 'resume)))
+                                                                             (caller tree)))]))
+                                                        (caller '()))))
+                              (lambda () (call/cc (lambda (k)
+                                                    (set! caller k)
+                                                    (generate-leaves))))))))
+
+   #+END_SRC
+
+   When a generator created by tree->generator is called, it will store the continuation of its call in caller, so that it can know who to send the leaf to when it finds it. It then calls an internal procedure called /generate-leaves/ which runs a loop traversing the tree from left to right. When the loop encounters a leaf, it will use caller to return the leaf as the generator's result, but it will remember to store the rest of the loop (captured as a call/cc continuation) in the /generate-leaves/ variable. The next time the generator is called, the loop is resumed where it left off so it can hunt for the next leaf.
+
+   Note that the last thing /generate-leaves/ does, after the loop is done, is to return the empty list to the caller. Since the empty list it not a valid leaf value, we can use it to tell that the generator has no more leaves to generate.
+
+   The procedure same-fringes? maps each of its tree arguments to a generator, and then calls these two generators alternatively. It announces failure as soon as two non-matching leaves are found:
+
+   #+BEGIN_SRC Scheme
+
+(define same-fringe?-2 (lambda (tree1 tree2)
+                       (let ((gen1 (tree->generator tree1))
+                             (gen2 (tree->generator tree2)))
+                         (let loop ()
+                           (let ((leaf1 (gen1))
+                                 (leaf2 (gen2)))
+                             (if (eqv? leaf1 leaf2) (if (null? leaf1) #t (loop))
+                                 #f))))))
+
+   #+END_SRC
+
+** Coroutines
+
+   The generators used above are interesting generalizations of the procedure concept. Each time the generator is called, it resumes its computation, and when it has a result for its caller returns it, but only after storing its continuation in an internal variable, so the generator can be resumed again. We can generalize generators further, so that they can mutually resume each other, sending results back and forth among themselves. Such procedures are called coroutines.
+
+* Nondeterminism
+
+  MaCarthy's nondeterministic operator *amb* is as old as Lisp itself, altough it is present in no Lisp. *amb* takes zero or more expressions, and makes a nondeterministic (or "ambiguous") choice among them, preferring those choices that cause the program to converge meaningfully. Here we will explore an embedding of *amb* in Scheme that makes a depth-first selection of the ambiguous choices, and uses Scheme's control operator call/cc to backtrack for alternate choices. The result is an elegant backtracking strategy that can be used for searching problem spaces directly in Scheme without recourse to an extended language.
+* Engines
+
+  An engine represents computation that is subject to timed preemption. In other words, an engine's underlying computation is an ordinary thunk that runs as a time-preemptable process.
+
+  An engine is called with three arguments:
+
+    - a number of time units or ticks
+    - a success procedure
+    - a failure procedure
+
+  If the engine computation finishes within the allotted ticks, the success procedure is applied to the computation result and the remaining ticks. If the engine computation could not finish within the allotted ticks, the failure procedure is applied to a new engine representing the unfinished portion of the engine computation.
+
+* Shell scripts
+
+  It is often convenient to simply write what one wants done into a file or script, and execute the script as though it were any other operating-system shell command. The interface to more weighty programs is often provided in the form of a script, and users frequently build their own scripts or customize existing ones to suit particular needs. Scripting is arguably the most frequent programming task performed. For many users, it is the only programming they will ever do.
+
+* CGI script

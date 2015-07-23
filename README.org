@@ -9,29 +9,29 @@
    + Name: Structure and Interpretation of Computer Programs.
    + Directory: sicp
    + Tag: Lisp, PLT
-   + Date: 2015-03-15 to Now
+   + Date: 2015-03-15 - Current
 
 ** Thinking in Java
 
    + Name: Thinking in Java
    + Directory: tij
    + Tag: Java, Language
-   + Date: 2015-06-27 to Now
+   + Date: 2015-06-27 - Current
 
 ** Programming Language Theory
 
-   + Name: Programming Language Technology
+   + Name: Programming Language Theory
    + Directory: plt
    + Tag: PLT
-   + Date: 2015-03-16 to Now
-   + PS: *it's not a book, it's lots of materials about PLT*
+   + Date: 2015-03-16 - Current
+   + PS: /it's not a single book, but several materials about PLT from wikipedia or blog/
 
 ** The Scheme Programming Language
 
    + Name: The Scheme Programming Language
    + Directory: tspl
    + Tag: Lisp, Scheme, PLT
-   + Date: 2015-06-12 to Now
+   + Date: 2015-06-12 - Current
    + Reference:
      - A page about call/cc
      - CPS Notes
@@ -42,4 +42,4 @@
    + Name: Teach Yourself Scheme in Fixnum Days
    + Directory: tyscheme
    + Tag: Scheme
-   + Date: 2015-07-2o to Now
+   + Date: 2015-07-20 - 2015-07-23
