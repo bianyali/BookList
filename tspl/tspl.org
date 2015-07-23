@@ -417,3 +417,33 @@
    syntax :: (set! var expr)
    returns :: unspecified
    libraries :: (rnrs base), (rnrs)
+
+* CH5. Control Operations
+
+  This chapter introduces the syntactic forms and procedures that serve as control structures for Scheme programs. The first section covers the most basic control structure, procedure application, and the remaining sections cover sequencing, conditional evaluation, recursion, mapping, continuation, delayed evaluation, multiple values, and evaluation of programs constructed at run time.
+
+** Procedure Application
+
+   syntax :: (expr0 expr1)
+   return :: values of applying the value of expr0 to the values of expr1 ...
+
+   Procedure applications is the most basic Scheme control structure. Any structured form without a syntax keyword in the first position is a procedure application.
+
+   The expression expr0 and expr1 ... are evaluated: each should evaluate to a single value. After each of these expression has been evaluated, the value of expr0 is applied to the values of expr1 ... . if expr0 does not evaluated to a procedure, or if the procedure does not accept the number of arguments provided, an exception with condition type &assertion is raised.
+
+   The order in which the procedure and argument expressions are evaluated is unspecified. It may be left to right, right to left, or any other order. The evaluation is guaranteed to be sequential, however: whatever order is chosen, each expression is fully evaluated before evaluation of the next is started.
+
+*** apply
+
+    /apply/ are useful when some or all of the arguments to be passed to a procedure are in a list, since it frees the programmer from explicitly destructuring the list.
+
+** Sequencing
+
+   syntax :: (begin expr1 expr2 ...)
+   returns :: the values of the last subexpression
+   libraries :: (rnrs base), (rnrs)
+
+   The expressions expr1 expr2 ... are evaluated in sequence from left to right. /begin/ is used to sequence assignments, input/output, or other operations that cause effects.
+
+
+** Conditionals
