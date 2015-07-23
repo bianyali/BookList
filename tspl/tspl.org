@@ -333,3 +333,13 @@
 
     At this point you might be wondering about the  relationship between CPS and the continuations captured via call/cc. It turns out that any program that uses call/cc can be rewritten in CPS without call/cc, but a total rewrite of the program (sometimes including even system-defined primitives) might be necessary.
 ** Internal Definitions
+
+   In fact, internal variable definitions and letrec are practically interchangeable. The only difference, other than the obvious difference insyntax, is that variable definitions are guaranteed to be evaluated from left to right, while the bindings of a letrec may be evaluated in any order. So we cannot replace a lambda, let, or letrec body containing internal definitions with a letrec expression. We can, however, use letrec*, which, like let*, guarantees left-to-right evaluation order.
+
+   Another different between internal definitions and letrec or letrec* is that syntax definitions may appear among the internal definitions, while letrec and letrec* bind only variables.
+
+   The scope of a syntactic extension established by an internal syntax definition, as with an internal variable definition, is limited to the body in which the syntax definition appears.
+
+** Modularize programs
+
+   Internal definitions may be used in conjunction with top-level definitions and assignments to help modularize programs. Each module of a program should make visible only those bindings that are needed by other modules, while hiding other bindings that would otherwise clutter the top-level namespace and possibly result in unintended use or redefinition of those bindings. A common way of structuring a module is shown below.
