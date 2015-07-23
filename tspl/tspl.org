@@ -346,3 +346,74 @@
 
 ** Libraries
 * CH4. Procedures and Variable Bindings
+
+** Variable References
+
+   Syntax :: variable
+   returns :: the value of /variable/
+
+   Any identifier appearing as an expression is a variable, if a visible binding for the identifier exists, e.g., the identifier appears within the scope of a binding created by define, lambda, let, or some other variable-biding construct.
+
+** Lambda
+
+   Syntax :: (lambda formals body1 body2 ...)
+   returns :: a procedure
+   libraries :: (rnrs base), (rnrs)
+
+   The lambda syntactic form is used to create procedures. Any _operation_ that _creates a procedure_ or _establishes local variable bindings_ is ultimately defined in terms of lambda or case-lambda.
+
+   Procedures do not have a printed representation in the usual sense. Scheme systems print procedures in different ways; this book uses the notation #<procedure>.
+
+** Case-Lambda
+
+   The case-lambda syntactic form directly supports procedures with optional arguments as well as procedures with fixed or indefinite numbers of arguments. case-lambda is based on the lambda* syntax form introduced in the article "A New Approach to Procedures with Variable Arity".
+
+   Syntax :: (case-lambda clause ...)
+   returns :: a procedure
+   libraries :: (rnrs control), (rnrs)
+
+   A case-lambda expression consists of a set of clauses, each resembling a lambda expression. Each clause has the form below.
+
+   [formals body1 body2 ...]
+
+** Local Binding
+
+   Syntax :: (let ((var expr) ...) body1 body2 ...)
+   returns :: the values of the final body expression
+   libraries: (rnrs base), (rnrs)
+
+   /let/ establishes local variable bindings. Each variable var is bound to the value of the corresponding expression expr. The body of the let, in which the variable are bound, is the sequence of subforms body1, body2 ... and is processed and evaluated like a lambda body.
+
+   Use /let/ whenever the values in expr the values are independent of the variables and the order of evaluation is unimportant.
+
+   Syntax :: (let* ((var expr) ...) body1 body2)
+   returns :: the values of the final body expression
+   libraries :: (rnrs base), (rnrs)
+
+   /let*/ is similar to /let/ except that the expression expr ... are evaluated in sequence from left to right, and each of these expressions is within the scope of the variables to the left. Use /let*/ when there is a linear dependency among the values or when the order of evaluation is important.
+
+   Syntax :: (letrec ((var expr) ...) body1 body2)
+   returns :: the values of the final body expression
+   libraries :: (rnrs base), (rnrs)
+
+   /letrec/ is similar to /let/ and /let*/, except that all of the expression expr ... are within the scope of the variables var .... /letrec/ allows the definition of mutually recursive procedures.
+
+** Multiple Values
+
+   Syntax :: (let-values ((formal expr) ...) body1 body2)
+   Syntax :: (let*-values ((formal expr) ...) body1 body2)
+   returns :: the values of the final body expression
+   libraries :: (rnrs base), (rnrs)
+
+** Variable Definitions
+
+   Syntax :: (define var expr)
+   Syntax :: (define var)
+   Syntax :: (define (var0 var2 ...) body1 body2 ...)
+
+
+** Assignment
+
+   syntax :: (set! var expr)
+   returns :: unspecified
+   libraries :: (rnrs base), (rnrs)
