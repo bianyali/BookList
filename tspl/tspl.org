@@ -343,3 +343,6 @@
 ** Modularize programs
 
    Internal definitions may be used in conjunction with top-level definitions and assignments to help modularize programs. Each module of a program should make visible only those bindings that are needed by other modules, while hiding other bindings that would otherwise clutter the top-level namespace and possibly result in unintended use or redefinition of those bindings. A common way of structuring a module is shown below.
+
+** Libraries
+* CH4. Procedures and Variable Bindings
