@@ -447,3 +447,26 @@
 
 
 ** Conditionals
+
+   procedure :: (not obj)
+   returns :: #t if obj is false, #f otherwise
+
+   /not/ is not equivalent to (lambda (x) (if x #f #t))
+
+
+   Syntax :: (and expr ...)
+   returns :: see below
+   libraries :: (rnrs base), (rnrs)
+
+   If no subexpression are present, the and form evaluates to #t. Otherwise, and evaluates each subexpression *in sequence* from left to right until only one subexpression remains or a subexpression returns #f.
+
+   Syntax :: (cond clause1 clause2 ...)
+   returns :: see blow
+
+   Each /test/ is evaluated in order until one evaluates to a true value or until all of the tests have been evaluated.
+
+
+   A /when/ or /unless/ expression is usually clearer than that corresponding "one-armed" /if/ expression.
+
+   Syntax :: (case expr0 clause1 clause2)
+   returns :: see below
