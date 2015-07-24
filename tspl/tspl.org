@@ -475,3 +475,9 @@
    This form of let, called named-let, is a general-purpose iteration and recursion construct.
 
 ** Mapping and Folding
+
+   exists :: (exits procedure list1 list2)
+
+   (exits symbol? '(1.0 #\a "hi" '()))
+
+** Continuations
