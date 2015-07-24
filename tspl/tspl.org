@@ -445,7 +445,6 @@
 
    The expressions expr1 expr2 ... are evaluated in sequence from left to right. /begin/ is used to sequence assignments, input/output, or other operations that cause effects.
 
-
 ** Conditionals
 
    procedure :: (not obj)
@@ -470,3 +469,9 @@
 
    Syntax :: (case expr0 clause1 clause2)
    returns :: see below
+
+** Recursion and Iteration
+
+   This form of let, called named-let, is a general-purpose iteration and recursion construct.
+
+** Mapping and Folding
