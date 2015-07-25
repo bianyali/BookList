@@ -481,3 +481,18 @@
    (exits symbol? '(1.0 #\a "hi" '()))
 
 ** Continuations
+
+   Continuations in Scheme are *procedures* that represent the remainder of a computation from a given point in the computation. They may be obtained with call-with-current-continuation, which can be abbreviated to call/cc.
+
+   procedure :: (call/cc procedure)
+   procedure :: (call-with-current-continuation procedure)
+
+   call/cc obtains its continuation and passes it to procedure, which should accept one argument. The continuation itself is *represented by a procedure*. Each time this procedure is applied to zero or more values, it returns the values to the continuation of *the call/cc application*. That is, when the continuation procedure is called, it returns its arguments as the values of the application of call/cc.
+
+   If /procedure/ returns normally when passed the continuation procedure, the values returned by call/cc are the values returned by procedure.
+
+   Continuation allow the implementation of nonlocal exits, backtracking, coroutines, and multitasking.
+
+   The current continuation is typically represented internally as *a stack of procedure activation records*, and obtaining the *continuation* involves *encapsulating the stack* within a procedural object. Since an encapsulated stack has indefinite extent, some mechanism must be used to preserve the stack contents indefinitely. This can be done with surprising ease and efficiency and with no impact on programs that do not use continuations.
+
+** Delayed Evaluation
