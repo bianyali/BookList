@@ -514,3 +514,5 @@
    The former procedure produces multiple values and the latter links procedures that produce multiple-value values with procedures that comsume them.
 
 ** Eval
+
+* CH6. Operations on Objects
