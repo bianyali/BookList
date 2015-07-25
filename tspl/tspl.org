@@ -516,3 +516,52 @@
 ** Eval
 
 * CH6. Operations on Objects
+
+  There is no section treating operations on procedures, since the only operations defined specifically for procedures is application, and this is described in Chapter 5.
+
+
+** Constants and Quotation
+
+   syntax :: constant
+   returns :: constant
+
+   constant is any self-evaluating constant, i.e., a number, boolean, character, string, or bytevector. Constants are immutable.
+
+   quote inhibits the normal evaluation rule for obj, allowing obj to be employed as data. Although any Scheme object may be quoted, quotation is not necessary for self-evaluating constants, i.e., numbers, booleans, characters, strings, and bytevectors.
+
+*** quasiquote
+
+    quasiquote is similar to quote, but it allows parts of the quoted text to be "unquoted." Within a quasiquote expression, unquote and unquote-splicing subforms are evaluated, and everything else is quoted, i.e., left unevaluated. The value of each unquote subform is inserted into the output in place of the unquote form, while the value of each unquote-splicing subform is spliced into the surrounding list or vector structure. unquote and unquote-splicing are valid only within quasiquote expression.
+
+    /unquote/ and /unquote-splicing/ are auxiliary keywords for quasiquote. It is syntax violation to reference these identifiers except in context where they are recognized as auxiliary keywords.
+
+** Generic Equivalence and Type Predicates
+
+   In most Scheme systems, two objects are considered identical if they are represented internally by the same pointer value and distinct (not identical) if they are represented internally by different pointer values, although other criteria, such as time-stamping, are possible.
+
+   Although the particular rules for object identity vary somewhat from system to system, the following rules always hold.
+
+
+*** eq?
+
+    #t if obj1 and obj2 are *identical*, #f otherwise.
+
+    eq? is most often used to compare symbols or to check for pointer equivalence of allocated objects, e.g., pairs, vectors, or record instances.
+
+*** eqv?
+
+    #t if obj1 and obj2 are *equivalent*, #f otherwise.
+
+*** equal?
+
+    #t if obj1 and obj2 have the same *structure and contents*, #f otherwise.
+
+*** boolean?
+
+*** integer-valued?, rational-valued?, integer-valued?
+
+    These predicates are similar to real?, rational?, and integer?, but treat as real, rational, or integral complex numbers with inexact zero imaginary parts.
+
+** Lists and Pair
+
+   The pair, or cons cell, is the most fundamental of Scheme's structured object types.
