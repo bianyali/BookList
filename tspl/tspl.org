@@ -496,3 +496,16 @@
    The current continuation is typically represented internally as *a stack of procedure activation records*, and obtaining the *continuation* involves *encapsulating the stack* within a procedural object. Since an encapsulated stack has indefinite extent, some mechanism must be used to preserve the stack contents indefinitely. This can be done with surprising ease and efficiency and with no impact on programs that do not use continuations.
 
 ** Delayed Evaluation
+
+   The syntactic form delay and the procedure force may be used in combination to implement lazy evaluation. An expression subject to lazy evaluation is not evaluated until its value is required and, once evaluated, is never reevaluated.
+
+   syntax :: (delay expr)
+   returns :: a promise
+   procedure :: (force promise)
+   libraries :: (rnrs r5rs)
+
+   delay and force are typically used only in the absence of side effecs, e.g., assignments, so that the order of evaluation is unimportant.
+
+   The benefit of using delay and force is that some amount of computation might be avoid altogether if it is delayed until abosolutely required. Delayed evaluation may be used to construcut conceptually infinite lists, or stream.
+
+** Multiple Values
