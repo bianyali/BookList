@@ -509,3 +509,8 @@
    The benefit of using delay and force is that some amount of computation might be avoid altogether if it is delayed until abosolutely required. Delayed evaluation may be used to construcut conceptually infinite lists, or stream.
 
 ** Multiple Values
+
+   While all Scheme Primitives and most user-defined procedures return exactly one value, some programming problems are best solved by returning zero values, more than one value, or even a variable number of values. For exmaple, a procedure that partitions a list of values into two sublists needs to return two values.
+   The former procedure produces multiple values and the latter links procedures that produce multiple-value values with procedures that comsume them.
+
+** Eval
