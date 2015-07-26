@@ -578,3 +578,9 @@
 ** Numbers
 
 ** Fixnums
+
+** Flonums
+
+   Flonums represent inexact real numbers. Implementations are required to represent as a flonum any inexact number whose lexical syntax contains no vertical bar and no exponent other than e, but are not required to represent any other inexact real number of a flonum.
+
+** Characters
