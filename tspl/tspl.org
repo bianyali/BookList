@@ -576,9 +576,7 @@
 
 
 ** Numbers
-
 ** Fixnums
-
 ** Flonums
 
    Flonums represent inexact real numbers. Implementations are required to represent as a flonum any inexact number whose lexical syntax contains no vertical bar and no exponent other than e, but are not required to represent any other inexact real number of a flonum.
@@ -587,9 +585,10 @@
 
    Characters are atomic objects representing letters, digits,  special symbols such as $ or -, and certain non-graphic control characters such as space and newline. Characters are written with a #\ prefix.
 
-
 ** Strings
 
    Strings are sequences of characters and are often used as messages, character buffers, or containers for blocks of text.
 
 ** Vectors
+** Bytevectors
+** Symbols
