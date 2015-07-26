@@ -586,3 +586,10 @@
 ** Characters
 
    Characters are atomic objects representing letters, digits,  special symbols such as $ or -, and certain non-graphic control characters such as space and newline. Characters are written with a #\ prefix.
+
+
+** Strings
+
+   Strings are sequences of characters and are often used as messages, character buffers, or containers for blocks of text.
+
+** Vectors
