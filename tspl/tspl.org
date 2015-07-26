@@ -564,4 +564,17 @@
 
 ** Lists and Pair
 
-   The pair, or cons cell, is the most fundamental of Scheme's structured object types.
+   The pair, or cons cell, is the most fundamental of Scheme's structured object types. The most common use for pairs is to build lists, which are ordered sequences of pairs linked one to the next by the cdr field. The elements of the list occupy the car fields of the pairs. The cdr of the last pair is a proper list is the empty list, (); the cdr of the last pair in an improper list can be anything other than ();
+
+   Proper lists are printed sequences of objects separated by whitespace and enclosed in parentheses. Matching pairs of brackets ([]) may be used in place of parentheses. For example, (1 2 3) and (a [nested list]) are proper lists. The empty list is written as ().
+
+   It is possible to create a circular list or a cyclic graph by destructively altering the car or cdr field of a pair, using set-car! or set-cdr!. Such lists are not considered *proper lists*.
+
+*** caar, cadr, cdddr
+
+    These procedures are defined as the composition of up to four cars and cdrs. The a's and d's between the c and r represent the application of car or cdr in order from *right to left*.
+
+
+** Numbers
+
+** Fixnums
