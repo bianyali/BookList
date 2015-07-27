@@ -592,3 +592,17 @@
 ** Vectors
 ** Bytevectors
 ** Symbols
+** Booleans
+** Hashtables
+
+   Hashtables represent sets of associations between arbitrary Scheme values. They serve essentially the *same purpose* as association lists, but are typically mush faster when *large numbers* of associations are involved.
+
+   An eq hashtable compares keys using the eq? (*pointer equality*) procedure and typically employs a hash function based on *object addresses*. Its hash and equivalence functions are suitable for any Scheme object.
+
+   hash-table-hash-function returns #f for eq and eqv hashtables.
+
+   These procedures are hash functions suitable for use with the appropriate Scheme predicates.
+
+** Enumerations
+
+   Enumerations are ordered sets of symbols, typically used to name and manipulate options, as with the buffer modes and file options that may be *specified* when files are created.
