@@ -574,7 +574,6 @@
 
     These procedures are defined as the composition of up to four cars and cdrs. The a's and d's between the c and r represent the application of car or cdr in order from *right to left*.
 
-
 ** Numbers
 ** Fixnums
 ** Flonums
@@ -606,3 +605,28 @@
 ** Enumerations
 
    Enumerations are ordered sets of symbols, typically used to name and manipulate options, as with the buffer modes and file options that may be *specified* when files are created.
+
+* Ch7. Input and Output
+
+  All input and output operations are performed through ports.
+
+  Ports are first-class objects, like any other object in Scheme. Like procedures, ports do not have a printed representation the way strings and numbers do.
+
+  Ports are either binary or textual. A binary port allows a program to read or write 8-bit unsigned bytes, or "octets," from or to the underlying stream. A textual port allow a program to read or write characters.
+
+  In many cases, the underlying stream is organized as a sequence of bytes, but these bytes should be treated as encodings for characters. In this case, a textual port may be created with a transcoder to decode bytes to characters (for input) or encode characters to bytes (for output).
+
+  A transcoder encapsulates a codec that determines how characters are represented as bytes. Three standard  codecs are provided: a latin-1 codec, a Unicode utf-8 codec, and a Unicode-16 codec. For the latin-1 encoding, each character is represented by exactly one byte. For utf-8, each character is represented by from one to four bytes, and for utf-16, each character is represented by two or four bytes.
+
+  The eol style affects input and output operations differently.
+
+  A port may be buffered for efficiency, to eliminate the overhead of a call into the operating system for each byte or characters.
+
+  Three standard buffer modes are supported: block, line, and none.
+
+  eof :: end of file.
+  eol :: end of line.
+
+** Transcoders
+
+   Transcoders encapsulate three values: a codec, an eol style, and an error-handling mode.
