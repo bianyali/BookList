@@ -664,3 +664,17 @@
 ** Defining Records
 ** Procedural Interface
 ** Inspection
+
+* Ch10. Libraries and Top-Level Programs
+
+** Standard Libraries
+** Defining New Libraries
+** Top-Level Programs
+
+   A top-level program is not a syntactic form per se, but rather a set of forms that are usually delimited only by file boundaries. Top-level programs can be thought of as library forms without the library wrapper, library name, and export form. Thus the syntax of a top-level program is, simply, an import form followed by a sequence of definitions and expressions.
+
+   An expression that appears within a top-level program body before one or more definitions is treated as if it appeared on the right-hand side of a definition for a dummy variable that is not visible anywhere within the program.
+
+** Examples
+
+* Ch11. Exceptions and Conditions
