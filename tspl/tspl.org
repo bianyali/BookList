@@ -660,3 +660,7 @@
 ** Examples
 
 * Ch9. Records
+
+** Defining Records
+** Procedural Interface
+** Inspection
