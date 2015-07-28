@@ -644,4 +644,19 @@
 ** Filesystem Operation
 ** Bytevector/String Conversions
 
-* Ch8 Syntactic Extension
+* Ch8. Syntactic Extension
+
+  Syntactic extensions, or macros, are used to simplify and regularize repeated patterns in a program, to introduce syntactic forms with new evaluation rules, and to perform transformations that help make programs more efficient.
+
+** Keyword Bindings
+** Syntax-Rules Transformers
+
+   The syntax-rules form permits simple transformers to be specified in a convenient manner.
+
+** Syntax-Case Transformers
+
+   This section describes a more expressive mechanism for creating transformers, based on syntax-case, a generalized version of syntax-rules and rebuild their output with syntax. These two forms alone are sufficient for defining many syntactic extensions, including any that can be defined using syntax-rules.
+
+** Examples
+
+* Ch9. Records
