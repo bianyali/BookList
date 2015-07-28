@@ -630,3 +630,18 @@
 ** Transcoders
 
    Transcoders encapsulate three values: a codec, an eol style, and an error-handling mode.
+** Opening files
+
+   If transcoder is present and not #f, it nust be a transcoders, and this procedure returns a textual input/output  port whose transcoder is transcoder. Otherwise, this procedure returns a binary input/output port.
+
+** Standard Ports
+** String and Bytevector Ports
+** Opening Custom Ports
+** Port Operations
+** Input Operations
+** Output Operations
+** Convenience I/O
+** Filesystem Operation
+** Bytevector/String Conversions
+
+* Ch8 Syntactic Extension
