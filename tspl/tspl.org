@@ -678,3 +678,19 @@
 ** Examples
 
 * Ch11. Exceptions and Conditions
+
+  At any point during a program's execution, a single exception handler, called the current exception handler, is charged with handing all exceptions that are raised. By default, the current exception handler is one provided by the implementation. The default exception handler typically prints a message that describes the condition or other value with which the exception was raised and, for any serious condition, terminates the running program. In interactive systems, this typically means a reset to the read-eval-print loop.
+
+  User code may establish a new current exception handler via the guard syntax or the with-exception-handler-procedure. In either case, the user code may handle all exceptions or, based on the condition or other value with which the exception was raised, just some of the exceptions while reraising the others for the old current exception handler to handle. When guard forms and with-exception-handler calls are nested dynamically, a chain of exception handlers is established, and each may defer to the next in the chain.
+
+** Raising and Handling Exceptions
+
+*** guard
+*** with-exception-handle
+*** syntax-violation
+*** syntax-violation
+*** assert
+*** raise
+*** raise-continuable
+
+** Defining Condition Types
