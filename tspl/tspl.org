@@ -694,3 +694,51 @@
 *** raise-continuable
 
 ** Defining Condition Types
+
+   While a program may pass raise or raise-continuable any Scheme value, the best way to describe an exceptional situation is usually to create and pass a condition object.
+
+** Standard Condition Types
+
+*** serious
+
+    Conditions of this type indicate situations of a serious of nature that, if uncaught, generally result in termination of the program's execution.
+
+*** violation
+
+    Conditions of this type indicate that the program has violated some requirement, usually due to a bug in the program.
+
+*** assertion
+
+    This condition type indicates a specific violation in which the program has passed the wrong number or types of arguments to a procedure.
+
+*** Error
+
+    Conditions of this type indicate that an error has occurred with the program's interaction with its operating environment, such as the failure of an attempt to open a file. It is not used to describe situations in which an error in the program has been detected.
+
+*** warning
+
+    Warning conditions indicate situations that do not prevent the program from continuing its execution but, in some cases, might result in a more serious problem at some later point.
+
+*** message
+
+*** irritants
+
+*** who
+
+*** non-continuable
+
+*** implementation-restriction
+
+*** lexical
+
+*** undefined
+
+*** i/o
+
+*** i/o-read
+
+*** i/o-write
+
+*** i/o-invalid-position
+
+* Ch12. Extended Examples
