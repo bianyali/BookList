@@ -742,3 +742,11 @@
 *** i/o-invalid-position
 
 * Ch12. Extended Examples
+
+** Matrix and Vector Multiplication
+** Sorting
+** A set Constructor
+** Word Frequency Counting
+** Scheme Printer
+** Formatted Output
+** A Meta-Circular Interpreter for Scheme
