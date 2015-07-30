@@ -604,8 +604,7 @@
 
 ** Enumerations
 
-   Enumerations are ordered sets of symbols, typically used to name and manipulate options, as with the buffer modes and file options that may be *specified* when files are created.
-
+   Enumerations are ordered sets of symbols, typically used to name and manipulate options, as with the buffer modes and file options that may be *specified* when files are created
 * Ch7. Input and Output
 
   All input and output operations are performed through ports.
@@ -750,3 +749,13 @@
 ** Scheme Printer
 ** Formatted Output
 ** A Meta-Circular Interpreter for Scheme
+
+   The program described in this section is a meta-circular interpreter for Scheme, i.e., it is an interpreter for Scheme written in Scheme. The interpreter shows how small Scheme is when the core structure is considered independently from its syntactic extensions and primitives. It is also illustrates interpretation techniques that can be applied equally well to languages other than Scheme.
+
+** Defining Abstract Object
+
+** A Unification Algorithm
+
+** Multitasking with Engines
+
+   Engine are a high-level process abstraction supporting timed preemption. Engines may be used to simulate multiprocessing, implement light-weight threads, implement operating system kernels, and perform non-deterministic computations. The engine implementation is one of the more interesting applications of continuations in Scheme.
