@@ -9,7 +9,7 @@
    + Name: Structure and Interpretation of Computer Programs.
    + Directory: sicp
    + Tag: Lisp, PLT
-   + Date: 2015-03-15 - Current
+   + Date: 2015-01-28 - Current
 
 ** Thinking in Java
 
@@ -31,7 +31,7 @@
    + Name: The Scheme Programming Language
    + Directory: tspl
    + Tag: Lisp, Scheme, PLT
-   + Date: 2015-06-12 - Current
+   + Date: 2015-06-12 - 2015-07-30
    + Reference:
      - A page about call/cc
      - CPS Notes

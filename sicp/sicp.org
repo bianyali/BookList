@@ -1,4 +1,15 @@
-* COMMNET
+#+TITLE: [[mitpress.mit.edu/scip][Structure and Interpretation of Computer Programs]]
+
+* TIME
+
+  1. 2015年01月28日 - CONTINUE
+
+
+
+
+* Building Abstraction with Procedures
+
+** COMMNET
 
   1. 代码就是精确的思维
      代码并不是让计算机干什么，而是自己的精确的想法，即使没有计算机，也可以明白自己的想法。 计算机只不过是能够理解并精确的执行这种想法。
@@ -42,8 +53,7 @@
 
       为什么有括号，每个括号，代表一层访问是从哪里开始的，执行是在那一层。 对于数据来说，括号，代表的是层次，是更加标准的对于数据的描述。 对于程序来说，括号是运算的孙逊，一定要这么理解，比如(+ (* 1 2) 3), 这样，是个人都知道他的运算顺序. 只有一个潜规则就行： 执行是从外括号向内括号扩展的。 而 1*2+3*4， 这只能进行分析，告诉电脑如何分析才行，简直就是过度设计的结果。
 
-
-* QUOTE
+** QUOTE
 
     1. what matter
        It doesn't matter much what the programs are about or what applications they server. what does matter is how well they perform and how smoothly they fit with other programs in the creation of still greater programs.
@@ -157,3 +167,151 @@
 
         Lisp, unlike other common programming languages, awards procedures full first status. This poses challenages for efficient implementation, but the resulting gain in expressive power is enormous.
         The major implementation cost of first-class procedures is that allowing procedures to be returned as values requires reserving storage for a procedure's free variables even while the procedure is not executing. I the Scheme implementation we will study in Section 4.1, these variables are stored in the procedure's environment.
+
+* Building Abstraction with Data
+
+** Introduction to Data Abstraction
+
+  1. Procedural representation of pairs
+
+     The point of exhibiting the procedural representation of pairs is not that our language works this way (Scheme, and Lisp systems in general, implement pairs directly, for efficiency reasons), but that it could work this way. The procedural representation, although obscure, is a perfectly adequate way to represent pairs, since it fulfills the only conditions that pairs need to fulfill. This example also demonstrates that the ability to manipulate procedures as objects automatically provides the ability to manipulate procedures as objects automatically provides the ability to represent compound data. This may seem a curiosity now, but procedural representaions of data will play a central role in our programming repertoire. This style of programming is often called message passing, and we will using it as a basic tool in Chaper 3 when we address the issues of modeling and simulation.
+
+  2. Closure
+
+     The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the closure porperty of cons. In general, an operation for combining data object satisfies the closure property if the results of combining  things with that operation can themselves be combined using the same operation. Closure is the key to power in any means of combination because it permits us to create hierarchical structures -- structures made up of parts, which themselves are made up of parts, and so on.
+
+  3. Combination
+
+     In this section, we take up the consequences of closure for compound data. We describe some conventional techniques for using pairs to represent sequences and trees, and we exhibit a graphics language that illustrates closure in a vivid way.
+
+     The notion that a means of combination should satisfy closure is straightfoward idea. Unfortunately, the data combiners provide in many popular programming languages do not satify closure, or make closure cumbersome to exploit. In Fortran or Basic, one typically combines data elements by assembling them into arrays -- but one cannot form arrays whose elements are themselves arrays. Pascal and C admit structures whose elements are structures. However, this requires that the programmer manipulate pointers explicitly, and adhere to the restriction that each field of a structurecan contain only elements of a prespecified form. Unlike Lisp with its pairs, these languages have no built-in general-popurpose glue that makes it easy to manipulate compound data in a uniform way. This limitation lies behind Alan Perlis's comment in his foreword to this book: "In Pascal the plethora of declarble data structures induces a specialization within functions that inhibits and penalizes casual cooperation. It is better to have 100 functions operate on one data structure than to have 10 functions operate on 10 data structures."
+
+** Hierchical Data and the Closure Property
+
+  1. Levels of language for robust design
+     We have also obtained a glimpse of another crucial idea about  languages and program design. This is the approach of stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is contructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitive at that level,a dn the parts constructed at each level are used as primitives at the next level. The language used at each level of a stratified design has primitives, means of combination, and means of abstraction appropriate to that level of detail
+
+     Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.
+
+** Symbolic Data
+
+  1. Symbolic Data
+
+     为什么有括号，每个括号，代表一层访问是从哪里开始的，执行是在那一层。 对于数据来说，括号，代表的是层次，是更加标准的对于数据的描述。 对于程序来说，括号是运算的孙逊，一定要这么理解，比如(+ (* 1 2) 3), 这样，是个人都知道他的运算顺序. 只有一个潜规则就行： 执行是从外括号向内括号扩展的。 而 1*2+3*4， 这只能进行分析，告诉电脑如何分析才行，简直就是过度设计的结果。
+
+  2. Sets as ordered lists
+
+     将无序的数据对象，assign a unique number 来让该数据对象成为有序的，以减少查找过程中的时间消耗。One advantage of ordering shows up in element-of-set?: In checking for the presence of an item, we no longer have to scan the entire set. 默认的查找范围在缩小，缩小大到和 查找元素的大小 相关。 尽管时间复杂度还是 n 级别的，但却是减少的 一半。 接下来可以使用二分法(话说在 list set 中如何使用二分法？)，将时间复杂度变成 log(n) 级别. 但进行intersection的时候，时间复杂度变成了 n.
+
+  3. Sets as binary trees
+
+     二叉树，是更有序的 ordered list，就像是一个list 表现了 二分法。 不需要在 算法 procedure中实现，因为 在list 中，已经使用 binary trees 实现这种二分。
+     We can do better than the ordered-list representatio by arranging the set elements in the form of a tree. Each node of the tree holds one element of the set, called the "entry" at that node, and a link to each of two other(possibly empty) nodes. The "left" link points to elements smaller than the one at the node, and the "right" link to elements greater than the one at the node.
+
+     只有这个二叉树的层数最少时，才是使用的 二分法。 根节点，从最大最小节点的平均值的节点开始。 If the tree is "balanced", each of these subtrees will be about half the size of the original. Thus, in one step we have reduced the problem of searching a tree of size n to search a tree of size n/2. Since the size of the tree is halved at each step, we should expect that the number of steps needed to search a tree of size n grows as ø(long n). For large sets, this will be a significant speedup over the previous representations. 所谓提高查询速度，就是在查询之前，将数据整理的越加有序，越加有层次性，就更加容易查找，就像将衣服分门别类的放到衣橱中。
+
+     万物皆是 list。 We are representing sets in terms of trees, and trees in terms of lists -- in effect, a data abstraction built upon a data abstraction.We can regard the procedures entry, left-branch, right-branch, and make-tree as a way of isolating the abstraction of a "binary tree" from the particular way we might wish to represent such a tree in terms of lsit structure.
+
+     * balanced tree
+
+       Searching a tree can be performed in a logarithmic number of steps rests on the assumption that the tree is "balanced", that the left and the right substree of every tree have approximately the same number of elements, so that each subtree contains about half the elements of its parent. But how can we be certain that the trees we construct will be balanced?  Even if we start with a balanced tree, adding elements with adjoin-set may produce an unbalanced result. Since the position with the items already in the set, we can expect that if we add elemts "randomly", the tree will tend to be balanced on the average. But this is not a guarantee. 要想让数据统一结构，统一规则，在每天修改元数据的时候，都要对 tree 进行重新整理。 We can perform transformations to keep our set in balance. There are also other ways to solve this problem, most of which involve designing new data structures for which searching and insertion both can be done in ø(log n) steps. Examples of such structure include B=trees and red-black trees. There is a large literature on data structures devoted to this problem. 目的都是为了，将数据，按规则整理，然后，方便快速的查询和存储。
+
+  4. Sets and information retrieval
+
+     We have examined options for using lists to represent sets and have seen how the choice of representation for a data object can have a large impact on the performance of the programs that use the data. Another reason for concerning on sets is that the techniques discussesd here appear again and again in applications involving information retrieval.
+
+     * data base
+
+       Consider a data base containning a large number of individual records, such as the personnel files for a company or the transactions in an accounting system. A typical data-management system spends a large amount of time accessing or modifying the data in the records and therefore requires an efficient method for accessing records. This is done by identifying a part of each record  to serve as an identifying key. A key can be anything that uniquely identifies the record. For a personnel file, it might be an employee's ID number. For an accounting system, it might be a transaction number. Whatever the key is, when we define the record as a data strucure we should include a key selector procedure that retrives the key associated with a given record.
+
+     * Information-retrieval system
+
+       Information-retrieval systems in which records have to be "randomly accessed" are typically implemented by a tree-based method, such as the binary-tree representation discuessed previously. In designing such a system the methodology of data abstraction can be a great help. (tree-based 分层的数据存储)
+
+  5. Huffman Encoding Trees
+
+     This section provides practice in the use of list structure and data abstraction to manipulate sets and trees.
+
+     * Prefix Code
+
+       Design the code in such a way that no complete code for any symbol is the beginning (or prefix) of the code for another symbol. Such a code is called a prefix code.
+
+     * Huffman encoding method
+
+       In general, we can attain significant savings if we use variable-length prefix codes that take advantage of the relative frequencies of the symbols in message to be encoded. One particular scheme for doing this is called the Huffman encoding method.
+
+       平衡二叉树是对所有元素出现概率都相同时，使用的策略。 Huffman tree 针对的是每个元素出现的不同频率。
+
+  6. Multiple Representation for Abstract Data
+
+     The data-abstraction barriers are powerful tools for controlling complexity. By isolating the underlying representations of data objects, we can divide the task of designing a large program into smaller tasks that can be performed separately. But this kind of data is not yet powerful enough, because it may not always make sense to speak of "the underlying representation" for a data object.
+
+     For one thing, there might be more than one useful representation for a data object, and we might like to design systems that can be deal with multiple representations.  In this section, we will learn how to cope with data that may be represented in dirrerent ways by different parts of a program. This requires constructing generic procedures -- procedures that can operate on data that may be represented in more than one way.
+
+     * The horizontal and vertical abstraction barrier
+
+       The "horizontal" abstraction barriers isolate "higher-level" operations from "lower-level" representations. In addition, there is a "vetical" barier that gives us the ability to separately design and install  alternative representation.
+
+     * Tagged data
+
+       The abstraction data barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice a concrete representation for our data objects and thus retain maximum flexibility in our system design.
+
+       The discipline of stripping off and attaching tags as data objects are passed from level to level can be an important organizational strategy.
+
+     * Data-directed programming
+
+       The key idea of data-directed programming is to handle generic operations in programs by dealing explicitly with operation-and-type tables.
+
+       所谓数据导向的程序设计，是针对不同的类型数据的一集公共通用操作。也就是说，数据导向，（具有同样一组操作的不同类型的数据），不管数据的类型如何增加，都使用这组操作，因为，只要有数据类型的增加，我们只需要向 table 中添加这种数据类型，对应的相同的操作即可。
+
+       当数据类型经常变化， 而这些变换的数据，总是有着几个统一的操作接口时，最恰当的是数据导向的程序设计。
+       当数据类型固定，而这种数据类型上的操作经常添加时，消息传递方式更好。
+       当数据类型比较少，数据的操作比较统一时，使用显式分派的通用类型操作比较方便（无需定义table）
+
+     * Message passing
+
+       As a large system with generic oiperations evolves, new types of data objects or new operations may be needed. For each of the three stragies -- generic operations with explicit dispatch, data-directed style, and message-passing-style -- describe the changes that must be made to a system in order to add new types or new operations.
+
+  7. Systems with Generic Operations
+
+     * Combining Data of Different Types
+
+       We have gone to great pains to introduce barriers between parts of our programs so that they can be developed and understood separately. We would like to introduce the cross-type operations in some carefully controlled way, so that we can support them without seriously violating our module boundaries.
+
+     * Coercion
+
+       In the general situation of completely unrelated operations acting on completely unrelated types, implementing explicit cross-type operations, cumbersome though it may be, is the best that one can hope for. Fortunately, we can usually do better by taking advantage of additional strucure that may be latent in our type system. Often the different data types are not completely independent, and there may be ways by which objects of one type may be viewed as being another type. This process is called coercion.
+
+       The coercion scheme has many advantages over the method of defining explicit cross-type operations, as outlined above. Although we still need to write coercion procedures to the related the types (possibly (* n n) procedures for a system with n types), we need to write only one procedure for each pair of types rather than a diffrent procedure for each collection of types and each generic operation. What we are counting on here is the fact that the appropriate transformation between types depends only on the types themselves, not on the operation to be applied.
+
+       If we are clever, we can usually get by with fewer that (* n n) coercion procedures. For instance, if we know how to convert from type 1 to type 2 and from type 2 to type 3, then we can use this knowledge to convert from type 1 to type 3. This can greatly decrease the number of coercion procedures we need to supply explicitly when we add a new type to the system. If we are willing to build the required amount of sophistication into our system, we can have it search the  "graph" of relations among types and automatically generate those coercion procedures that can be inferred from the ones that are suplied explicitly.
+
+       On the other hand, there may be applications for which our coercion schemer is not general enough. Even when neither of the objects to be combined can be converted to the type of the other it may still be possible to perform the operation by converting both objects to a third type. In order to deal with such complexity and still preserve modularity in our programs, it is usually necessary to build systems that take advantage of still further structure in the relation among types, as we discuss next.
+
+     * Hierarchies of types
+
+       The coercion scheme presented above relied on the existence of natural relations between pairs of types. Often there is more "global" structure in how the different types related to each other.
+
+       What we actually have is a so-called hierarchy of types.
+
+       * tower
+
+         The particular hierarchy we have here is of a very simple kind, in which each type has at most one supertype and at most one subtype. Such a structure, called a tower.
+
+         If we have a tower strucutre, then we can greatly simplify the problem of adding a new type to the hierarchy, for we need only specify how the new type is embedded in the next supertype above it and how it is the supertype of the type blow it.
+
+         Another advantage of a tower is that we can easily implement the notion that every type "inherits" all operations define on a supertype.
+
+         Yet another advantage of a tower over a more general hierarchy is that it gives us a simple way to "lower" a data object to the simplest representation.
+
+       * Inadequacies of hierarchies
+
+         If the data types in our system can be naturally arranged in a tower this greatly simplifies the problems of dealing with generic operations on different types, as we have seen. Unfortunatyly, this is usually not he case.
+
+         Dealing with large numbers of interrelated types while still preserving modularity in the desing of large systems is very difficult, and is an area of much current research.
+
+         This statement, which also appears in the first edition of this book, is just as true now as it was when we wrote it twelve years ago. Developing a useful, general framework for expressing the relations among different types of entities (what philosophers call "ontology") seems intractably difficult. The main difference between the confustion that existed ten years ago and the confusion that exists now is that now a veriety of inadequate ontological theories have been embodied in a plethora of corresponding inadequate programming languages. For example, much of the complexity of of object-oriented programming languages -- and the subtle and confusing differences amoung contemporary object-oriented languages -- centers on the treatment of generic operations on interrelated types. Our own discussion of computational objects in Chapter 3 avoids these issues entirely. Readers familiar with object-oriented programming will notice that we have much to say in chapter 3 about local state, but we do not even mention "classes" or "inheritance". In fact, we suspect that these problems cannot be adequatly addressed in terms of computer-language design alone, without also drawing on work in knowledge representation and automated reasoning.
+
+* Modularity, Object, and State
+* Metalinguistic Abstraction
+* Computing with Register Machines
