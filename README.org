@@ -44,3 +44,11 @@
    + Directory: tyscheme
    + Tag: Scheme
    + Date: 2015-07-20 - 2015-07-23
+
+** Articles of Matt Might
+
+   + Name: Articles of [[http://matt.might.net][Matt Might]]
+   + Directory: matt
+   + Tag: plt
+   + Date: 2015-07-30 - Current
+   + PS: /it's not a single book, but papers and articles from [[http://matt.might.net/][Matt Might]]'s blog/
