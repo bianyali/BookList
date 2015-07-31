@@ -1,4 +1,4 @@
-#+TITLE:       Notes on Programming
+#+TITLE:       Notes on Programming Language Theory
 #+AUTHOR:      Yali Bian
 #+EMAIL:       byl.lisp@gmail.com
 #+DATE:        2015-07-06 Mon
@@ -9,21 +9,21 @@
    + Name: Structure and Interpretation of Computer Programs.
    + Directory: sicp
    + Tag: Lisp, PLT
-   + Date: 2015-01-28 - Current
+   + Date: 2015/01/28 - Current
 
 ** Thinking in Java
 
    + Name: Thinking in Java
    + Directory: tij
    + Tag: Java, Language
-   + Date: 2015-06-27 - Current
+   + Date: 2015/06/27 - Current
 
 ** Programming Language Theory
 
    + Name: Programming Language Theory
    + Directory: plt
    + Tag: PLT
-   + Date: 2015-03-16 - Current
+   + Date: 2015/03/16 - Current
    + PS: /it's not a single book, but several materials about PLT from wikipedia or blog/
 
 ** The Scheme Programming Language
@@ -31,7 +31,7 @@
    + Name: The Scheme Programming Language
    + Directory: tspl
    + Tag: Lisp, Scheme, PLT
-   + Date: 2015-06-12 - 2015-07-30
+   + Date: 2015/06/12 - 2015/07/30
    + Reference:
      - A page about call/cc
      - CPS Notes
@@ -43,12 +43,36 @@
    + Name: Teach Yourself Scheme in Fixnum Days
    + Directory: tyscheme
    + Tag: Scheme
-   + Date: 2015-07-20 - 2015-07-23
+   + Date: 2015/07/20 - 2015/07/23
 
 ** Articles of Matt Might
 
    + Name: Articles of [[http://matt.might.net][Matt Might]]
    + Directory: matt
    + Tag: plt
-   + Date: 2015-07-30 - Current
+   + Date: 2015/07/30 - Current
    + PS: /it's not a single book, but papers and articles from [[http://matt.might.net/][Matt Might]]'s blog/
+
+** How to Design Programs
+
+   + Name: How to Design Programs
+   + Directory: htdp
+   + Tag: Lisp, Scheme, Racket, PLT
+   + Date: 2014/12/22 - 2014/12/28
+
+** The Racket Reference
+
+   + Name: [[docs.racket-lang.org/reference/][The Racket Reference]]
+   + Directory: racket/refer
+   + Tag: Racket, Scheme, Lisp, PLT
+   + Tag: Lisp, Scheme, PLT
+   + Date: 2015/01/23/ - 2015/07/30 - Continue
+
+** The Racket Guide
+
+   + Name: The Racket Guide
+   + Directory: racket/guide
+   + Tag: Lisp, Scheme, Racket, PLT
+   + Date:
+          - 2014/12/29 - 2015/01/05
+          - 2015/01/05 - 2015/01/14

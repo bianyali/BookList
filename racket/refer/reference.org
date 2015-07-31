@@ -1,0 +1,116 @@
+#+TITLE:       The Racket Reference
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-01-21
+
+
+* 1. Language Model
+
+  学习计算机包含了很多东西，就拿racket来说，学深了可以涉及到 OS，亦或者 language。 学工程了，就会涉及到 Internet TCP/IP等。 真是不是几个星期几个月就可以搞 定的。 一定要多方面的学习，才能掌握 CS 的基础。 在出国以前，这一定要形成。
+
+** Evaluation Model
+
+   Racket evaluation can be viewed as the simplification of expression to obtain values.
+
+*** Sub-expression and Continuation
+
+    Some simplifications require more than one step.
+
+    An expression that is not a value always be partioned into two parts: a redex, which is the part that changed in a single-step simplification, and the continuation, which is the evaluation context surrounding an expression. That is, the continuation says how to "continue" after the redex is reduced to a value.
+
+    Before some things can be evaluated, some sub-expressions must be evaluated; for example, in the application (- 4 (+ 1 1)), the application of - can not be reduced until the sub-expression (+ 1 1) is reduced.
+
+    Thus, the specification of each syntactic form specifies how (some of) sub-expressions are evaluated, and then how the results are combined to reduced the form away.
+
+    The dynamic extent of an expression is the sequence of evaluation steps during which the expression contains the redex.
+
+*** Tail Position
+
+    What exactly is tail position for recur? The tail position is a position which an expression would return a value from. There are no more forms evaluated after the form in the tail position is evaluat.
+
+    An expression expr1 is in tail position with respect to an enclosing expression expr2: if whenever expr1 becomes a redex, its continuation is the same as was the enclosing expr2's continuation.
+
+    Tail-position specificatons provides a guarantee about the asymptotic space consumption of a computation. In general, the specification of tail positions goes with wach syntatic form, like if.
+
+*** Multiple Return Values
+
+    A Racket expression can evaluate to multiple values, in the same way that a procedure can accept multiple arguments.
+
+    Most continuations expect a particular number of result values.
+
+    In general, the specification of a syntactic form indicates the number of values that produces and the number that it expects from each of its sub-expression. In addition, some procedures (notably values) produce multiple values, and some procedures (notably call-with-values) create continuations internalllly that accept a certain number of values.
+
+*** Top-Level Variables
+
+    A set of top-level variables are available for substitutions on demand during evaluation.
+
+    In Racket, the way definitions appear is just as important as the way that they are used.
+
+    Racket evaluation thus keeps track of both definitions and the current expression, and it extends the sets of definitions in response to evaluating forms such as define.
+
+    Each evaluation step, then, takes the current set of definitions and program to a new set of definitions and program.
+
+    Before a define can be moved into the set of definitions, its right-hand expression must be reduced to a value.
+
+    Using set!, a program can change the value associated with an existing top-level variable.
+
+    Using set!, a program can change the value associated with an existing top-level variable.
+
+    Change the VALUE associated with an EXISTING TOP-LEVEL VARIABLE.
+
+*** Objects and Imperative Update
+
+    In addition to set! for IMPERATIVE UPDATE of top-level variables, various procedures enable the modification of ELEMENTs within a compound data structure. For example, vector-set! modifies the content of a vector.
+
+    To allow such modification to data, we must distinguish between values, which are the results of expressions, and objects, which hold the data reference by a value.
+
+    A few kinds of objects can server directly as values, including booleans, (void), and small exact integers.
+
+    More generally, a value is a reference to an object. For example, a value can be a reference to a particular vector that currently holds the value 10 in its first slot. If an object is modified, then the modification is visible through all copies of the value that reference tha same object.
+
+    In the evaluation model, a set of objects must be carried  along with each step in evaluation, just like the definition set.
+
+    The distinction between a top-level variable and an object reference is crucial. A topic-level variable is not a value; each time a variable expression is evaluated, the value is extracted from the current set of definitions.
+
+    An object reference in contrast is a value, and therefore needs no further evaluation.
+
+    The model evaluation steps above use angle-bracketd <> for an object reference to distinguish it from a variable name.
+
+    A direct object reference can never appear in a text-based source program. A program representation with datum->syntax, however, can embed direct references to existing onjects.
+
+** Syntax Model
+** The Reader
+** The Printer
+
+* 4. Datatypes
+
+**       1. Booleans and Equlity
+**       2. Numbers
+**       3. String?
+**       4. Byte Strings
+**        5. Characters
+**        6. Symbols
+**       7. Regular Expresson
+**       8. Keywords
+**       9. Pairs and Lists
+**       10. Mutable Pairs and Lists
+**       11. Vectors
+**       12. Boxes
+**       13. Hash Tables
+**       14. Sequences and Streams
+           Sequences and streams abstract over iteration of elements in a collection. Sequences allow iteration with for macros or with sequence operations such as sequence-map. Streams are functional sequences that can be used either in a general way or a stream-specific way. Generators are closely related stateful objects that can be converted to a sequence and vice-versa.
+
+***           1. Sequences
+              A sequence encapsulates an ordered collection of values. The elements of a sequence can be extracted with one of the for syntax forms, with the procedures returned by sequence-generate, or by converting the sequence into a stream.
+
+
+
+***           2. Streams
+
+***           3. Generators
+
+**       15. Dictionaries
+**       16. Sets
+**       17. Procedures
+**       18. Void
+**       19. Undefined
