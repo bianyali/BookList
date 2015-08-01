@@ -1,0 +1,25 @@
+#+TITLE:       Weak Reference
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-08-01 Sat
+
+
+* Formal Representation
+
+  More generally, a reference can be considered as a piece of data that allow *unique retrieval* of another of data. This includes primary keys in databased and keys in an associative array. If we have a set of data /D/, any well-defined (single-valued) function D onto D /U/ {null} defines a type of reference, where null is the image of a piece of data not referring to anything meaningful.
+
+* External and internal storage
+
+  In many data structures, large, complex objects are composed of smaller objects. These objects are typically stored in one of two ways:
+    - Internal storage, the contents of the smaller objects are stored inside the larger object.
+    - With external storage, the smaller objects are allocated in their own location, and the larger object only stores reference to them.
+
+  Some languages, such as Java, Smalltalk, Python, and Scheme, do not support internal storage. In these languages, all objects are uniformly through references.
+
+* Language support
+
+  One of the earliest opaque references was that of the Lisp language /cons cell/, which is simply a record containing two references to other Lisp objects, including possibly other cons cells.
+
+  The pointer is still one of the most popular types of references today. It is similar to the similar to the assembly representation of a raw address, except that it carries a static datatype which can be used at compile-time to ensure that the data it refers to is not misinterpreted.
+
+  A number of popular mainstream languages today such as Eiffel, Java, C#, and Visual Basic have adopted a much more opaque type of reference, usually referred to as simply a *reference*. These references have types like C pointers indicating how to interpret the data they reference, but they are typesafe in that they cannot be interpreted as a raw address and unsafe conversions are not permitted.

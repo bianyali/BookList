@@ -63,15 +63,18 @@
 ** The Racket Reference
 
    + Name: [[docs.racket-lang.org/reference/][The Racket Reference]]
-   + Directory: racket/refer
+   + Directory: racket-refer
    + Tag: Racket, Scheme, Lisp, PLT
    + Tag: Lisp, Scheme, PLT
    + Date: 2015/01/23/ - 2015/07/30 - Continue
+   + Reference:
+     - [[https://en.wikipedia.org/wiki/Weak_reference][Weak Reference]]
+     - [[https://en.wikipedia.org/wiki/Reference_(computer_science)][Reference]]
 
 ** The Racket Guide
 
    + Name: The Racket Guide
-   + Directory: racket/guide
+   + Directory: racket-guide
    + Tag: Lisp, Scheme, Racket, PLT
    + Date:
           - 2014/12/29 - 2015/01/05

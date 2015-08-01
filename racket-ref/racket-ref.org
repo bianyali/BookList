@@ -70,13 +70,38 @@
 
     In the evaluation model, a set of objects must be carried  along with each step in evaluation, just like the definition set.
 
-    The distinction between a top-level variable and an object reference is crucial. A topic-level variable is not a value; each time a variable expression is evaluated, the value is extracted from the current set of definitions.
+    The distinction between a *top-level variable* and an *object reference* is crucial. A topic-level variable is not a *value*; each time a *variable expression* is evaluated, the *value* is *extracted* from the current set of *definitions*. *An object reference* in contrast is a *value*, and therefore *needs no further evaluation*. The model evaluation steps above use angle-bracketd <o1> for an *object reference* to distinguish it from a *variable name*.
 
-    An object reference in contrast is a value, and therefore needs no further evaluation.
+    A direct *object reference* can *never appear* in a *text-based* *source program*. A program representation with datum->syntax, however, can *embed direct references* to existing objects.
 
-    The model evaluation steps above use angle-bracketd <> for an object reference to distinguish it from a variable name.
+*** Object Identity and Comparisons
 
-    A direct object reference can never appear in a text-based source program. A program representation with datum->syntax, however, can embed direct references to existing onjects.
+    The eq? operator compares two values, returning #t when the two values refer to the same object. This form of equality is suitable for comparing objects that support imperative update (e.g., to determine that the effect of modifying an object through one reference is visible through another reference). Also, an eq? evaluates quickly, and eq?-based hashing is more lightweight than equal?-based hashing in hash tables.
+
+    Some cases, however, eq? is unsuitable as a comparison operator, because the generation of object is not clearly defined.
+
+*** Garbage Collection
+
+    /About references, weak references, I have lots of things to learn!!!/
+
+    *Weak References* ::
+
+*** Procedure Applications and Local Variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ** Syntax Model
 ** The Reader
