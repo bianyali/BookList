@@ -1,0 +1,98 @@
+#+TITLE:       The Racket Guide
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-08-01 Sat
+
+
+
+* 6 Modules
+
+** 2 Module Syntax
+
+   The /#lang/ at the start of a module file begins a shorthand for a module form, much like ' is a shorthand for a /quote/ form. Unlike ', the #lang shorthand does not work well in a REPL, in part because it must be terminated by an end-of-file, but also because the longhand expansion of #lang depends on the name of the enclosing file.
+
+*** The *module* form
+
+    Declaring a module does not immediately evaluate the body definitions and expressions of the module. The module must be explicitly required at the top level to trigger evaluation. After evaluation is triggered once, later requires do not re-evaluate the module body.
+
+*** The #lang Shorthand
+
+    The body of a #lang shorthand has no specific syntax, because the syntax is determined by the language name that follows #lang.
+
+    Unless otherwise specified, a module that is documented as a "language" using the #lang notation will expand to module in the same way as #lang racket. The documented language name can be used directly with module or require, too.
+
+*** Submodules
+
+    + A submodule declared with module can be required by its enclosing module, but the submodule cannot require the enclosing module or lexically reference the enclosing module's bindings.
+
+    + A submodule declared with module* can require its enclosing module, but the enclosing module cannot require the submodule.
+
+*** Main and Test Submodules
+
+    Running a module does not run its module*-defined submodules. Nevertheless, runing the above module via racket or DrRacket prints a cake with 10 candles, because the main submodule is a special case.
+
+    When a module is provided as a program name to the racket executable or run directory within DrRacket, if the module has a man submodule, the main submodule is run after its enclosing module. Declaring a main submodule thus specifies extra actions to be performed when a module is run directly, instead of required as a library within a larger program.
+
+    A main submodule does not have to be declared with module*. If the main module does not need to use bindings from its enclosing module, it can be declared with module.
+
+** 3 Module Paths
+
+   A module path is a reference to a module, as used with require or as the initial-module-path in a module form.
+
+   + A module path that is a quoted identifier refers to a non-file module declaration using the identifier. This form of module reference makes the most sense in a REPL.
+
+   + A string module path is a relative path using Unix-style conventions. The path is relative to the enclosing file, or it is relative to the current directory.
+
+   + A module path that is an unquoted identifier refers to an installed library.
+
+   + Access a third-party library that is distributed through the PLaneT server.
+
+** 4 Imports: require
+
+   The require form imports from another module. A require form can appear within a module, in which case it introduces bindings from the specified module into importing. A require form can also appear at the top level, in which case it both imports bindings and instantiates the specified module; that is, it evaluates the body definitions and expressions of the specified module, if they have not been evaluated already.
+
+** 5 Exports: provide
+
+   + identifier
+
+   + rename-out
+
+   + struct-out
+
+   + all-defined-out
+
+   + all-from-out
+
+   + except-out
+
+   + prefix-out
+
+** 6 Assignment and Redefinition
+
+    The use of set! on variables defined within a module is limited to the body of the defining module. That is, a module is allowed to change the value of its own definitions, and such changes are visible to importing modules. However, an importing context is not allowed to change the value of an imported binding.
+
+* 15 Reflection and Dynamic Evaluation
+
+
+* 22 More Libraries
+
+  This guide covers only the Racket language and libraries that are documented in The Racket Reference. The Racket distribution includes many additional libraries.
+
+** Graphics and GUIs
+
+   + racket/draw
+
+   + racket/gui
+
+   + pict
+
+   + 2htdp/image
+
+   + sgl
+
+** The Web Server
+
+   Web Applications in Racket describes the Racket web server, which supports servlets implemented in Racket.
+
+** Using Foreign Libraries
+** And More

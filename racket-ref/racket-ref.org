@@ -87,13 +87,31 @@
     *Weak References* ::
 
 *** Procedure Applications and Local Variables
+*** Variables and Locations
 
+    A /variable/ is a placehoder for a value, and expressions in an initial program refer to variables. A /top-level/ variable is both a variable and a location. Any other variable is always replaced by a location at run-time, so that evaluation of expressions involves only locations involves only locations. A single local variable (i.e., a non-top-level, non-module-level variable), such as a procedure argument, can correspond to different locations through different instantiations.
 
+    The replacement of a variable with a location during evaluation implements Racket's /lexical scoping/. For example, when a procedure-argument variable /x/ is replaced by the location /xloc/, then it is replaced throughout the body of the procedure, including any nested lambda forms. As a result, future references of the variable always access the same location.
 
+*** Modules and Module-Level Variables
 
+    Most definitions in Racket are in modules. That is, a module-level variable is like a top-level variable from the perspective of evaluation.
 
+    One difference between a module and a top-level definition is that a module can be declared without instantiating its module-level definitions. Evaluation of a require instantiates (i.e., triggers the instantiation of) a declared module, which creates variables that correspond to its module-level definitions.
 
+**** Phases
 
+     A module can be instantiated in multiple /phases/. A phase is an integer that, again, is effectively a prefix on the names of module-level definitions. A top-level /require/ instantiates a module at phase 0, if the module is not already instantiated at phase 0. A top-level (require (for-syntax ...)) instantiates a module at phase 1 (if it is not already instantiated at that level); for-syntax also has a different binding effect on further program parsing, as described in /Introducing Binding/.
+
+     Within a module, some definitions are shifted by a phase already;
+
+**** The Separate Compilation Guarantee
+
+     When a module is compiled, its phase 1 is instantiated. This can, in turn, trigger the *transitive instantiation* of many other modules at other phases, including phase 1. Racket provide very strong guarantee about this instantiation called "The Separate Compilation Guarantee":
+
+     Any effects of the instantiation of the module's phase 1 due to compilation on the Racket system are discarded.
+
+     The practical consequence of this guarantee is that because effects are never visible, no module can detect whether a module it requires is already compiled.
 
 
 

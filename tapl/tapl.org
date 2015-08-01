@@ -1,0 +1,4 @@
+#+TITLE:       Types and Programming Languages
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-08-01 Mon
