@@ -77,5 +77,14 @@
    + Directory: racket-guide
    + Tag: Lisp, Scheme, Racket, PLT
    + Date:
-          - 2014/12/29 - 2015/01/05
-          - 2015/01/05 - 2015/01/14
+     - 2014/12/29 - 2015/01/05
+     - 2015/01/05 - 2015/01/14
+
+** Types and Programming Languages
+
+   + Name: [[https://www.cis.upenn.edu/~bcpierce/tapl/][Types and Programming Languages]]
+   + Directory: tapl
+   + Tag: Racket, Scheme, Lisp, PLT
+   + Tag: PLT, Type
+   + Date: 2015/08/01/ - Continue
+   + Reference:
