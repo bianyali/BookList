@@ -71,9 +71,32 @@
 
     The use of set! on variables defined within a module is limited to the body of the defining module. That is, a module is allowed to change the value of its own definitions, and such changes are visible to importing modules. However, an importing context is not allowed to change the value of an imported binding.
 
+* 10 Exceptions and Control
+
+  Racket provides an especially rich set of control operations -- not only operations for raising and catching exceptions, but also operations for grabbing and restoring portions of a computation.
+
+** Exceptions
+
+   Whenever a run-time error occurs, an exception is raised. Unless the exception is caught, then it is handled by printing a message associated with the exception, and then escaping from the computation.
+
+
+
+
+
+** Prompts and Aborts
+** Continuations
+
+
+
+
+
+
+
+
+
+
+
 * 15 Reflection and Dynamic Evaluation
-
-
 * 22 More Libraries
 
   This guide covers only the Racket language and libraries that are documented in The Racket Reference. The Racket distribution includes many additional libraries.

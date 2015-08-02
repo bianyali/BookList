@@ -95,9 +95,9 @@
 
 *** Modules and Module-Level Variables
 
-    Most definitions in Racket are in modules. That is, a module-level variable is like a top-level variable from the perspective of evaluation.
+    Most *definitions* in Racket are in modules. In terms of evaluation, a model is essentially a prefix on a defined name, so that different modules can define the name. That is, a *module-level variable* is like a *top-level variable* from the perspective of evaluation.
 
-    One difference between a module and a top-level definition is that a module can be declared without instantiating its module-level definitions. Evaluation of a require instantiates (i.e., triggers the instantiation of) a declared module, which creates variables that correspond to its module-level definitions.
+    One difference between a module and a top-level definition is that a module can be declared *without* instantiating its module-level definitions. Evaluation of a /require/ *instantiates* (i.e., triggers the instantiation of) a declared module, which creates variables that correspond to its module-level definitions.
 
 **** Phases
 
@@ -120,6 +120,11 @@
 
 
 
+*** Continuation Frames and Marks
+
+    Every continuation /C/ can be partitioned into continuation frames /C1/, /C2/, ... /Cn/ such that /C = C1[C2[... [Cn]]]/, and no frame /Ci/ can be itself partitioned into smaller continuations. Evaluation steps add and remove frames to the current continuation, typically one at a time.
+
+    Each frame is conceptually annotated with a set of continuation marks. A mark consists of a key and its value; the key is an arbitrary value, and each frame includes at most one make for any key. Various operations set and extract marks from continuations, so that marks can be used to attach information to a dynamic extent. For example, marks can be used to record information for a "stack trace" to be used when an exception is raised, or to implement dynamic scope.
 
 ** Syntax Model
 ** The Reader

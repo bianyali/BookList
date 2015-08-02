@@ -79,6 +79,7 @@
    + Date:
      - 2014/12/29 - 2015/01/05
      - 2015/01/05 - 2015/01/14
+     - 2015/08/01 - Current
 
 ** Types and Programming Languages
 
