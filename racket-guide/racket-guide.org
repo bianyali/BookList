@@ -79,24 +79,102 @@
 
    Whenever a run-time error occurs, an exception is raised. Unless the exception is caught, then it is handled by printing a message associated with the exception, and then escaping from the computation.
 
+   The /error/ function is one way to raise your own exception. It package an error an error message and other information into an exn:fail structure.
 
 
-
+   The exn:fail:contract:divide-by-zero and exn:fail structure types are sub-types of the exn structure type. Exceptions raised by core forms and functions always raise an instance of or one of its sub-types, but an exception does not have to be represented by a structure. The /raise/ function lets you raise any value as an exception.
 
 ** Prompts and Aborts
+
+   When an exception is raised, control escapes out of an arbitrary deep evaluation context to the point where the exception is caught -- or all the way out if the exception is never caught.
+
+   But if control escape "all the way out," way does the REPL keep going after an error is printed? You might think that it's because the REPL wraps every interaction in a with-handlers from that catches all exceptions, but that's not quite the reason.
+
+   The actual reason is that the REPL wraps the interaction with a prompt, which effectively marks the evaluation context with an escape point. If an exception is not caught, then information about the exception is printed, and then evaluation aborts to the nearest enclosing prompt. More precisely, each prompt has a prompt tag, and there is a designated default prompt tag that the uncaught-exception handler uses to abort.
+
+   Prompts and aborts look very much like exception handling and raising. Indeed, prompts and aborts are essentially a more primitive form of exception, and with=handlers and raise are implemented in terms of prompts and aborts. The power of the more primitive form is related to the word "continuation" in the operator names, as we discuss in the next section.
+
 ** Continuations
 
+   A *continuation* is a value that encapsulates a piece of an expression's evaluation context. The /call-with-composable-continuation/ function captures the /current continuation/ starting *outside the current function call* and running up to *the nearest prompt*. (Keep in mind that each REPL interaction is implicitly wrapped in a prompt.)
 
+   /call-with-composable-continuation/ starting *outside the current function call* and running up to *the nearest prompt*.
 
+   The continuation is encapsulated so that it behaves like the function (lambda (v) (context v)).
 
+   The continuation captured by call-with-composable-continuation is determined dynamically, not syntactically.
 
-
-
-
-
-
+   A more traditional continuation operator in Racket (or Scheme) is call-with-current-continuation, which is usually abbreviated call/cc. It is like call-with-composable-continuation,  but applying the captured continuation first aborts (to the current prompt) before restoring the saved continuation. In addition, Scheme systems traditionally support a single prompt at the program start, instead of allowing new prompts via call-with-continuation-prompt. Continuations as in Racket are sometimes called delimited continuations, since a program can introduce new delimiting prompts, and continuations as captured by call-with-composable-continuation are sometimes called composable continuations, because they do not have a built-in abort.
 
 * 15 Reflection and Dynamic Evaluation
+
+  Racket is a *dynamic* language. It offers numerous facilities for loading, compiling, and even constructing *new code* *at run time*.
+
+** eval
+
+   /This example will not work within a module or in DrRacket's definitions window, but it will work in the interactions window, for reasons that are explained by the end of Namespaces/
+
+   The eval function takes a representation of an expression or definition (as a "quoted" form or syntax object) and evaluates it.
+
+   The power of eval is that an expression can be constructed dynamically.
+
+   Of course, if we just want to evaluate expression with given values for x and y, we do not need eval. A more direct approach is to use first-class functions. However, if expressions like (+ x y) are read from a file supplied by a user, for example, then eval might be appropriate. Similarly, the REPL reads expressions that are typed by a user and uses eval to evaluate them.
+
+   Also, eval is often used directly or indirectly on whole module. For example, a program might load a module on demand using dynamic-require, which is essentially a wrapper around eval to dynamically load the module code.
+
+*** Local Scopes
+
+    The eval function cannot see local bindings in the context where it is called. For example, calling eval inside an unquoted let form to evaluate a formula does not make values visible for x and y.
+
+    The eval function cannot see the x and y bindings precisely because it is a function, and Racket is a lexically scoped language.
+
+*** Namespaces
+
+    Since eval cannot see the bindings from the context it is called, another mechanism is needed to determine dynamically available bindings. A namespace is a first-class value that encapsulates the bindings available for dynamic evaluation.
+
+    Informally, the term /namespace/ is sometimes used interchangeably with /environment/ or /scope/. In Racket, the term /namespace/ has the more specific, dynamic meaning given above, and it should not be confused with static lexical concepts.
+
+    The /name-base-namespace/ function create a namespace that is initialized with the exports of racket/base.
+
+*** Namespaces and Modules
+
+    As with /let/ bindings, lexical scope means that eval cannot automatically see the definitions of a module in which it is called. Unlike let bindings, however, Racket provides a way to reflect a module into a namespace.
+
+** Manipulating Namespaces
+
+   A namespace encapsulates two pieces of information:
+
+     + A mapping from identifiers to bindings.
+
+     + A mapping from module names to module declarations and instances.
+
+
+   The first mapping is used for evaluating expressions in a top-level context, as in (eval '(lambda (x) (+ x 1)). The second mapping is used, for example, by dynamic-require to locate a module.
+
+   From the perspective of the core Racket run-time system, all evaluation is reflective. Execution starts with an initial namespace that contains a few primitive modules, and that is further populated by loading files and modules as specified on the command line or supplied in the REPL. Top-level /require/ and define forms adjusts the identifier mapping, and module declarations (typically loaded on demand for a require form) adjust module mapping.
+
+*** Creating and Installing Namespaces
+
+    The function /make-empty-namespace/ creates a new, empty namespace. Since the namespace is truly empty, it cannot at first be used to evaluate any top-level  expression, not even (require racket).
+
+    To make a namespace useful, some modules must be attached from an existing namespace.
+
+*** Sharing Data and Code Across Namespaces
+
+    Modules not attached to a new namespace will be loaded and instantiated afresh if they are demanded by evaluation. For example, /racket/base/ does not include /racket/class/, and loading /racket/class/ again will create a distinct class datatype.
+
+** Scripting Evaluation and Using load
+
+    Historically, Lisp implementations did not offer module systems. Instead, large programs were built by essentially scripting the REPL to evaluate program fragments in a particular order. While REPL scripting turns out to be a bad way to structure programs and libraries, it still sometimes a useful capability.
+
+    The /load/ function runs a REPL script by reading S-expressions from a file, one by one, and passing them to eval.
+
+    Since /load/ uses /eval/, however, a module like the following generally will not work -- for the same reasons described in Namespaces.
+
+    Unlike eval, load does not accept a namespace argument. To supply a namespace to load, set the current namespace parameter.
+
+    The racket/load module language is different from racket or racket/base. A module using racket/load treats all its content as dynamic, passing each form in the module body to eval (using a namespace that is initialized by racket)
+
 * 22 More Libraries
 
   This guide covers only the Racket language and libraries that are documented in The Racket Reference. The Racket distribution includes many additional libraries.
