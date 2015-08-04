@@ -175,6 +175,89 @@
 
     The racket/load module language is different from racket or racket/base. A module using racket/load treats all its content as dynamic, passing each form in the module body to eval (using a namespace that is initialized by racket)
 
+* 16 Macros
+
+  A macro is a *syntactic form* with an associated transformer than expands the original form into existing forms. To put it another way, a macro is an extension to the Racket compiler. Most of the syntactic forms of racket/base and racket are actually macros than expand into a small set of core constructs.
+
+  Like many languages, Racket provides pattern-based macros that nake simple transformations easy to implement and reliable to use. Racket also supports arbitrary macro transformers that are implemented in Racket -- or in a macro-extended variant of Racket.
+
+** Pattern-Based Macros
+
+   A pattern-based macro replaces any code that matches a pattern to an expression that uses parts of the original syntax that match parts of the pattern.
+
+*** define-syntax-rule
+
+    The simplest way to create a *macro* is to use /define-syntax-rule/.
+
+    The point of macros is to let you add syntactic forms that some other language designer might to approve.
+
+    The define-syntax-rule form binds a macro that matches a single pattern.
+
+*** Lexical Scope
+
+    pattern variable 暴露给这个 macro 的时候，也只是暴露了 整个识别块，并没有暴露识别的 pattern variable 内部的东西。
+
+    The local set! binding doesn't interface with the assignments introduced by the macro template.
+
+    In other words, Racket's *pattern-based macros* automatically *maintain lexical scope*, so macro implementors can *reason about* *variable reference* in macros and macro uses in the same way as for *functions and function calls*.
+
+*** define-syntax and syntax-rules
+
+    The define-syntax-rule form binds a macro that matches a single pattern, but Racket's macro supports *transformers* that match multiple patterns starting with the same identifier. To write such macros, the programmer must use the more general define-syntax form along with the syntax-rules *transformer* form.
+
+*** Matching Sequences
+
+    To match a use of rotate with any number of identifiers, we need a pattern form that has something like a Kleene star. In a Racket macro pattern, a star is written as _..._.
+
+*** Identifier Macros
+
+    Given our Macro definitions, the /swap/ or /rotate/ identifiers must be used *after* an *open* parenthesis, otherwise a syntax error is reported.
+
+    An *identifier macro* is a pattern-matching macro that works in *any expression*.
+
+    The syntax-id-rules form is like syntax-rules, but it creates a transformer that acts as an identifier macro.
+
+    Put another way, the /syntax-rules/ form is essentially a special case of the syntax-id-rules form with errors in the set! and lone-identifier cases.
+
+*** Macro-Generating Macros
+
+    The only non-obvious part of its definition is the (... ...), which "quotes" ... so that it takes its usual role in the generated macro, instead of the generating macro.
+
+*** Extended Example: Call-by-Reference Functions
+
+    When can use pattern-matching to add a form to Racket for defining first-order call-by-reference functions. When a call-by-reference function body mutates its formal argument, the mutation applies to variables that are supplied as actual arguments in a call to the function.
+
+** General Macro Transformers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * 22 More Libraries
 
   This guide covers only the Racket language and libraries that are documented in The Racket Reference. The Racket distribution includes many additional libraries.
