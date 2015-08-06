@@ -1,0 +1,17 @@
+#+TITLE:       Documents on IBM developerworks
+#+AUTHOR:      Yali Bian
+#+EMAIL:       bianyali@hotmail.com
+#+DATE:        2015-08-06 Thu
+
+
+* Scheme 程序语言介绍之一
+
+** Scheme 的历史和沿革
+
+   据说一开始 McCarthy 只想把这门他正在设计 的语言的语法的设计，往后拖一拖，等到后面有趣的工作做完了，再回头来给这门基于 Lambda 演算的程序语言加上为数学家们所熟悉的语法。可是 McCarthy 的一个学生很快发 现，直接在还没有正式语法的抽象语法里面写程序，感觉非常好。就用不着一个正式的语法了。于是 Lisp 诞生了。
+
+   Lisp 重要的特征就是：
+     - 第一，基于 Lambda 演算的计算模型；
+     - 第二，加上 List processing，这也是 Lisp 名称的由来；
+     - 第三，直接在抽象语法里面工作， 这是非常特别的。
+   前两个重要特征，是 McCarthy 天才的设计，第三个特征则是有趣的巧合。
