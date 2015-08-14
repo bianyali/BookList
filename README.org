@@ -78,6 +78,7 @@
      - [[https://en.wikipedia.org/wiki/Weak_reference][Weak Reference]]
      - [[https://en.wikipedia.org/wiki/Reference_(computer_science)][Reference]]
      - [[http://docs.racket-lang.org/scribble][Scribble: The Racket Documentation Tool]]
+     - [[http://docs.racket-lang.org/raco][raco: Racket Command-Line Tools]]
 
 ** The Racket Guide
 
