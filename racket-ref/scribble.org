@@ -1,9 +1,0 @@
-#+TITLE:       Scribble: The Racket Documentation Tool
-#+AUTHOR:      Yali Bian
-#+EMAIL:       byl.lisp@gmail.com
-#+DATE:        2015-08-14 Fri
-
-
-* 4 Scribbling Documentation
-
-  The scribble/manual language and associated libraries provide extensive support for documenting Racket libraries. The most significant aspect of support for documentation is _the way that source-code bindings are connected to documentation sites through the module namespace—a connection_ that is facilitated by the fact that *Scribble documents are themselves modules that reside in the same namespace*. Getting Started with Documentation provides an introduction to using Scribble for documentation, and the *remaining sections document the relevant libraries and APIs in detail*.

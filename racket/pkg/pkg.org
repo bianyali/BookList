@@ -1,0 +1,5 @@
+#+TITLE: Package Management in Racket
+
+* 2 Package Concepts
+
+    The package name is not mentioned with require, because packages are a way of managing library collections, not a way of referencing them.

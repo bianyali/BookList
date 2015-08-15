@@ -1,0 +1,309 @@
+#+TITLE:       The Racket Guide
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-08-01 Sat
+
+
+
+* 6 Modules
+
+** 2 Module Syntax
+
+   The /#lang/ at the start of a module file begins a shorthand for a module form, much like ' is a shorthand for a /quote/ form. Unlike ', the #lang shorthand does not work well in a REPL, in part because it must be terminated by an end-of-file, but also because the longhand expansion of #lang depends on the name of the enclosing file.
+
+*** The *module* form
+
+    Declaring a module does not immediately evaluate the body definitions and expressions of the module. The module must be explicitly required at the top level to trigger evaluation. After evaluation is triggered once, later requires do not re-evaluate the module body.
+
+*** The #lang Shorthand
+
+    The body of a #lang shorthand has no specific syntax, because the syntax is determined by the language name that follows #lang.
+
+    Unless otherwise specified, a module that is documented as a "language" using the #lang notation will expand to module in the same way as #lang racket. The documented language name can be used directly with module or require, too.
+
+*** Submodules
+
+    + A submodule declared with module can be required by its enclosing module, but the submodule cannot require the enclosing module or lexically reference the enclosing module's bindings.
+
+    + A submodule declared with module* can require its enclosing module, but the enclosing module cannot require the submodule.
+
+*** Main and Test Submodules
+
+    Running a module does not run its module*-defined submodules. Nevertheless, runing the above module via racket or DrRacket prints a cake with 10 candles, because the main submodule is a special case.
+
+    When a module is provided as a program name to the racket executable or run directory within DrRacket, if the module has a man submodule, the main submodule is run after its enclosing module. Declaring a main submodule thus specifies extra actions to be performed when a module is run directly, instead of required as a library within a larger program.
+
+    A main submodule does not have to be declared with module*. If the main module does not need to use bindings from its enclosing module, it can be declared with module.
+
+** 3 Module Paths
+
+   A module path is a reference to a module, as used with require or as the initial-module-path in a module form.
+
+   + A module path that is a quoted identifier refers to a non-file module declaration using the identifier. This form of module reference makes the most sense in a REPL.
+
+   + A string module path is a relative path using Unix-style conventions. The path is relative to the enclosing file, or it is relative to the current directory.
+
+   + A module path that is an unquoted identifier refers to an installed library.
+
+   + Access a third-party library that is distributed through the PLaneT server.
+
+** 4 Imports: require
+
+   The require form imports from another module. A require form can appear within a module, in which case it introduces bindings from the specified module into importing. A require form can also appear at the top level, in which case it both imports bindings and instantiates the specified module; that is, it evaluates the body definitions and expressions of the specified module, if they have not been evaluated already.
+
+** 5 Exports: provide
+
+   + identifier
+
+   + rename-out
+
+   + struct-out
+
+   + all-defined-out
+
+   + all-from-out
+
+   + except-out
+
+   + prefix-out
+
+** 6 Assignment and Redefinition
+
+    The use of set! on variables defined within a module is limited to the body of the defining module. That is, a module is allowed to change the value of its own definitions, and such changes are visible to importing modules. However, an importing context is not allowed to change the value of an imported binding.
+
+* 10 Exceptions and Control
+
+  Racket provides an especially rich set of control operations -- not only operations for raising and catching exceptions, but also operations for grabbing and restoring portions of a computation.
+
+** Exceptions
+
+   Whenever a run-time error occurs, an exception is raised. Unless the exception is caught, then it is handled by printing a message associated with the exception, and then escaping from the computation.
+
+   The /error/ function is one way to raise your own exception. It package an error an error message and other information into an exn:fail structure.
+
+
+   The exn:fail:contract:divide-by-zero and exn:fail structure types are sub-types of the exn structure type. Exceptions raised by core forms and functions always raise an instance of or one of its sub-types, but an exception does not have to be represented by a structure. The /raise/ function lets you raise any value as an exception.
+
+** Prompts and Aborts
+
+   When an exception is raised, control escapes out of an arbitrary deep evaluation context to the point where the exception is caught -- or all the way out if the exception is never caught.
+
+   But if control escape "all the way out," way does the REPL keep going after an error is printed? You might think that it's because the REPL wraps every interaction in a with-handlers from that catches all exceptions, but that's not quite the reason.
+
+   The actual reason is that the REPL wraps the interaction with a prompt, which effectively marks the evaluation context with an escape point. If an exception is not caught, then information about the exception is printed, and then evaluation aborts to the nearest enclosing prompt. More precisely, each prompt has a prompt tag, and there is a designated default prompt tag that the uncaught-exception handler uses to abort.
+
+   Prompts and aborts look very much like exception handling and raising. Indeed, prompts and aborts are essentially a more primitive form of exception, and with=handlers and raise are implemented in terms of prompts and aborts. The power of the more primitive form is related to the word "continuation" in the operator names, as we discuss in the next section.
+
+** Continuations
+
+   A *continuation* is a value that encapsulates a piece of an expression's evaluation context. The /call-with-composable-continuation/ function captures the /current continuation/ starting *outside the current function call* and running up to *the nearest prompt*. (Keep in mind that each REPL interaction is implicitly wrapped in a prompt.)
+
+   /call-with-composable-continuation/ starting *outside the current function call* and running up to *the nearest prompt*.
+
+   The continuation is encapsulated so that it behaves like the function (lambda (v) (context v)).
+
+   The continuation captured by call-with-composable-continuation is determined dynamically, not syntactically.
+
+   A more traditional continuation operator in Racket (or Scheme) is call-with-current-continuation, which is usually abbreviated call/cc. It is like call-with-composable-continuation,  but applying the captured continuation first aborts (to the current prompt) before restoring the saved continuation. In addition, Scheme systems traditionally support a single prompt at the program start, instead of allowing new prompts via call-with-continuation-prompt. Continuations as in Racket are sometimes called delimited continuations, since a program can introduce new delimiting prompts, and continuations as captured by call-with-composable-continuation are sometimes called composable continuations, because they do not have a built-in abort.
+
+* 15 Reflection and Dynamic Evaluation
+
+  Racket is a *dynamic* language. It offers numerous facilities for loading, compiling, and even constructing *new code* *at run time*.
+
+** eval
+
+   /This example will not work within a module or in DrRacket's definitions window, but it will work in the interactions window, for reasons that are explained by the end of Namespaces/
+
+   The eval function takes a representation of an expression or definition (as a "quoted" form or syntax object) and evaluates it.
+
+   The power of eval is that an expression can be constructed dynamically.
+
+   Of course, if we just want to evaluate expression with given values for x and y, we do not need eval. A more direct approach is to use first-class functions. However, if expressions like (+ x y) are read from a file supplied by a user, for example, then eval might be appropriate. Similarly, the REPL reads expressions that are typed by a user and uses eval to evaluate them.
+
+   Also, eval is often used directly or indirectly on whole module. For example, a program might load a module on demand using dynamic-require, which is essentially a wrapper around eval to dynamically load the module code.
+
+*** Local Scopes
+
+    The eval function cannot see local bindings in the context where it is called. For example, calling eval inside an unquoted let form to evaluate a formula does not make values visible for x and y.
+
+    The eval function cannot see the x and y bindings precisely because it is a function, and Racket is a lexically scoped language.
+
+*** Namespaces
+
+    Since eval cannot see the bindings from the context it is called, another mechanism is needed to determine dynamically available bindings. A namespace is a first-class value that encapsulates the bindings available for dynamic evaluation.
+
+    Informally, the term /namespace/ is sometimes used interchangeably with /environment/ or /scope/. In Racket, the term /namespace/ has the more specific, dynamic meaning given above, and it should not be confused with static lexical concepts.
+
+    The /name-base-namespace/ function create a namespace that is initialized with the exports of racket/base.
+
+*** Namespaces and Modules
+
+    As with /let/ bindings, lexical scope means that eval cannot automatically see the definitions of a module in which it is called. Unlike let bindings, however, Racket provides a way to reflect a module into a namespace.
+
+** Manipulating Namespaces
+
+   A namespace encapsulates two pieces of information:
+
+     + A mapping from identifiers to bindings.
+
+     + A mapping from module names to module declarations and instances.
+
+
+   The first mapping is used for evaluating expressions in a top-level context, as in (eval '(lambda (x) (+ x 1)). The second mapping is used, for example, by dynamic-require to locate a module.
+
+   From the perspective of the core Racket run-time system, all evaluation is reflective. Execution starts with an initial namespace that contains a few primitive modules, and that is further populated by loading files and modules as specified on the command line or supplied in the REPL. Top-level /require/ and define forms adjusts the identifier mapping, and module declarations (typically loaded on demand for a require form) adjust module mapping.
+
+*** Creating and Installing Namespaces
+
+    The function /make-empty-namespace/ creates a new, empty namespace. Since the namespace is truly empty, it cannot at first be used to evaluate any top-level  expression, not even (require racket).
+
+    To make a namespace useful, some modules must be attached from an existing namespace.
+
+*** Sharing Data and Code Across Namespaces
+
+    Modules not attached to a new namespace will be loaded and instantiated afresh if they are demanded by evaluation. For example, /racket/base/ does not include /racket/class/, and loading /racket/class/ again will create a distinct class datatype.
+
+** Scripting Evaluation and Using load
+
+    Historically, Lisp implementations did not offer module systems. Instead, large programs were built by essentially scripting the REPL to evaluate program fragments in a particular order. While REPL scripting turns out to be a bad way to structure programs and libraries, it still sometimes a useful capability.
+
+    The /load/ function runs a REPL script by reading S-expressions from a file, one by one, and passing them to eval.
+
+    Since /load/ uses /eval/, however, a module like the following generally will not work -- for the same reasons described in Namespaces.
+
+    Unlike eval, load does not accept a namespace argument. To supply a namespace to load, set the current namespace parameter.
+
+    The racket/load module language is different from racket or racket/base. A module using racket/load treats all its content as dynamic, passing each form in the module body to eval (using a namespace that is initialized by racket)
+
+* 16 Macros
+
+  A macro is a *syntactic form* with an associated transformer than expands the original form into existing forms. To put it another way, a macro is an extension to the Racket compiler. Most of the syntactic forms of racket/base and racket are actually macros than expand into a small set of core constructs.
+
+  Like many languages, Racket provides pattern-based macros that nake simple transformations easy to implement and reliable to use. Racket also supports arbitrary macro transformers that are implemented in Racket -- or in a macro-extended variant of Racket.
+
+** Pattern-Based Macros
+
+   A pattern-based macro replaces any code that matches a pattern to an expression that uses parts of the original syntax that match parts of the pattern.
+
+*** define-syntax-rule
+
+    The simplest way to create a *macro* is to use /define-syntax-rule/.
+
+    The point of macros is to let you add syntactic forms that some other language designer might to approve.
+
+    The define-syntax-rule form binds a macro that matches a single pattern.
+
+*** Lexical Scope
+
+    pattern variable 暴露给这个 macro 的时候，也只是暴露了 整个识别块，并没有暴露识别的 pattern variable 内部的东西。
+
+    The local set! binding doesn't interface with the assignments introduced by the macro template.
+
+    In other words, Racket's *pattern-based macros* automatically *maintain lexical scope*, so macro implementors can *reason about* *variable reference* in macros and macro uses in the same way as for *functions and function calls*.
+
+*** define-syntax and syntax-rules
+
+    The define-syntax-rule form binds a macro that matches a single pattern, but Racket's macro supports *transformers* that match multiple patterns starting with the same identifier. To write such macros, the programmer must use the more general define-syntax form along with the syntax-rules *transformer* form.
+
+*** Matching Sequences
+
+    To match a use of rotate with any number of identifiers, we need a pattern form that has something like a Kleene star. In a Racket macro pattern, a star is written as _..._.
+
+*** Identifier Macros
+
+    Given our Macro definitions, the /swap/ or /rotate/ identifiers must be used *after* an *open* parenthesis, otherwise a syntax error is reported.
+
+    An *identifier macro* is a pattern-matching macro that works in *any expression*.
+
+    The syntax-id-rules form is like syntax-rules, but it creates a transformer that acts as an identifier macro.
+
+    Put another way, the /syntax-rules/ form is essentially a special case of the syntax-id-rules form with errors in the set! and lone-identifier cases.
+
+*** Macro-Generating Macros
+
+    The only non-obvious part of its definition is the (... ...), which "quotes" ... so that it takes its usual role in the generated macro, instead of the generating macro.
+
+*** Extended Example: Call-by-Reference Functions
+
+    When can use pattern-matching to add a form to Racket for defining first-order call-by-reference functions. When a call-by-reference function body mutates its formal argument, the mutation applies to variables that are supplied as actual arguments in a call to the function.
+
+** General Macro Transformers
+
+   The /define-syntax/ form creates a transformer binding for an identifier, which is a binding that can be used at compile time while expanding expressions to be evaluated at run time. The compile-time value associated with a transformer binding can be anything; if if is a procedure of one argument, then the binding is used as a macro, and the procedure is the macro transformer.
+
+*** Syntax object
+
+    The input and output of a macro transformer (i.e., source and replacement forms) are represented as /syntax objects/. A syntax object contains symbols,lists, and constant values (such as numbers) that essentially correspond to the quoted form of the expression.
+
+    In addition to this quoted content, a syntax object associates source-location and lexical-binding information with each part of the form. The source-location is used when reporting syntax errors (for example), and the lexical-binding information allows the macro system to maintain lexical scope.
+
+    The syntax-e function always leaves syntax-object wrappers around sub-forms that are represented via symbols, numbers, and other literal values.
+
+*** Macro Transformer Procedures
+
+    Any procedure of one argument can be a macro transformer. As it turns out, the syntax-rules form is a macro that expands to a procedure form. For example, if you evaluate a syntax-rules form directly (instead of placing on the right-hand of a define-syntax form), the result is a procedure.
+
+    Instead of using syntax-rules, you can write your own macro transformer procedure directly using lambda. The argument to the procedure is a *syntax object* that represents the source form, and the result of the procedure must be a *syntax object* that represents the replacement form.
+
+    The define-syntax form supports the same shortcut syntax for functions as define.
+
+*** Mixing Patterns and Expressions: syntax-case
+
+    The procedure generated by syntax-rules internally uses /syntax-e/ to deconstruct the given syntax object, and it uses /datum->syntax/. The /syntax-rules/ form doesn't provide a way to escape from /pattern matching/ and /template-construction/ mode into an arbitrary Racket expression.
+
+    The /syntax-case/ form lets you mix pattern matching, template construction, and arbitrary expressions.
+
+*** with-syntax and generate-temporaries
+
+    Since syntax-case lets us compute with arbitrary Racket expressions, we can more simply solve a problem that we had in writing /define-for-cbr/.
+
+*** Compile and Run-Time Phases
+
+    The problem is that check-ids is defined as a run-time expression, but swap is trying to use it at compile time. In interactive mode, compile time and run time are interleaved, but they are not interleaved within the body of a module, and they are not interleaved across modules that are compiled ahead-of-time. To help make all of these modes treat code consistently, Racket separates the binding spaces for different phases.
+
+    To define a function that can be referenced at compile time, use /begin-for-syntax/.
+
+    The racket module provides syntax-case, generate-temporaries, lambda, if, and more for use in both the run-time and compile-time phases. That's why we can use syntax-case in the racket REPL both directly and in the right-hand side of a define-syntax form.
+
+    Negative phase level also exits. If a macro uses a helper function that is imported for-syntax, and if the helper function returns syntax-object constants generated by syntax, then identifiers in the syntax will need bindings at phase level -1, also know as the template phase level, to have any binding at the run-time phase level relative to the module that defines the macro.
+
+*** General Phase Levels
+
+    A phase can be thought of as a way to separate computations in a pipeline of processes where one produces code that is used by the next. (E.g., a pipeline that consists of a preprocessor process, a compiler, and an assembler.)
+
+**** Phases and Bindings
+
+     Every bindings of an identifier exists in a particular phase. The link between a binding and its phase is represented by an integer /phase level/. Phase level o is the phase used for "plain" (or "runtime") definitions. A phase level 0 identifier can be defined at a higher phase level using begin-for-syntax. With a single begin-for-syntax wrapper, the identifier is defined at phase level 1. There is no clash between the two same identifiers that are defined at different phase levels.
+
+     Syntax objects capture /binding information/ as a first-class value.
+
+**** Phase and Modules
+
+*** Syntax Taints
+
+**** Tainting Modes
+
+**** Taints and Code Inspectors
+
+* 22 More Libraries
+
+  This guide covers only the Racket language and libraries that are documented in The Racket Reference. The Racket distribution includes many additional libraries.
+
+** Graphics and GUIs
+
+   + racket/draw
+
+   + racket/gui
+
+   + pict
+
+   + 2htdp/image
+
+   + sgl
+
+** The Web Server
+
+   Web Applications in Racket describes the Racket web server, which supports servlets implemented in Racket.
+
+** Using Foreign Libraries
+** And More

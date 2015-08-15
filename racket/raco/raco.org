@@ -1,0 +1,38 @@
+#+TITLE:       raco: Racket Command-Line Tools
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-08-14 Fri
+
+
+The raco program supports various Racket tasks from a command line. The first argument to raco is always a specific command name. For example, raco make starts a command to compile a Racket source module to bytecode format.
+
+The set of commands available through raco is extensible. Use raco help to get a complete list of available commands for your installation.
+
+
+* 1 raco make: Compiling Source to Bytecode
+
+  Compiled code produced by raco make relies on *Racket executables to provide run-time support to the compiled code*.
+
+* 2 raco exe: Creating Stand-Alone Executables
+
+  /raco exe/ can _package code together with its run-time support_ to form an /executable/, and /raco distribute/ can /package the executable into a distribution that works on other machines/. Running an /executable/ produced by raco exe will *not* improve performance over raco make.
+
+* 3 raco distribute: Sharing Stand-Alone Executables
+
+  The raco distribute command combines a stand-alone executable created by raco exe with all of the shared libraries that are needed to run it, along with any run-time files declared via define-runtime-path.
+
+* 6 raco setup: Installation Management
+
+  The raco setup command builds bytecode, documentation, executables, and metadata indexes for /all installed collections/.
+
+  The collections that are built by raco setup can be *part of the original Racket distribution*, installed via the package manager (Package Management in Racket), installed via PLaneT (Automatic Package Distribution), linked via raco link, in a directory that is listed in the PLTCOLLECTS environment variable, or placed into one of the default collection directories.
+
+  The raco setup tool itself does *not directly* support the installation of collections. The raco setup command is /used/ by *installation tools* such as the package manager or PLaneT. Programmers who *modify installed collections* may find it useful to run raco setup as an alternative to _un-installing and re-installing_ a set of collections.
+
+
+
+  With no command-line arguments, raco setup finds all of the current collections—see Libraries and Collections—and compiles libraries in each collection.
+
+  To restrict raco setup to a set of collections, provide the collection names as arguments. For example, raco setup scribblings/raco would only compile and render the documentation for raco, which is implemented in a "scribblings/raco" collection.
+
+  An _optional "info.rkt"  within the collection_ can indicate specifically *how the collection’s files are to be compiled and other actions to take* in setting up a collection, such as /creating executables or building documentation/.
