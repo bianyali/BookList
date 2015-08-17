@@ -79,6 +79,7 @@
      - [[https://en.wikipedia.org/wiki/Reference_(computer_science)][Reference]]
      - [[http://docs.racket-lang.org/scribble][Scribble: The Racket Documentation Tool]]
      - [[http://docs.racket-lang.org/raco][raco: Racket Command-Line Tools]]
+     - [[http://docs.racket-lang.org/drracket][DrRacket: The Racket Programming Environment]]
 
 ** The Racket Guide
 
