@@ -2,3 +2,22 @@
 #+AUTHOR:      Yali Bian
 #+EMAIL:       byl.lisp@gmail.com
 #+DATE:        2015-08-01 Mon
+
+
+* 1 Introduction
+
+** 1.1 Types in Computer Science
+
+** 1.2 What Types Systems Are Good For
+
+*** Detecting Errors
+
+    The most obvious benefit of static typechecking is that it always early detection of some programming errors.
+
+*** Abstraction
+
+   More *abstraction* thinking about *interfaces* generally leads to better design.
+
+*** Documentation
+
+    Types are also useful when reading programs. The type declarations in procedure headers and module interfaces constitute a form of documentation, giving useful hints about behavior.
