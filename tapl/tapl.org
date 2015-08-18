@@ -20,4 +20,26 @@
 
 *** Documentation
 
-    Types are also useful when reading programs. The type declarations in procedure headers and module interfaces constitute a form of documentation, giving useful hints about behavior.
+    Types are also useful when reading programs. The type declarations in procedure headers and module interfaces constitute a form of documentation, giving useful hints about behavior.  Moreover, unlike descriptions embedded in comments, this form of documentation cannot become outdated, since it is checked during every run of the compiler. This role of types is particularly important in module signatures.
+
+*** Language Safety
+
+    The term "safe language" is, unfortunately, even more contentious than "type system".
+
+    A safe language is one that protects its own abstraction.
+
+    Language safety is not the same thing as static type safety. Language safety can be achieved by static checking, but also by run-time checks that trap nonsensical operations just at the moment when they are attempted and stop the program or raise an exception. For example, Scheme is a safe language, even though it has no static type system.
+
+*** Efficiency
+
+** 1.3 Type Systems and Language Design
+
+   The concrete syntax of typed languages tends to be more complicated than that of untyped languages, since type annotations must be taken into account. It is easier to do a good job of designing a clean and comprehensible syntax when all the issues can be addressed together.
+
+   The assertion that types should be an integral part of a programming language is separate from the question of where the programmer must physically write down type annotations and where they can instead be inferred by the compiler. A well-designed statically typed language will never require huge amounts of type information to be explicitly and tediously maintained by the programmer. There is some disagreement, though, about how much explicit type information is too much. The designers of languages in the ML family have *worked hard* to keep annotations to a *bare minimum*, using *type inference methods* to recover the necessary information. Languages in the C family, including Java, have chosen a somewhat more *verbose style*.
+
+** 1.4 Capsule History
+
+** 1.5 Related Reading
+
+* 2 Mathematical Preliminaries

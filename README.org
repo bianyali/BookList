@@ -100,3 +100,12 @@
    + Tag: PLT, Type
    + Date: 2015/08/01/ - Continue
    + Reference:
+** The Elements Of Uml 2.0 Style
+
+   + Name: [[http://www.cambridge.org/us/academic/subjects/computer-science/software-engineering-and-development/elements-uml-20-style][The Elements Of Uml 2.0 Style]]
+   + Directory: uml
+   + Tag: Racket, Scheme, Lisp, PLT
+   + Tag: PLT, Type
+   + Date: 2015/08/01/ - Continue
+   + Reference:
+     - 统一建模语言UML
