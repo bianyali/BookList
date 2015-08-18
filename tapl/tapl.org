@@ -43,3 +43,9 @@
 ** 1.5 Related Reading
 
 * 2 Mathematical Preliminaries
+
+** 2.1 Sets, Relations, and Functions
+
+** 2.2 Ordered Sets
+
+** 2.3 Sequences
