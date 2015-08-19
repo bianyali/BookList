@@ -49,3 +49,9 @@
 ** 2.2 Ordered Sets
 
 ** 2.3 Sequences
+** 2.4 Induction
+** 2.5 Background Reading
+
+   A proof is a repeatable experiment in persuasion.
+
+* 3 Untyped Arithmetic Expressions
