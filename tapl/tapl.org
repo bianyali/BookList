@@ -55,3 +55,33 @@
    A proof is a repeatable experiment in persuasion.
 
 * 3 Untyped Arithmetic Expressions
+
+  It serves as a straightforward vehicle for the introduction of several fundamental concepts -- abstract syntax, inductive definitions and proofs, evaluation, and the modeling of run-time errors.
+
+** 3.1 Introduction
+
+   BNF :: 几乎每一位新编程语言书籍的作者都使用巴科斯范式来定义编程语言的语法规则。
+
+   BNF 被用来形式化定义语言的语法，以使其规则没有歧义。
+
+   事实上，BNF 非常精确，围绕这些语法有很多数学理论，使得人们竟然可以机械地为基于 BNF 语法的 语言构造解析器。
+   （有些语法不能实现，但通常可以手工地通过转换成其他形式来实现）。
+
+   BNF 语法定义的语言只不过是一个字符串集合，你可以按照下述规则书写，这些规则叫做书写规范（生产式规则），形式如下：
+      symbol := alternative1 | alternative2 ...
+
+   每条规则申明 := 左侧的符号必须被右侧的某一个可选项代替。
+   替换项用“|”分割（有时用“::=”替换“:=”，但意思是一样的）。
+   替换项通常有两个符号和终结符构成。
+   之所以叫做终结符是因为没有针对他们的书写规范，他们是书写过程的终止（符号通常被叫做非终止符，也有人叫非终端）
+
+   BNF 语法的另一个变化是把终止符（终端）放在引号中，把他们与符号区别开来。
+   有些 BNF 语法用符号明确地标明允许使用空格的地方，而有的语法则把它留给读者推测。
+   BNF 中有一个特殊符号“@”，表示符号可以去掉。如果用@替换符号，只需要将符号去掉。这非常有用，因为如果不利用这个技巧，有时很难终止替换过程。
+   因此，一个语法描述的语言就是用书写规则（生产式规则）写的字符串的集合。如果一个字符串无法用这些规则写出，那么，该字符串在这个语言中就被禁用。
+
+** 3.2 Syntax
+
+   There are several equivalent ways of defining the syntax of our language.
+
+*** Terms, Inductively
