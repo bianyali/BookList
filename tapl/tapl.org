@@ -85,3 +85,22 @@
    There are several equivalent ways of defining the syntax of our language.
 
 *** Terms, Inductively
+** 3.3 Introduction on Terms
+** 3.4 Semantic Styles
+
+   - *Operational semantics* specifies the behavior of a programming language by defining a simple /abstract machine/ for it. This machine is "abstract" in the sense that it uses the terms of the language as its machine code, rather than some low-level microprocessor instruction set.
+
+   - *Denotational semantics* takes a more abstract view of meaning: instead of just a sequence of machine state, the meaning of a term is taken to be some mathematical object, such as a number or a function.
+
+   - *Axiomatic semantics* takes a more direct approach to these laws: instead of first defining the behaviors of programs (by giving some operational or denotational semantics) and then deriving laws from this definition, axiomatic methods take the laws themselves as the definition of the language.
+
+** 3.5 Evaluation
+
+   This interplay between the rules determines a particular *evaluation strategy* for conditionals, corresponding to the familiar order of evaluation in common programming languages: to evaluate a conditional, we must first evaluate its guard; if the guard is itself a conditional, we must first evaluate its guard; and so on.
+
+   *computation rules*
+   *congruence rule*
+
+   An instance of an inference rule is obtained by consistently replacing each meta-variable by the same term in the rule's conclusion and all its premises (if any).
+
+   A rule is satisfied by a relation if, for each instance of the rule, either the conclusion is in the relation or one of the premises is not.
