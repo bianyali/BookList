@@ -71,6 +71,86 @@
 
     The use of set! on variables defined within a module is limited to the body of the defining module. That is, a module is allowed to change the value of its own definitions, and such changes are visible to importing modules. However, an importing context is not allowed to change the value of an imported binding.
 
+* 8 Input and Output
+
+  A Racket port corresponds to the Unix notion of a stream (not to be confused with racket/stream's streams).
+
+  A Racket port represents a source or sink of data, such as a file, a terminal, a TCP connection, or an in-memory string. Ports provide sequential access in which data can be read or written a piece of a time, without requiring the data to be consumed or produced _all at once_. More specifically, an input port represents a source from which a program can read data, and output port represents a source from which a program can write data.
+
+  // 实用 Ports 的原因无非下面几种，且听我来说说：
+  // - 1. 将这种有顺序的，流式的数据，反正，对它的操作，不需要进行多次，流一次，处理一次，也就够了。
+  // - 2. 或者说，这种流式的，就像是 这种 IO 一样，猛不丁的来一下，来一下的，不能一次性表示出来。
+  // - 3. 即使一次给的数据，可以展示，也没有能力全部放到内存里面，毕竟太大了。
+
+** 8.1 Varieties of Ports
+
+   Various functions create various kinds of ports.
+
+   - Files
+     The open-output-file function opens a file for writing, and open-input-file open a file for reading.
+
+   - Strings
+     The open-output-string function creates a port that accumulates data into a string, and get-output-string extracts the accumulated string. The open-input-string function creates a port to read from a string.
+
+   - TCP Connections
+     The tcp-connect function create both an input port and an output port for the client side of a TCP communication. The tcp-listen function creates a server, which accepts connections via tcp-accepts.
+
+   - Process Pipes
+     The sub-process function runs a new process at the OS level and returns ports that correspond to the subprocess's stdin, stdout, and stderr. (The first three arguments can be certain kinds of existing ports to connect directly to the subprocess, instead of creating new ports.)
+
+   - Internal Pipes
+     The make-pipe function returns two ports that are ends of a pipe. This kind of pipe is internal to Racket, and not related to OS-level pipes for communicating between different processes.
+
+** 8.2 Default Ports
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * 10 Exceptions and Control
 
   Racket provides an especially rich set of control operations -- not only operations for raising and catching exceptions, but also operations for grabbing and restoring portions of a computation.

@@ -212,20 +212,20 @@
 **
 * 4. Datatypes
 
-**       1. Booleans and Equlity
-**       2. Numbers
-**       3. String?
-**       4. Byte Strings
-**        5. Characters
-**        6. Symbols
-**       7. Regular Expresson
-**       8. Keywords
-**       9. Pairs and Lists
-**       10. Mutable Pairs and Lists
-**       11. Vectors
-**       12. Boxes
-**       13. Hash Tables
-**       14. Sequences and Streams
+** 1. Booleans and Equlity
+** 2. Numbers
+** 3. String?
+** 4. Byte Strings
+** 5. Characters
+** 6. Symbols
+** 7. Regular Expresson
+** 8. Keywords
+** 9. Pairs and Lists
+** 10. Mutable Pairs and Lists
+** 11. Vectors
+** 12. Boxes
+** 13. Hash Tables
+** 14. Sequences and Streams
            Sequences and streams abstract over iteration of elements in a collection. Sequences allow iteration with for macros or with sequence operations such as sequence-map. Streams are functional sequences that can be used either in a general way or a stream-specific way. Generators are closely related stateful objects that can be converted to a sequence and vice-versa.
 
 ***           1. Sequences
@@ -237,8 +237,11 @@
 
 ***           3. Generators
 
-**       15. Dictionaries
-**       16. Sets
-**       17. Procedures
-**       18. Void
-**       19. Undefined
+** 15. Dictionaries
+** 16. Sets
+** 17. Procedures
+** 18. Void
+** 19. Undefined
+* 13. Input and Output
+
+** Ports
