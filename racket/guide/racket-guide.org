@@ -103,53 +103,42 @@
 
 ** 8.2 Default Ports
 
+   For most simple I/O functions, the target port is an optional argument, and the default is the current input port or current output port. Further more, error messages are written to the current error port, which is an output port. The current-input-port, current-output-port, and current-error-port functions return the corresponding current ports.
 
+   If you start the racket program in a terminal, then the current input, output, and error ports are all connected to the terminal. More generally, they are connected to the OS-level stdin, stdout and stderr.
 
+** 8.3 Reading and Writing Racket Data
 
+   As noted throughout Built-in Datatypes, Racket provides three ways to print an instance of built=in value.
 
+   - print
+     which prints a value in the same way that is printed for a REPL result;
 
+   - write
+     which prints a value in such a way that read on the output produces the value back;
 
+   - display
+     which tends to reduce a value to just its character or byte content -- at least for those datatypes that are primarily about characters or bytes, otherwise it falls back to the same output as write.
 
+     Overall, print correspond to the expression of Racket syntax, write corresponds to the reader layer, and display roughly corresponds to the character layer.
 
+** 8.4 Datatypes and Serialization
 
+   Prefab structure types automatically support serialization: they can be written to an output stream, and a copy can be read back in from an input stream.
 
+   Other structure types created by struct, which offer more abstraction than prefab structure types, normally write either using #<...> notation (for opaque structure types), or using #(...) vector notation (for transparent structure types). In neither can the result be read back in as an instance of the structure type.
 
+** Bytes, Characters, and Encodings
 
+   Functions like read-line, read, display, and write all work in terms of characters (which correspond to Unicode scalar values). Conceptually, they are implemented in terms of read-char and write-char.
 
+   More primitively, ports read and write bytes, instead of characters. The functions read-byte and write-byte read and write bytes. Other functions, such as read-bytes-line, build on top of byte operations instead of character operations.
 
+   The read-char and write-char operations always use a UTF-8 encoding. If you have a text stream that uses a different encoding, or if you want to generate a text stream in a different encoding, use reencode-input-port or reencode-output-port.
 
+** I/O Patterns
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   If you want to copy one port into another, use copy-port from racket/port, which efficiently transfer large blocks when lots of data is abailable, but also transfer small blocks immediately if that's all that is available.
 
 * 10 Exceptions and Control
 
