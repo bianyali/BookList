@@ -142,72 +142,205 @@
 
 *** 1.2.1 Identifiers and Binding
 
-    An identifier is a source-program entity. Parsing a Racket program reveals that some identifiers correspond to variables, some refer to syntactic forms, and some are quoted to produce a symbol or a syntax object.
+    An identifier is a source-program *entity*. Parsing a Racket program reveals that some identifiers correspond to *variables*, some refer to *syntactic forms*, and some are quoted to produce a *symbol* or a *syntax object*.
 
-    An identifier binds another (i.e., it is a binding) when the former is parsed as a variable and the latter is parsed as a reference to the former; the latter is bound. The scope of a binding is the set of source form to which it applies. The environment of a form is the set of bindings(i.e., it is shadowing) in its environment, so that uses of an identifier refer to the shadowing binding.
+    An identifier binds another (i.e., it is a *binding*) when the former is /parsed as a variable/ and the /latter/ is parsed as a /reference/ to the former; the latter is bound. The scope of a binding is the set of source form to which it applies.
+
+    The environment of a form is the set of bindings whose scope includes the form. A binding for a sub-expression shadows any bindings (i.e., it is shadowing) in its environment, so that uses of an identifier refer to the shadowing binding.
 
 **** phase level
 
-     这个没有弄懂
+     Every binding has a phase level in which it can be referenced, where a phase level normally corresponds to an integer (but the special label phase level does not correspond to an integer).
+
+     Phase level 0 corresponds to the run time of the enclosing module (or the run time of top-level expressions). Bindings in phase level 0 constitute the base environment.
+
+     Phase level 1 corresponds to the time during which the enclosing module (or top-level expression) is expanded; bindings in phase level 1 constitute the transformer environment.
+
+     Phase level -1 corresponds to the run time of a different module for which the enclosing module is imported for use at phase level 1 (relative to the importing module); bindings in phase level -1 constitute the template environment.
+
+     The label level does not correspond to any execution time; it is used to track bindings (e.g., to identifiers within documentation) without implying an execution dependency.
+
+     If an identifier has a local binding, then it is the same for all phase levels, though the reference is allowed only at a particular phase level. Attempting to reference a local binding in a different phase level from the binding's context produces a syntax error. If an identifier has a top-level binding or module binding, then it can have different such bindings in different phase levels.
 
 *** 1.2.2 Syntax Objects
 
-    A syntax object combines a simpler Racket value, such as a symbol or pair, with *lexical information* about /bindings/, /source-location information/, /syntax properties/, and /tamper status/. In particular, an identifier is represented as a symbol object that combines a symbol with lexical and other information.
+    A syntax object combines a simpler Racket *value*, such as a *symbol or pair*, with *lexical information* about /bindings/, /source-location information/, /syntax properties/, and /tamper status/. In particular, an identifier is represented as a symbol object that combines a symbol with lexical and other information.
 
     When a syntax object represents a more complex expression than an identifier or simple constant, its internal components can be extracted.
 
+
+    The quote-syntax form bridges the evaluation of a program and the representation of a program. Specifically, (quote-syntax datum) produces a syntax object that preserves all of the the lexical information that datum had when it was parsed as part of the quote-syntax form.
+
 *** 1.2.3 Expansion (Parsing)
 
-    Expansion recursively processes a syntax object in a particular phase level.
+    Expansion recursively processes a /syntax object/ in a particular /phase level/, starting with phase level 0.  Bindings from the syntax object's lexical information drive the expansion process, and cause new bindings  to be introduced for the lexical information of sub-expressions. In some cases, a sub-expression is expanded in a deeper phase than the enclosing expression.
 
-    A /fully-expanded/ syntax object corresponds to a parse of a program (i.e., a parsed program), and lexical information on its identifiers indicates the parse.
+**** 1.2.3.1 Fully Expanded Programs
 
-
-
-
+     A complete expansion produces a syntax object matching the following grammar:
 
 
+     A fully-expanded syntax object corresponds to a parse of a program (i.e., a parsed program), and lexical information on its identifiers indicates the parse.
+
+     In a fully expanded program for a namespace whose base phase is 0, the relevant phase level for a binding in the program is Nif the bindings has N surrounding begin-for-syntax and define-syntaxes forms --not counting any begin-for-syntax forms that wrap a module form for the body of the module. The datum in a quote-syntax form, however, always preserves its information for all phase levels.
+
+**** 1.2.3.2 Expansion Steps
+
+     In a recursive expansion, each single step in expanding a syntax object at a particular phase level depends on the immediate shape of the syntax object being expanded:
+
+     - If it is an identifier (i.e., a syntax-object symbol), then a binding is determined by the identifier's lexical information.
+
+     - If it is a syntax-object pair whose first element is an identifier, and if the identifier has a binding other than as a top-level variable, then the identifier's binding is used to continue.
+
+     - If it is a syntax-object pair of any other form, then a new syntax-object symbol '#%app is created using the lexical information of the pair. If the resulting #%app
+
+     - If it is any other syntax object, then a new syntax-object symbol '#%datum is created using the lexical information of the original syntax object.
+
+     Thus, the possibilities that do not fail lead to an identifier with a particular binding. This binding refers to one of three things:
+
+     - A transformer binding, such as introduced by define-syntax or let-syntax.
+
+     - A variable binding, such as introduced by a module-level /define/ or by /let/.
+
+     - A core syntactic form, which is parsed as described for each form in Syntactic Forms. Parsing a core syntactic form typically involves recursive parsing of sub-forms, and may introduce bindings that determines the parsing of sub-forms.
 
 
+**** 1.2.3.3 Expansion Context
 
+     Each expansion step occurs in a particular context, and transformers and core syntactic forms may expand for different contexts. For example, a module form is allowed only in a top-level context, and it fails in other contexts. The possible contexts are as follows:
 
+     - top-level context :: outside of any module, definition, or expression, except that sub-expressions of a top-level begin form are also expanded as top-level forms.
+     - module-begin context :: inside the body of a module, as the only form within the module.
+     - module context :: in the body of a module (inside the module-begin layer).
+     - internal-definition context :: in a nested context that allows both definitions and expressions.
+     - expression context :: in a context where only expressions are allowed.
 
+     Different core syntactic forms parse sub-forms using different contexts.
 
+**** 1.2.3.4 Introducing Bindings
+**** 1.2.3.5 Transformer Bindings
+**** 1.2.3.6 Partial Expansion
+**** 1.2.3.7 Internal Definitions
+**** 1.2.3.8 Module Phase and Visits
+**** 1.2.3.9 Macro-Introduced Bindings
 
+*** 1.2.4 Compilation
 
+    Before expanded code is evaluated, it is first compiled. A compiled form has essentially the same information as the corresponding expanded form, though the internal representation naturally dispenses with identifiers for syntactic forms and local bindings.
 
+*** 1.2.5 Namespaces
+*** 1.2.6 Inferred Value Names
+*** 1.2.7 Cross-Phase Persistent Module Declarations
 
+** 1.3 The Reader
 
+   Racket's reader is a recursive-descent parser that can be configured through a readtable and various other parameters. This section describes the reader's parsing when using the default readtable.
 
+   The reader can be invoked in either of two modes: read mode, or read-syntax mode. In read-syntax mode, the result is always a syntax object that includes source-location and (initially empty) lexical information wrapped around the sort of datum that read mode would produce.
 
+   Reading is defined in terms of Unicode characters.
 
+   Symbols, keywords, strings, byte strings, regexps, characters, and numbers produced by the reader in read-syntax mode are interned, which means that such values in the result of read-syntax are always eq? when they are equal? (whether from the same call or different calls to read-syntax).
 
+*** 1.3.1 Delimiters and Dispatch
 
+    Along with whitespace, the following characters are delimiters:
 
+    #+BEGIN_SRC racket
 
+    (
+    )
+    [
+    ]
+    {
+    }
+    "
+    ,
+    '
+    `
+    ;
 
+    #+END_SRC
 
+    A delimited sequence that starts with any other character is typically parsed as either a symbol, number, or extflonum, but a few non-delimiter characters play special roles.
 
+    - "#" has a special meaning as initial character in a delimited sequence; its meaning depends on the characters that follow;
+    - "|" start a sub-sequence of characters to be included verbatim in the delimited sequence; the sub-sequence is terminated by another "|", and neither the initial nor terminating "|" is part of the sub-sequence.
+    - "\" outside of "|" pair causes the following character to be included verbatim in a delimited sequence.
 
+    More precisely, after skipping whitespace, the reader dispatches based on the next character or characters in the input stream as follows:
 
+*** 1.3.2 Reading Symbols
 
+    A sequence that does not start with a delimiter or # is parsed as either a symbol, a number, or a extflonum, except that . by itself is never parsed as a symbol or number.
 
+    A #% also starts a symbol. The resulting symbol is interned. A successful number or extflonum parse takes precedence over a symbol parse.
 
+*** 1.3.3 Reading Numbers
 
+    A sequence that does not start with a delimiter is parsed as a number when it matches the following grammar case-insensitively for <number 10>(decimal), where n is a meta-meta-variable in the grammar. The resulting number is interned in read-syntax mode.
 
+    As the non-terminal names suggest, a number that has no exactness specifier and matches only <inexact-number n> is normally parsed as an inexact number, otherwise, it is parsed as an exact number. If the read-decimal-as-inexact paramter is set to #f, then all numbers without an exactness specifier are instead parsed as exact.
 
+*** 1.3.4 Reading Extflonums
+*** 1.3.5 Reading Booleans
+*** 1.3.6 Reading Pairs and Lists
 
+    To parse the pair or list, the reader recursively reads data until a matching ")", "]", "}" (respectively) is found, and it specially handles a delimited '.'.
+    Pairs (), [], and {} are treated the same way, so the remainder of this section simply uses "parentheses" to mean any of these pair.
 
+    In read-syntax mode, the recursive reads for the pair/list elements are themselves in read-syntax mode, so that the result is a list or pair of syntax objects that is itself wrapped as a syntax object.
 
+*** 1.3.7 Reading Strings
 
+    When the reader encounters ", it begins parsing characters to form a string. The string continues until it is terminated by another " (that is not escaped by \). The resulting string is interned in read-syntax mode.
 
+    A string constant preceded by # is parsed as a byte string. Each character within the byte-string quotes must have a Unicode code-point number in the range 0 to 255, which is used as the corresponding byte's value; if a character is not in that range, exception is raise.
 
+*** 1.3.8 Reading Quotes
 
+    When the reader encounters ', it recursively reads one datum and forms a new list containing the symbol 'quote and the following datum.
 
+*** 1.3.9 Reading Comments
+*** 1.3.10 Reading Vectors
+*** 1.3.11 Reading Structures
 
+    When the reader encounters a "#s(", "#s[", or "#s{", it starts parsing an instance of a prefab structure type.
 
-** The Reader
-** The Printer
+*** 1.3.12 Reading Hash Tables
+
+    A #hash starts an immutable hash-table constant with key matching based on equal?.
+
+*** 1.3.13 Reading Boxes
+
+    When the reader encounters a #&, it starts parsing a box;
+
+*** 1.3.14 Reading Characters
+*** 1.3.15 Reading Keywords
+*** 1.3.16 Reading Regular Expressions
+
+    A #rx or #px starts a regular expression. The characters immediately after #rx or #px must parse as a string or byte string.
+
+*** 1.3.17 Reading Graph Structure
+
+    Allows the reader to produce a datum that has graph structure.
+
+*** 1.3.18 Reading via an Extension
+
+    When the reader encounters #reader, it loads an external reader procedure and applies it to the current input stream.
+
+    The reader recursively reads the next datum after #reader, and passes it to the procedure that is the value of the /current-reader-guide/ parameter; the result is used as a module path. The module path is passed to dynamic-require with either 'read or 'read-syntax.
+
+    The #lang reader form is similar to #reader, but more constrained: the #lang must be followed by a single space (ASCII), and then a non-empty sequence of alphanumberic ASCII.
+
+    A sequence #lang <name> is equivalent to either #reader (submod <name> reader) or #reader <name>/lang/reader, where the former is tried first guarded by a module-declared? check.
+
+*** 1.3.18.1 S-Expression Reader Language
+*** 1.3.18.2 Chaining Reader Language
+
+    The reader "language" is a kind of meta-language. It reads the S-expression that follows #lang reader and uses it as a module path (relative to the module being read) that effectively takes the place of reader. In other words, the reader meta-language generalizes the syntax of the module specified after #lang to be a module path, and without the implicit addition of /lang/reader to path.
+
+** 1.4 The Printer
 * 4. Datatypes
 
 ** 1. Booleans and Equlity

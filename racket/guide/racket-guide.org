@@ -3,6 +3,34 @@
 #+EMAIL:       byl.lisp@gmail.com
 #+DATE:        2015-08-01 Sat
 
+* 3 Built-in Datatypes
+
+** 3.2 Numbers
+
+   A Racket number is either exact or inexact:
+
+   - An exact number is either:
+     - integer
+     - a rational
+     - a complex number with exact real and imaginary parts
+
+   - An inexact number is either:
+     - an IEEE floating-point representation of a number
+     - a complex number with real and imaginary parts that are IEEE floating-point representations.
+
+   In exact numbers print with a decimal point or exponent specifier, and exact number print as integers and fractions.
+
+   Computations that involve an inexact number produce inexact results, so that inexactness acts as a kind of taint on numbers.
+
+** 3.4 String (Unicode)
+
+   A string is a fixed-length array of characters. It prints using double quotes, where double quote and backslash characters within the string are escaped with backslashes.
+
+** 3.6 Symbols
+
+   A symbol is an atomic value that prints like an identifier preceded with '. An expression that start with ' and continues with an identifier produces a symbol value.
+
+   For any sequence of characters, exactly one corresponding symbol is interned. Since interned symbols can be cheaply compared with eq? (and thus eqv? or equal?), they serve as a convenient values to use for tags and enumerations.
 
 * 4 Expressions and Definitions
 
