@@ -8,7 +8,7 @@
 
   学习计算机包含了很多东西，就拿racket来说，学深了可以涉及到 OS，亦或者 language。 学工程了，就会涉及到 Internet TCP/IP等。 真是不是几个星期几个月就可以搞 定的。 一定要多方面的学习，才能掌握 CS 的基础。 在出国以前，这一定要形成。
 
-** Evaluation Model
+** 1.1 Evaluation Model
 
    Racket evaluation can be viewed as the simplification of expression to obtain values.
 
@@ -130,7 +130,7 @@
 *** Parameters
 *** Exceptions
 *** Custodians
-** Syntax Model
+** 1.2 Syntax Model
 
    The syntax of a Racket program is defined by:
      - *a read pass* that processes a character stream into a syntax object; and
@@ -140,7 +140,7 @@
 
    The expand pass recursively processes a syntax object to produce a complete parse of the program.
 
-*** Identifiers and Binding
+*** 1.2.1 Identifiers and Binding
 
     An identifier is a source-program entity. Parsing a Racket program reveals that some identifiers correspond to variables, some refer to syntactic forms, and some are quoted to produce a symbol or a syntax object.
 
@@ -150,13 +150,13 @@
 
      这个没有弄懂
 
-*** Syntax Objects
+*** 1.2.2 Syntax Objects
 
     A syntax object combines a simpler Racket value, such as a symbol or pair, with *lexical information* about /bindings/, /source-location information/, /syntax properties/, and /tamper status/. In particular, an identifier is represented as a symbol object that combines a symbol with lexical and other information.
 
     When a syntax object represents a more complex expression than an identifier or simple constant, its internal components can be extracted.
 
-*** Expansion (Parsing)
+*** 1.2.3 Expansion (Parsing)
 
     Expansion recursively processes a syntax object in a particular phase level.
 
@@ -208,8 +208,6 @@
 
 ** The Reader
 ** The Printer
-
-**
 * 4. Datatypes
 
 ** 1. Booleans and Equlity
@@ -327,3 +325,31 @@
 **** Creating Ports
 **** Copying Streams
 ** 13.2 Byte and String Input
+** 13.3 Byte and String Output
+** 13.4 Reading
+
+   // The Reading related to The Reader, which reads standard Racket expression with Racket't built-in Parser.
+
+** 13.5 Writing
+** 13.6 Pretty Printing
+
+*** Basic Pretty-Print Options
+*** Per-Symbol Special Printing
+*** Line-Output Hook
+*** Value Output Hook
+*** Additional Custom-Output Support
+
+** 13.7 Reader Extension
+
+   Racket's reader can be extended in three ways: through a reader-macro procedure in a readtable, through a #reader form, or through a custom-port byte reader that returns a "special" result procedure. All three kinds of /reader extension procedure/ accept similar arguments, and their results are treated in the same way by read and read-syntax (or, more precisely, by the default read handler).
+
+*** 13.7.1 Readtables
+
+    The dispatch table in Delimiters and Dispatch corresponds to the default /readtable/. (read table). By creating a new readtable and installing it via the current-readtable parameter, the reader's behavior can be extended.
+
+    A readtable is consulted at specific times by the reader:
+    - When looking for the start of a datum;
+    - When determining how to parse a datum that starts with #;
+    - When looking for a delimiter to terminate a symbol or number;
+    - When looking for an opener (such as '('), closer (such as '('), or '.' after the first character parsed as a sequence for a pair,list, vector, or hash table;
+    - When looking for an opener after #<n> in a vector of specified length <n>.

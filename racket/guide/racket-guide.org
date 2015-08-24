@@ -4,6 +4,74 @@
 #+DATE:        2015-08-01 Sat
 
 
+* 4 Expressions and Definitions
+
+** 4.1 Notation
+
+   Some *syntax-form specifications* refer to meta-variables that are not implicitly defined and not previously defined. Such meta-variables are defined after the main form, using BNF-like format for alternatives.
+
+   // 对于 syntax-form specifications 是使用 BNF－like 的方式区展示 syntax form。毕竟类似于一种 正则表达式 的语法表示和生成方式，还是比较正确，精准的涵盖所有的 syntax。
+
+   // 对于 function 之类的，这使用 contract 之类的方式，展示每个参数，以及输出的具体确切的类型。
+
+** 4.2 Identifier and Binding
+
+   The context of an expression determines the meaning of identifiers that appear in the expression. In particular, starting a module with the language racket, as in:
+
+   #+BEGIN_SRC racket
+
+   #lang racket
+
+   #+END_SRC
+
+   means that, within module, the identifiers described in this guide start with the meaning described here: cons, car...
+
+   Forms like define, lambda, and let associate a meaning with one or more identifiers; that is, they *bind* identifiers. The part of the program for which the binding applies is the scope of the binding. The set of bindings in effect for a given expression is the expression's *environment*.
+
+   // 所谓的 module 一起其他，都是为了 辅助 定义 binding 的，而这些 binding 的集合，就是所谓的环境。 就像是人聊天时候的，你知我知的指代，亦或是，一切尽在不言中的，隐含的上下文。
+
+   A module-level define can bind only identifiers that are not already defined or required into the module. A local define or other binding forms, however, can give a new local binding for an identifier that already has a binding; such a binding shadows the existing binding.
+
+   Similarly, a module-level define can shadow a binding from the module's language. Shadowing relieves a programmer from having to avoid every obscure binding that is provided by a language.
+
+   Even identifiers like define and lambda get their meanings from bindings, though they have transformer bindings (which means that they indicate syntactic forms) instead of value bindings.
+
+** 4.3 Function Calls (Procedure Applications)
+
+   An expression of the form:
+
+   #+BEGIN_SRC racket
+   (pro-expr arg-expr ...)
+   #+END_SRC
+
+   is a function call - also known as a /procedure application/ -- when /pro-exp/ is not identifier that is bound as a syntax transformer. (such as if or define).
+
+
+*** 4.3.1 Evaluation Order and Arity
+
+    A function call is evaluated by first evaluating the /proc-expr/ and all /arg-exprs/ in order (left to right). Then, if /proc-expr/ produces a function that accepts as many arguments as supplied /arg-expr/, the function is called. Otherwise, an exception  is raised.
+
+    A function's /arity/ is the number of arguments that is accepts.
+
+*** 4.3.2 Keyword Arguments
+*** 4.3.3 The apply Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 * 6 Modules
 
