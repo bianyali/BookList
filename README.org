@@ -107,7 +107,7 @@
    + Name: [[http://www.cambridge.org/us/academic/subjects/computer-science/software-engineering-and-development/elements-uml-20-style][The Elements Of Uml 2.0 Style]]
    + Directory: uml
    + Tag: Visualization, UML, OOP
-   + Date: 2015/08/01/ - Continue
+   + Date: 2015/08/21/ - 2015/08/25
    + Reference:
      - 统一建模语言UML
 
@@ -117,6 +117,15 @@
    + Directory: uml
    + Tag: Visualization, UML, OOP
    + Tag: PLT, Type
-   + Date: 2015/08/21/ - Continue
+   + Date: 2015/08/21/ - 2015/08/25
    + Reference:
      - [[http://www.ibm.com/developerworks/cn/rational/r-mda/][模型驱动体系结构介绍]]
+
+** Learn You A Haskell for Great Good!
+
+   + Name: [[http://book.douban.com/subject/25803388/][Learn You A Haskell for Great Good!]]
+   + Directory: lyah
+   + Tag: Visualization, UML, OOP
+   + Tag: PLT, Haskell, FP
+   + Date: 2015/08/25/ - Current
+   + Reference:

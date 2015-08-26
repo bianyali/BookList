@@ -1,0 +1,121 @@
+#+TITLE:       Learn You a Haskell for Great Good!
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-08-25 Tue
+
+
+* 1. Introduction
+
+** About this tutorial
+
+   Haskell is a purely functional programming language.
+
+   Haskell is lazy. That means that unless specifically told otherwise, Haskell won't execute functions and calculate thing untill it's really forced to show you a result.
+
+   That goes well with referential transparency and it allows you to think of programs as a series of transformations on data.
+
+   惰性语言中的计算只是一组初始数据和变换公式。
+
+   Haskell 是静态语言。
+
+* 2. Starting Out
+
+  "*" 是一个将两个数相乘的函数，就像三明治一样，用两个参数将它夹在中央，我们称之为“中缀函数”。 而其他大多数不能与数夹在一起的函数，则被称为前缀函数。绝大部分函数是前缀函数。
+
+  从命令式编程走出来的人们，往往觉得函数调用与括号密不可分， 在 C 中，调用函数必加括号，就像 foo(), bar(1), 或者 baz(3, "haha"). 而在 haskell 中，函数的调用必须使用空格， 例如 bar (bar 3), 它不表示以 bar 和 3 两个参数区调用 bar，而是以 bar 3 所得的结果最为参数区调用bar。 在 C 中， 就相当于 bar(bar(3)).
+
+  "+" 运算符对整数和浮点数都有用，所以我们的函数可以处理一切数值。
+
+  在 haskell 中，每个函数或表达式都要返回一个结果。
+
+* 3. Types and Typeclasses
+
+   Haskell 中万物皆有类型，因此在执行之时，编译器可以大有可为。
+
+   与 Java 和 pascal 不同，haskell 支持类型推到。 写一个数字， 你没有必要另外告诉 haskell 说“它是数字”。类型系统对 haskell 的学习至关重要。
+
+   类型是每个表达式都有的某种标签，它表明了这一表达式所属的范畴。例如：表达式 True 是 boolean型，"hello" 是字符串等等。
+
+
+   函数也有类型。编写函数时，给他一个明确的类型声明是个好习惯，比较短的函数就不用多此一举了。
+   不过也可以给他加上类型声明。
+
+   Show 的成员为可用字符串表示的类型。目前为止，出函数以外的所有类型都是show的成员。 操作 Show 类型类，最常用的函数表示 show。
+
+   // 可以通过可视化的方案，将这种 输入 和 输出 之间的有关系的关系：描述表示出来。
+
+* 4. Syntax in Function
+
+  模式会从上至下进行检查，一旦有匹配，那对应的函数体就被应用了。（说明，面向函数式编程语言中，racket 和 haskell 都有这种可以对不同的输入，进行分开进行匹配的应用。）将多个函数合并起来的情况，使得函数每一部分都具有优先级的拿出来。
+
+  要不要对内部的递归调用，进行说明呢？ 这个应该不好说明的！！！内部信息就让其 opaque，就好。
+
+  这就是最简单的，零散式的函数，就有几个特殊值的输入。
+
+* 5. Recursion
+
+  递归在 haskell 中至关重要。 命令式语言要求你提供求解的步骤， haskell 则倾斜与让你提供问题的描述。这便是 haskell 没有 while 或 for 循环的原因，递归是我们的替代方案。
+
+  // 如果使用 递归的话，你没有感觉， lisp 这种，可以直接感受到， 递归函数，在这个函数本身的位置，更加的明晰么。。。
+
+  模式匹配 与 递归 简直就是天造地设。大多数 命令式语言 中没有模式匹配，于是你就得造一堆 if-else 来测试 边界条件。 而在 Haskell 中，我们仅需要使用 模式 将其表示出来。 第一个模式说，如果该 list 为空，崩溃。
+
+  // Haskell 这种语法，就是为了在开始的时候，怎么输入，输入什么有定义。在function开始的时候，对输入的参数的不同情况，可以进行分类，分别展示情况，在每种情况中，又根据每种情况中的，参数的值的不同，来进行不同的case，然后，不同case 直达 函数要返回的 结果。
+
+  这样做的目的，只有一个，就是让输入的作为要处理的信息，分门别类的，思维清晰的，进行加工。 将 输出的结果，直接对应到“分门别类”的门类中，直接 return。
+
+  这就相似： 数学函数中的，分段函数一样，可以使用，一个 f(x) 值 然后后面跟着一个大花括号 "{", 然后从上到下，将各种情况列举出来，输入参数，就会在符合的该 段 中，进行执行。然后还可以根据输入信息的上下阈值的不同进行继续花括号。
+
+  简直就是一个函数么，简直就是一个实现某个 值的输入的，对应某个输出的，全局的函数，（当然将所有类型阈值涵盖，或者又 else ）
+
+** 门卫 和 模式匹配 之间 的关系 和区别
+
+* 6. Higher Order Functions
+
+  Haskell 中的函数它可以接收函数作为其参数，或可以返回另一个函数，这样的函数被称作高阶函数。
+
+
+** Curried functions
+
+   Every function in Haskell officially only takes one parameter. All the functions that accepted several parameters so far have been curried functions.
+
+   Putting a space between two things is simply function application. This space is sort of like an operator and it has the highest precedence.
+
+   If we call a function with too few parameters, we get back a partially applied function, meaning a function that takes as many parameters as we left out.
+
+
+   // 和 continuation 的理念不同啊，continuation 保存的当前运行环境的信息。 而 haskell 中的 partial application 也是执行环境，但是停留在该应用的参数位置上面，而前只能实现，后面的全部参数的，而不是全部参数中任意的。
+
+   Make sure you really understand how curried functions and partial application work because they are really import.
+
+   在 Haskell 对于类型的定义，可以对其函数，规定任意类型，只要和另一变量的type一致就行， 则是输入数据中要的一部分，contract in racket 一定又对应的吧。
+
+   #+BEGIN_SRC haskell
+
+   applyTwice (3:) [1]
+
+   #+END_SRC
+
+   Haskell 果然可以信手拈来的获得 partial-application 的功能啊。
+
+** Lambda
+
+   People who are not well acquainted with how curry and partial application works often use lambdas where they don't need to.
+
+   If a pattern matching fails in a lambda, a runtime error error occurs, so be careful when pattern matching in lambdas.
+   // 这好像就是 racket 中没有 contract 的 定义么。 毕竟这里的 lambda 是一个匿名版的函数，不能定义的复杂了吧。
+
+   // 有了 contract 是不是就说明 racket 也是 强类型的？ 不是，即使 haskell 没有类型定义，也可以进行类型推断的。。。
+
+** Function application with $
+
+   Apart from getting rid of parentheses, $ means that function application can be treated just like another function.
+
+** Function composition
+
+   A point free style is more readable and concise, because it makes you think about functions and what kind of functions composing them results in instead of thinking about data and how it's shuffled around.
+
+   A composition chain is more pretty than the simple (i mean common way) one.
+
+
+* Modules
