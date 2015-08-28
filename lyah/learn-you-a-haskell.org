@@ -74,7 +74,6 @@
 
   Haskell 中的函数它可以接收函数作为其参数，或可以返回另一个函数，这样的函数被称作高阶函数。
 
-
 ** Curried functions
 
    Every function in Haskell officially only takes one parameter. All the functions that accepted several parameters so far have been curried functions.
@@ -117,5 +116,103 @@
 
    A composition chain is more pretty than the simple (i mean common way) one.
 
+* 7. Modules
 
-* Modules
+  A Haskell module is a collection of related functions, types and typeclasses.
+
+  The Haskell standard library is split into modules, each of them contains functions that are somehow related and serve some common purpose.
+
+  The syntax for importing modules in Haskell script is *import <module name>*. This must be done before any functions, so imports are usually done at the top of the file.
+
+* 8. Making Our Own Types and Typeclasses
+
+  // 这个类型系统 和 SICP 中的 abstraction 有区别么？ 好像连实现方式都是那么相似，使用 function 或 procedure 来实现的。但是确实是明确的表明了这是 type 而不是 function，或者是 procedure，这种将 data 和 control 分开的思想。。。
+
+  构造子！！！ ！！！
+
+  Remember, value constructors are just functions that take the fields as parameters and return a value of some type (like Shape) as a result.
+
+  By using record syntax to create this data type, Haskell automatically made these functions: firstName, lastName, age, height, phoneNumber and flavor.
+
+** Type parameters
+
+   Type parameters are useful because we can make different types with them depending on what kind of types we want contained in our data type.
+
+   就像数字是无限，只能使用 格式化的 12345. 来表示， 对于 type system，对于 type 的种类的描述也是无穷的，毕竟，有了 1 就得有 2， 有了 2 就得有 3， 有了 3， 全部都有了。。。。
+
+
+   对于 haskell 将所有的函数对于其操作的数据，是有非常明确的关联关系的，不会含糊的。
+
+   We usually use type parameters when the type that's contained inside the data type's various value constructors isn't really that important for the type to work.
+
+   // 有两类的 数据类型处理，对所有的类型，都有严格的界限，所有的构造的type之间都有严格的界限，这样当形容某个现实实物的时候，必须让这些实物规规整整的。函数律法特别严格，没有一点的例外
+   // 另外一中就是，数据就是数据，不管什么类型的，都可以对在一起，有什么不对的。名字已经说明含义，为什么还要在意其出身。
+
+   即使是不同类型的数据放在一起，也是比较有关联型的数据类型，可以统一个 type parameters 统一定义的，type！！！
+
+   对于 函数 和 type 的关系，function 可能只接受 type template 类型中的某些 type 类型，比如 自然数 中，只有 偶数，之类的。
+
+   只有你将一个数据结构当成一种 type 以后，你才能真正重视这种 数据结构，这种 type
+
+
+   Once again, it's very important to distinguish between "type constructor" and the "value constructor". When declaring a data type, the part before the = is the type constructor and the constructors after it (possibly separated by |'s)
+
+** Derived instances
+
+   为了将某些type 和 某个 function 进行联系起来，于是定义了 typeclass.
+
+   Haskell 的 type system 和 typeclass 确实从方法论，思路上很优美解决了 type－function 之间的联系. 毕竟一个 type 可以对应 多个 function，一个function也可以操作多中 type。type 也可以产生，组合出多种的其他的 type。
+
+   A typeclass is a sort of an interface that defines some behavior. A type can be an instance of a typeclass if it supports that behavior. In languages, like Java, Python, C++ and the like, classes are a blueprint from which we then create objects that contains create objects that contain state and can do some actions. Typeclasses are more like interface. We don't make data from typeclasses. Instead, we first make our data type and then we think about what it can act like. If it can act like something that can be equated, we make it an instance of the Eq typeclass.
+
+   Haskell can derive the behavior of our types in these contexts if we use the deriving keyword when making our data type.
+
+   // type system 就像文档归类中的：category 和 tag，category 可以将文档从总体上进行区分，但是某个 category 的某项内容在其他几个category 里面的某些文章里面也都有体现。但是又不能将它们放到一个新的 category 里面，因为从内容来分，它们相差甚远，只是有些能容涉及共同信息。tag 就是一种很好的方案，将有部分相同内容的全部文档，用一个该内容的tag，标记起来。
+
+   // type system 中的 data :: 这种 type constructor 就是一种 category，生成的数据，都是属于这种类型的。但是又某些公用函数想要调用它们，必须让他们具有，这些公用函数可以识别的“tag”才行。这就是 derive。。。
+
+   Java 用类的某个方法来实现（调用本类的某些属性，给一个function使用）。C++ 也要说明实现一个 abstract 类中的某个抽象方法。Haskell 中用 derive 实现。
+
+   Haskell 这种方法更像是，打标签的方法。给自己的某个数据类型，让他具有某些mark，来让某些function来使用它。
+   其他的一些面向对象的语言中，本身的抽象类，这类的也是这样的概念，但是总感觉没有直中要害，而是以一种实现具有广义函数的，胡胡乱乱的以抽象函数，来搪塞实现。没有将 tag，的特殊性，与其他的 method进行清晰的分开。因为它们都是 method。
+
+** Type synonyms
+
+   Type synonyms don't really do anything per se, they're just about giving some types different names so that they make more sense to someone reading our code and documentation.
+
+   // 如果说，lisp 让所有的 syntax 都具有 其语言核心单元的 syntax 的话（让语言在语法级别无限扩充，而自己并没有发现自己的syntax和语言系统提供的syntax有什么区别。）。
+   // 那么，Haskell 是真真正正的 让所有的 data type 都具有语言核心的 type 一致的使用特性。（你根本无法分清是自带的data type，还是个人通过定义定义出来的type。）
+   // 比如： c 的指定以的结构，只能是 struct。 Java 中也只能是 Class ，和基础的 int， string，还是不同的，因为它们是 primitive。即使是lisp中，也是通过 list，cons 等形式定义，未能突破，所有的数据类型平等的生存的概念。虽然让所有的 syntax 平等相依了。
+
+   // 但是在 Haskell 领域中，所有的 type，即使是 inter，circle，等等，都是同等水平，同等使用方案的，即使自己（programmer）设计的type是在这些 primitive 基础上实现的。
+   // 虽说，lisp 在 sicp 中使用 abstraction 的概念，将 data 和 procedure 的概念分开了，但是基础的理解类型的type确实没有很明确的定义。
+
+   // 我非常荣幸能够学习到 haskell，虽然浪费了写论文的时间。
+
+   The keyword "type" might be misleading to some, because we're not actually make anything new (we did that with the data keyword), but we're just making a synonym for an already existing type.
+
+** Recursive data structures
+
+   As we've seen, a constructor in an algebraic data type can have several (or none at all) fields and each field must be of some concrete type. With that in mind, we can make types whose constructors have fields that are of the same type! Using that, we can create recursive data types, where one value of some type contains values of that type, which in turn contain more values of the same type and so on.
+
+   Pattern matching is actually about matching constructors.
+
+   Because it pattern matching works (only) on constructors, we can match for stuff like that, normal prefix constructors or stuff like 8 or 'a', which are basically constructors for the numeric and character types, respectively.
+
+   将自己构建的 type 和 自带的 type 同等对待，则是一个语言在 类型系统 的先进性和优雅性的表现。
+
+** Typeclasses 102
+
+   Learned how to automatically make our own types instances of the standard typeclasses by asking Haskell to derive the instances for us.
+   We are going to learn how to make our own typeclasses and how to make types instances of them by hand.
+
+   A quick recap on typeclasses: typeclasses are like interfaces. A typeclass define some behavior (like comparing for ordering, enumeration) and then types that can behave in that way are made instances of that typeclass. The behavior of typeclasses is achieved by defining functions or just type declarations that we then implement. So when a type is an instance of a typeclass, we mean that we can use the functions that the typeclass defines with that type.
+
+   "class" is for defining new typeclasses and instance is for making our types instances of typeclasses.
+
+** A yes-no typeclass
+** The Functor typeclass
+** Kind
+
+   We saw that there are interesting parallels between functions and type constructors. They are, however, two completely different things.
+* 9. Input and Output
