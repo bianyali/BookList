@@ -1,0 +1,49 @@
+#+TITLE:       Paradigm
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-09-03 Thu
+
+
+* Intro
+
+  Positive and passive paradigm to display the world in another way instead of functional (data and function) or class.
+
+
+  The positive can use other passive objects.
+
+  And the passive objects can be used only in his own way.
+
+  操纵者 和 被操纵者：这和函数有区别么？
+
+  有，函数中有 function 和 data
+  而，这个里面，所有的 object 既可以是 positive 也可以是 postive，
+  但是都具有 type system。 所有的 object 都具有执行其他 object 和自己产生值的特性的。
+
+  所有的东西都是有这两种属性的，操纵性和被操纵性，使用世界上所有的资源和被他人被自然所使用。
+  所有的东西都是互相利用，互相使用的。
+
+  所有的东西都和其他的东西都有某种 return value 和 operator value。
+
+  只是这种 可供操作的，一起操纵其他的，都应该有其他的 type system，对于某种 type 我们都应该为 object 设置某个type
+
+  这和 object 有区别么？
+  有的，object 是只想着 type system 和 data。然后里面 是 typesystem，只是 object 都是关系。
+
+
+* Base
+
+  所有的单元，都表现出一个值的含义。不管是 positive value 时，还是 negative value。
+
+  #+BEGIN_SRC S-exp
+
+  (2 4) ; -> twice the thing, not double the value
+  (2 (println "hello world"))
+
+
+  #+END_SRC
+
+  其实，在 Haskell 中，定义函数，和定义 data 的区别在于，data 是一对一，值返回的函数。
+
+  只是为了定义值的方便，使得，一对一的 和 多对多的这种情况，分开来定义则两种不同类型的数据。
+
+  all thing are like data.
