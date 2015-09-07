@@ -62,3 +62,65 @@
   将可变性的变量，命名为“box” 或 “store” 或着“holder” 或者 “vessel” "repo" "can".
 
   在 Haskell 中，中，if 是一个函数，而不是一个结构。
+
+  Haskell 的函数的创建时，思维的分类非常清晰。
+
+  使用 Haskell 的分类 的函数来进行递归或者是 list 生成，或遍历的时候，比 lisp 中的的使用cons 来进行好一些，起码知道 每个分类返回的什么。
+
+
+  类型类提供了一种简单的泛型编程的形式。
+
+  任何一门优秀的编程语言实际上都会变成一种扩展自己的手段，它通过嵌入其他适合特定任务的语言的方式来扩展自己。
+
+  Haskell 在进行正确性证明上比命令式语言容易的多。
+
+** Lazy Evaluation
+
+   Haskell makes extensive use of lazy evaluation. With it, you can build functions that return infinite lists.
+
+
+   陌生的行为方式阻碍了 Haskell 成为一门主流编程语言。
+
+** The Mind Meld
+
+*** Classes and Types
+
+    Haskell's type system is one of its strongest features. It allows type inference, so programmers do not have heavier responsibilities.
+
+    It is poly-morphic, meaning you can treat different forms of the same type the same.
+
+    我们正在使用一个复杂的用户自定义类型元组。类型系统使得我们始终保持意图明确，这样一下来就更容易推断出会发生什么了。
+
+    我们定义了一个 类型构造器 Tree 和 两个 数据构造器 Children 和 Leaf。
+
+    模式匹配访问是一种可以和 class 中的 "." 相匹配的数据类型的访问方式，就像是在某种类型下面获取它的一个部分－如，一个属性，使用模式匹配，比使用class.attr 要更加的方便一下。
+
+    使用模式匹配获取每部分数据，可以从哪里得到更复杂的数据。
+
+    可以清楚的看出类型系统设计者的意图，能够剥离出完成工作所需要的数据。这个设计策略明显将带来一些额外系统开销，不过当你深入研究抽象机制后，有时这些额外的开销也是值得的。
+
+
+    在 Haskell 中，类可以精细的控制多态和重载。它是这样工作的。类提供一些函数签名。如果类型支持类的所有函数，那么这个类型是类的一个实例。
+
+    将 类 和 数据 真真正正的分开来说，每个数据类型，可以属于多个类，也可以不属于。至于类，只是类，和数据类型也是分开的。这种思维至少比class的方式，即包含了类的类型，又包含了数据的形式要好多了，至少思维上清晰很多啊。
+
+    类的实例是类型，不是数据对象。
+
+*** Monad
+
+    所谓的类型构造器，可以理解为函数类型，而真正的每个该类型的值，可以理解为定义的1:1的一个映射函数。
+
+    让程序感觉起来像是状态的和命令式的，不过我们实际上是在使用 monad。
+
+    代码好似一个有状态的命令式语言，不过它使用 monad 来管理有状态的交互。
+
+    我们使用 monad 为程序提供一种更加自然的命令式风格和处理多种可能性的方法。
+
+
+    Haskell 支持各种函数式语言的特性，包括列表推导，惰性计算策略，偏应用函数和柯里化。默认状态下，Haskell 函数每次仅处理一个参数，并使用柯里化支持多参数。
+
+    Haskell 类型最具吸引力的地方就是，可以方便地将新行为与新类型关联到一起。你可以从头开始创建一个高级类型。
+
+* Wrap-up
+
+  模式匹配可以解决地问题包括：语法分析，分布式消息传递，解构，合一，XML处理等等。

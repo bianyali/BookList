@@ -131,6 +131,6 @@
 
    + Name: [[https://pragprog.com/book/btlang/seven-languages-in-seven-weeks][Seven Languages in Seven Weeks]]
    + Directory: 7-langs
-   + Tag: Lang, PLT, Haskell, Prolog, Io, Ruby, Scala, Erlang, Clojure
-   + Date: 2015/08/27/ - Current
+   + Tag: Lang, PLT, Haskell, Prolog, Io, Ruby, Scala, Erlang, Clojure, FP, Lisp
+   + Date: 2015/08/27/ - 2015/09/07
    + Reference:
