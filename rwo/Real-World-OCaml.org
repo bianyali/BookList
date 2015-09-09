@@ -1,0 +1,74 @@
+#+TITLE:       Real World OCaml
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-09-08 Tue
+
+
+* A Guided Tour
+
+  type system 将 数据 和 函数 都当成数据使用。但是，真正的数据和函数之间的区别还是很明显的，如何将这种区别缩小到最小，所有的函数，其实就是数据，而所有的数据类型，如何可以转换成函数呢？
+
+  将 data structure 变成函数，或者是将函数变成 data structure。
+
+  data structure 是一种将一种数据结合的格式转换成固定的形态的，如何使用这种形态，如何最好的复用这种形态，如何更好的展示这种形态。
+
+b  将 类型 和 数据 关系同时展示出来的可视化效果；而不是简简单单的 使用 括号，星号，尖头，双箭头之类的。
+
+** pattern-matching syntax
+
+   You can extract the components of a tuple using OCaml’s pattern-matching syntax
+
+
+   其实函数的定义和函数的使用，也是一种另类的 pattern-matching syntax 赋值。
+   在定义的时候使用 lambda，在使用的时候，直接使用函数变量的名称，和具体实值，然后实值被（类似于模式匹配式的）赋值给函数定义时的，参数变量。
+
+   既然函数是这么使用，那么 纯数值 也可以这么使用 也可以。
+
+
+   为了让所有的数据，和所有的集合数据，和所有的 函数数据，都是又不同的类型的，都是可以使用类型将它们描述清晰的，OCaml 的集合：
+
+   tuples 虽然可以是可以将不同的类型的数据，聚集到一起，但是却限定其长度固定，这样其type 就可以确定了。
+
+   lists 虽然又无限的长度，但是却限定 lists 里面的元素类型必须一致，都是为了让所有的类型一致。
+
+** The List Module
+
+   We can access values from within a module by using dot notation.
+
+   用一种模式识别，正则表达式的方式，来表示这种集合数据结构中的这种不同数据的混合。或者是，将这些混合的数据格式，上升成一个更模糊的数据结构的形式。
+   然而，纯数据，或者是数据结构 和 函数，还是有区别的： 函数的话，使用一次就够了，不需要多个重复的这个函数，但是，数据，或者是某个类型的数据的话，需要建立多个数据，来描述多个东西。当然，类型，是可以一个就行的，毕竟需要的，就像函数一项，也只是一次执行，每次的执行而已。 所以，function == type 这两个放在一起是可以的。
+
+** List patterns using match
+
+   A match statement is a kind of juiced-up version of the switch statement found in C and Java.
+
+** Recursive functions
+
+   The typical approach to designing a recurisve function is to separate the logic into a set of base cases that can be solved directly and a set of inductive cases, where the function breaks the problem down into smaller pieces and then calls itself to solve those smaller problems.
+
+   拥有一个更好的抽象入口，对于理解该抽象，或者是构建该抽象，都是很重要的。
+
+   比如 OCaml 中的 match list 将这种入口 根据不同思路，进行分类，就可以让 programmer 思路很清晰的构建自己的代码。
+
+   将 思路 和 代码的编写 协调起来。
+
+   就像 define-syntax 一样，define-type 当成是语言核心的一部分。
+
+** Imperative Programming
+
+   关于 OCaml 的 type system 系统，因为是 type 只需要装入数据，而不需要获取数据然后进行数据的修改。只需要进行获取，而不需要进行修改。
+   只获取的话，使用模式匹配识别的方式，确是是非常好的。
+
+   但是，如果需要进行设置，那么只能进行，设置专门的函数，或者是像 类 一项，将 这个 数据的类型 和 设置 这个函数。
+
+   数据类型，一个数据是不是可变的，是不是变成了另外一个数据，就像一个人能不能变成另外一个人，这都是根据每个人的心里变换，而变换的。
+   但是，即使每个数据，是不是自己了，仍然可以有一组核心概念在把持着，比如，一个人的改变，是因为他的思想完全的改变。一个数字的改变，是因为，他已经变成了另一个数字的值。
+   一个对象的 不变的“ID” 的改变，说明，它已经变成了另一个 可能是相同type的其他对象了。
+
+   在这里，为什么函数，不会改变，因为他指示提供服务，只是方法伦？ 看来，还要多看看 type system
+
+   对于一个类型中的，某一部分的改变，可以给他设置一个 tag，说明它是可以改变的:
+   (set Object tag 12)
+   将系统中数据Object的某一部分进行改变，改变的部分是 tag 标注的，可以实现的tag，都成功实现。但是这样 Object 就是一个对象了。。。。
+
+   还有一种状态就是箱子，可以装其他的变量，他的目的就是为了共同share 给其他的，其他的也可以共同使用。就是和系统状态相关的，交给系统？？？ 显然，系统对于 code 的处理也是根据不同的 设置，来compile 的。

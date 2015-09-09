@@ -134,3 +134,11 @@
    + Tag: Lang, PLT, Haskell, Prolog, Io, Ruby, Scala, Erlang, Clojure, FP, Lisp
    + Date: 2015/08/27/ - 2015/09/07
    + Reference:
+
+** Real World OCaml
+
+   + Name: [[http://www.amazon.com/Real-World-OCaml-Functional-programming/dp/144932391X][Real World OCaml]]
+   + Directory: rwo
+   + Tag: Lang, PLT, OCaml, FP
+   + Date: 2015/09/07
+   + Reference:
