@@ -104,3 +104,5 @@
    An instance of an inference rule is obtained by consistently replacing each meta-variable by the same term in the rule's conclusion and all its premises (if any).
 
    A rule is satisfied by a relation if, for each instance of the rule, either the conclusion is in the relation or one of the premises is not.
+
+** 3.6 Notes
