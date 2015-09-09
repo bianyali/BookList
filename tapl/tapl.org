@@ -106,3 +106,35 @@
    A rule is satisfied by a relation if, for each instance of the rule, either the conclusion is in the relation or one of the premises is not.
 
 ** 3.6 Notes
+
+   The ideas of abstract and concrete syntax, parsing, etc., are explained in dozens of textbooks on compilers.
+
+   // 大多数学的是 compiler，从编译实现解读，设计一个类C语言，而真正的应该是考虑 一个语言系统中的 types 和其他一些 paradimgs 才行，然后，通过实现 compilers 实现自己的语言。
+
+* 4 An ML Implementation of Arithmetic Expressions
+
+   Of course, tastes in languages vary and good programmers can use whatever tools come to hand to get the job done.
+
+** 4.1 Syntax
+
+   Datatype definition mechanism.
+
+   所有你想要表达的工程应用，都是包含非常多的信息比特的，既然你想要形成一个特别的，独特的应用，就必须要在一个没有太多比特的系统平台上，创建添加很多的信息比特，才可以。
+   如果，你只想建立一个网站，一个平平庸庸的网站，只需要，在一个含有固定比特数目的网站上面，添加一些，或修改一些比特而已。
+
+   所以，工程系统，就像建筑工程师一样，砖头可以有，要挑选好的砖头，挑选好的机器，挑选好的类型，将这些合并起来，就是一个独一无二的比特流。
+
+** 4.2 Evaluation
+
+   The implementation of the evaluation relation closely follows the single-step evaluation rules. Theses rules define a partial function that, when applied to a term that is not yet a value, yields the next step of evaluation for that term. When applied to a value, the result of the evaluation function yields no result.
+
+   To translate the evaluation rules into OCaml, we need to make a decision about how to handle this case. One straightforward approach is to write the single-step evaluation function eval1 so that it raises an exception when none of the evaluation rules apply to the term that it is given.
+
+   Mathematical definition of evaluation.
+
+   Big-step evaluation rules.
+   single-step evaluation rules.
+
+** 4.3 The Rest of the Story
+
+* 5 The Untyped Lambda-Calculus
