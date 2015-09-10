@@ -44,6 +44,7 @@
      - Scheme语言深入
      - 用Scheme语言进行Unix系统编程
      - [[https://en.wikipedia.org/wiki/Tacit_programming][Tacit programming]]
+     - [[http://danthedev.com/2015/09/09/lisp-in-your-language/][Lisp in Your Language]]
 
 ** Teach Yourself Scheme in Fixnum Days
 

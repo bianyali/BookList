@@ -138,3 +138,38 @@
 ** 4.3 The Rest of the Story
 
 * 5 The Untyped Lambda-Calculus
+
+  A formal system invented by Alonzo Church, in which all computation is reduced to the basic operations of function definition and application.
+  Lambda-calculus's importance arises from the fact that it can be viewed simultaneously as a simple programming language in which computations  can be described and as a mathematical object about which rigorous statements can be proved.
+
+  The lambda-calculus can be enriched in a variety of ways. First, it is often convenient to add special  concrete syntax for features like numbers, tuples, records, etc, whose behavior can already be simulated in the core language.
+
+** 5.1 Basics
+
+   Procedural (or functional) abstraction is a key feature of essentially all programming languages.
+
+*** Abstract and Concrete Syntax
+
+    The focus of attention in this book is on abstract, not concrete, syntax. Of course, when we write terms in examples, definitions, theorems, and proofs, we will need to express them in a concrete, linear notation, but we always have their underlying abstract syntax trees in mind.
+
+    // 将语法分析树，用concrete syntax的形式实现，就是用字符串（命令符或操作符）的形式展示，是一种非常直观操作，但是，视觉上，不太满足的方案。当语法分析树，深度太大的时候，这个用文字描述的 concrete syntax 将会非常的丑陋。
+    不如用lisp的形式，敲入代码，用可视化的方式，展示代码，不仅仅展示 concrete syntax，还在视觉上展示了语法分析树。
+
+    To save writing too many parentheses, we adopt two conventions when writing lambda-terms in linear form.
+    // 使用一种，默认的，比 lisp 少一层括号的形式。
+    First, application associates to the left.
+    Second, the bodies of abstractions are taken to extend as far to the right as possible.
+
+*** Variables and Metavariables
+
+*** Scope
+
+*** Operational Semantics
+
+    The call-by-value strategy is strict, in the sense that the arguments to functions are always evaluated, whether or not they are used by the body of the function.
+
+    The choice of evaluation strategy actually makes little difference when discussing type systems. The issues that motivate various typing features, and the techniques used to address them, are much the same for all the strategies.
+
+    In this book, we use call by value, both because it is found in most well-known languages and because it is the easiest to enrich with features such as exceptions and references.
+
+** 5.2 Programming in the Lambda-Calculus

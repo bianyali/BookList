@@ -1,0 +1,28 @@
+#+TITLE:       Lisp in Your Language
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-09-10 Thu
+
+* Brief History
+
+  Core bits of syntax are often implemented as special forms, but there's nothing paricularly special about them.
+
+  We've been writing code to manipulate data for a long time now. When your code is also data, you can write code to manipulate code just as easily.
+
+  The essence of this wonder isn't Clojure though. It's not Racket or Scheme either. These are all just different incarnations of the code-as-data idea. These languages certainly aren't the only ones with and lists.
+
+* An Experiment
+
+* Expressions All The Way Down
+
+  From here on, we'll refer to the lists in our code as expressions. This helps distinguish them from list data structures.
+
+* Syntax & Names
+
+* Variables
+
+  A language without variables would be difficult, so we'll implement them.
+
+* Special Forms
+
+  Our eval function currently tries to interpret every expression it sees. We'll have to denote that some functions are special forms that will handle the evalution of their own arguments.
