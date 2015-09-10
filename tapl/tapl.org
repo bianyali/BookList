@@ -173,3 +173,27 @@
     In this book, we use call by value, both because it is found in most well-known languages and because it is the easiest to enrich with features such as exceptions and references.
 
 ** 5.2 Programming in the Lambda-Calculus
+
+   The lambda-calculus is much more powerful than its tiny definition might suggest.
+
+*** Multiple Arguments
+
+    The transformation of multi-argument functions into higher-order functions is called currying in honor of Haskell Curry, a contemporary of Church.
+
+*** Church Booleans
+
+    Another language feature that can easily be encoded in the lambda-calculus is boolean values and conditionals.
+
+    // 所有的都是函数，所有的都是可以执行的，当然，前提是都得按照该函数的正确的执行方式。
+
+*** Pairs
+
+*** Church Numerals
+
+    Representing numbers by lambda-terms is only slightly more intricate than what we have just seen.
+
+*** Enriching the Calculus
+
+    We have seen that booleans, numbers, and the operations on them can be encoded in the pure lambda-calculus. Indeed, strictly speaking, we can do all the programming we ever need to without going outside of the pure system. However, when working with examples it is often convenient to include the primitive booleans and numbers (and possibly other data types) as well.
+
+    // 就像使用汇编语言，或者是更第低级的二进制编程，当然也是可以完成所有功能的，但是，我们希望，讲这个抽象层次，到达我们思维中更加实惠，或者是更加贴切的场合。
