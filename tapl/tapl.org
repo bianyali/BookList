@@ -222,3 +222,6 @@
 
 ** 5.4 Notes
 * 6 Nameless Representation of Terms
+** 6.1 Terms and Contexts
+** 6.2 Shifting and Substitution
+** 6.3 Evaluation
