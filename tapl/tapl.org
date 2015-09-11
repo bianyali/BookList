@@ -187,7 +187,6 @@
     // 所有的都是函数，所有的都是可以执行的，当然，前提是都得按照该函数的正确的执行方式。
 
 *** Pairs
-
 *** Church Numerals
 
     Representing numbers by lambda-terms is only slightly more intricate than what we have just seen.
@@ -197,3 +196,29 @@
     We have seen that booleans, numbers, and the operations on them can be encoded in the pure lambda-calculus. Indeed, strictly speaking, we can do all the programming we ever need to without going outside of the pure system. However, when working with examples it is often convenient to include the primitive booleans and numbers (and possibly other data types) as well.
 
     // 就像使用汇编语言，或者是更第低级的二进制编程，当然也是可以完成所有功能的，但是，我们希望，讲这个抽象层次，到达我们思维中更加实惠，或者是更加贴切的场合。
+
+*** Representation
+
+    What, exactly, does it mean to say that the *Church numerals* represent *ordinary numbers*?
+    To answer, we first need to remind ourselves of what the ordinary numbers are.
+
+    Thus, in terms of their effects on the overall results of programs, there is no observable dif- ference between the real numbers and their Church-numeral representation.
+
+** 5.3 Formalities
+
+*** Syntax
+*** Substitution
+*** Operational Semantics
+
+    Taken together, these rules completely determine the order of evaluation for an application t1 t2:
+    + we first use E-App1 to reduce t1 to a value,
+    + then use E-App2 to reduce t2 to a value,
+    + and finally use E-AppAbs to perform the application itself.
+
+    Adapt these rules to describe the other three strategies for evaluation:
+    + full beta-reduction,
+    + normal-order,
+    + and lazy evaluation.
+
+** 5.4 Notes
+* 6 Nameless Representation of Terms
