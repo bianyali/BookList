@@ -225,3 +225,38 @@
 ** 6.1 Terms and Contexts
 ** 6.2 Shifting and Substitution
 ** 6.3 Evaluation
+* 7 An ML Implementation of the Lambda-Calculus
+
+  An executable evaluator for *untyped lambda-terms* can be obtained by a straightforward translation of the foregoing definitions into OCaml.
+
+** 7.1 Terms and Contexts
+** 7.2 Shifting and Substitution
+** 7.3 Evaluation
+** 7.4 Notes
+
+   Interpreters (and compilers) for functional languages that are tuned for speed instead of simplicity use a different strategy:
+   Instead of actually performing the substitution, we simply record an association between the bound variable name and the argument value in an auxiliary data structure called the environment, which is carried along with the term being evaluated.
+   When we reach a variable, we look up its value in the *current environment*. This strategy can be modeled by *regarding the environment as a kind of explicit substitution* —i.e., by moving the mechanism of substitution from the meta-language into the object language, making it a part of the syntax of the terms manipulated by the evaluator, rather than an *external operation* on terms.
+
+* 8 Typed Arithmetic Expressions
+** 8.1 Types
+
+   Evaluating a term can either result in a value or else *get stuck* at some stage, by reaching a term like /pred false/, for which no evaluation rule applies.
+
+   Stuck terms correspond to meaningless or erroneous programs. We would therefore like be able to tell, without actually evaluating a term, that its evaluation will definitely not get stuck.
+   To do this, we need to distinguish between terms whose result will be a numeric value (since these are the only ones that should appear as arguments to pred, succ, and iszero) and terms whose result will be a boolean (since only these should appear as the guard of a conditional). We introduce two types, Nat and Bool, for classifying terms in this way.
+
+** 8.2 The Typing Relation
+** 8.3 Safety = Progress + Preservation
+
+   The most basic property of this type system or any other is safety (also called soundness): well-typed terms do not "go wrong." We have chosen how to formalize what it means for a term to go wrong: it means reaching a "stuck state" that is not designated as a final value but where the evaluation rules do not tell us what to do next.
+
+   What we want to know, then, is that well-typed terms do not get stuck.
+   We show this in two steps, commonly known as the "progress" and "preservation" theorems.
+
+   + Progress :: A well-typed term is not stuck (either it is a value or it can take a step according to the evaluation rules).
+   + Preservation :: If a well-typed term takes a step of evaluation, then the resulting term is also well typed.
+
+   These properties together tell us that a well-typed term can never reach a stuck state during evaluation.
+
+   The proof that types are preserved by evaluation is also quite straightforward for this system.
