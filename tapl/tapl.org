@@ -276,3 +276,18 @@
 
 ** 9.4 The Curry-Howard Correspondence
 ** 9.5 Erasure and Typability
+** 9.6 Curry-Style vs. Church-Style
+
+   There are two different styles in which the semantics of the simply typed lambda-calculus can be formulated:
+   + as an evaluation relation defined directly on the syntax of the simply typed calculus,
+   + or as a compilation to an untyped calculus plus an evaluation relation on untyped terms.
+
+   An important commonality of the two styles is that, in both, it makes sense to talk about the behavior of a term t, whether or not t is actually well typed.
+
+   We first define the terms, then define a semantics showing how they behave, then give a type system that rejects some terms whose behaviors we don’t like. Semantics is prior to typing.
+
+** 9.7 Notes
+
+   Well-typed programs cannot “go wrong.”
+
+* 10 An ML Implementation of Simple Types
