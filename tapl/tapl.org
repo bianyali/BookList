@@ -271,3 +271,8 @@
    As in Chapter 8, we need to develop a few basic lemmas before we can prove type safety. Most of these are similar to what we saw before -- we just need to add contexts to the typing relation and add clauses to each proof for lambda-abstractions, applications, and variables. The only significant new requirement is a substitution lemma for the typing relation.
 
    First off, an inversion lemma records a collection of observations about how typing derivations are built: the clause for each syntactic form tells us "if a term of this form is well typed, then its subterms must have types of these forms..."
+
+   For many of the type systems that we will see later in the book, this simple correspondence between terms and derivations will not hold: a single term will be assigned many types, and each of these will be justified by many typing derivations. In these systems, there will often be significant work involved in showing that typing derivations can be recovered effectively from terms.
+
+** 9.4 The Curry-Howard Correspondence
+** 9.5 Erasure and Typability
