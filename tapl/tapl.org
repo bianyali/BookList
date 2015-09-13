@@ -291,3 +291,8 @@
    Well-typed programs cannot “go wrong.”
 
 * 10 An ML Implementation of Simple Types
+
+** 10.1 Contexts
+** 10.2 Terms and Types
+** 10.3 Type checking
+* 11 Simple Extensions
