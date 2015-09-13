@@ -260,3 +260,14 @@
    These properties together tell us that a well-typed term can never reach a stuck state during evaluation.
 
    The proof that types are preserved by evaluation is also quite straightforward for this system.
+* 9 Simply Typed Lambda-Calculus
+
+  This chapter introduces the most elementary member of the family of typed languages that we shall be studying for the rest of the book: the simply typed lambda-calculus of Church and Curry.
+
+** 9.1 Function Types
+** 9.2 The Typing Relation
+** 9.3 Properties of Typing
+
+   As in Chapter 8, we need to develop a few basic lemmas before we can prove type safety. Most of these are similar to what we saw before -- we just need to add contexts to the typing relation and add clauses to each proof for lambda-abstractions, applications, and variables. The only significant new requirement is a substitution lemma for the typing relation.
+
+   First off, an inversion lemma records a collection of observations about how typing derivations are built: the clause for each syntactic form tells us "if a term of this form is well typed, then its subterms must have types of these forms..."
