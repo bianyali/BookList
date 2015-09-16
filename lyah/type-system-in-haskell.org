@@ -1,0 +1,15 @@
+#+TITLE:       Type Systems in Haskell
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-09-15 Tue
+
+
+** function
+
+   + infix function :: +, -, ++, :, !!, >=, >,
+   prefix function
+
+   "+" 对于整数和浮点数都可以用（所有符合数字特征的值都可以）。
+   展示的时候，需要展示，整数 和 浮点数 都具有这种 数字特征。
+
+   不要展示 函数内部的调用的其他函数，只是展示这个函数的特征，它的输入数据类型，输出的数据类型，之类的函数特征。
