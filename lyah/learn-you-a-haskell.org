@@ -18,17 +18,17 @@
 
    Haskell 是静态语言。
 
-** 1.1 调用函数
+** 0.1 调用函数
 
    其实 函数 分成 中缀函数（中缀表达式）和前缀函数（正常的函数）
 
    Haskell 中的函数定义并没有顺序的概念。
 
-** 1.3 列表入门
+** 0.3 列表入门
 
    在 Haskell 中，列表是一种 单类型的（homogeneous）数据结构，可以用来存储多个类型相同的元素。 数据结构，是不是一种 type？
 
-* 1. Starting Out
+* 1. Starting Out :: 各就各位，准备
 
   "*" 是一个将两个数相乘的函数，就像三明治一样，用两个参数将它夹在中央，我们称之为“中缀函数”。 而其他大多数不能与数夹在一起的函数，则被称为前缀函数。绝大部分函数是前缀函数。
 
@@ -42,7 +42,7 @@
   Haskell 中一切皆类型。
 
 
-** 2.1 显示类型声明
+** 1.1 显示类型声明
 
     通过 :t 命令，后面跟任何合法的表达式，即可得到表达式的类型。
 
@@ -53,7 +53,7 @@
     函数也有类型，编写函数时，给它一个显示的类型声明是个好习惯。
     // 其实，语言系统中，所有的东西，都给他一个类型，就是为了让不同的类型的互相使用，有相应的类型与类型间的匹配规则的对应。就是为了建立这种规则（显示的，或者是隐式推导的）
 
-** 2.2 Haskell 常见类型
+** 1.2 Haskell 常见类型
 
    元组也是类型，不过他们的类型取决于其中项的类型及数目，因而理论上可以有无限中元组类型。空元组同样也是个类型，它只有一种值，即 ().
 
@@ -88,7 +88,7 @@
    由于类型类定义的是一个抽象的接口，一个类型可以作为多个类型类的实例，一个类型类也可以好友多个类型作为实例。
    有时，一个类型必须在成为某类型的实例之后，才能成为另一个类型。
 
-* 4. Syntax in Function
+* 3. Syntax in Function :: 函数的语法
 
   模式会从上至下进行检查，一旦有匹配，那对应的函数体就被应用了。（说明，面向函数式编程语言中，racket 和 haskell 都有这种可以对不同的输入，进行分开进行匹配的应用。）将多个函数合并起来的情况，使得函数每一部分都具有优先级的拿出来。
 
@@ -96,7 +96,7 @@
 
   这就是最简单的，零散式的函数，就有几个特殊值的输入。
 
-* 5. Recursion
+* 4. Recursion :: 你好，递归
 
   递归在 haskell 中至关重要。 命令式语言要求你提供求解的步骤， haskell 则倾斜与让你提供问题的描述。这便是 haskell 没有 while 或 for 循环的原因，递归是我们的替代方案。
 
@@ -114,7 +114,7 @@
 
 ** 门卫 和 模式匹配 之间 的关系 和区别
 
-* 6. Higher Order Functions
+* 5. Higher Order Functions :: 高阶函数
 
   Haskell 中的函数它可以接收函数作为其参数，或可以返回另一个函数，这样的函数被称作高阶函数。
 
@@ -160,7 +160,7 @@
 
    A composition chain is more pretty than the simple (i mean common way) one.
 
-* 7. Modules
+* 6. Modules
 
   A Haskell module is a collection of related functions, types and typeclasses.
 
@@ -168,7 +168,7 @@
 
   The syntax for importing modules in Haskell script is *import <module name>*. This must be done before any functions, so imports are usually done at the top of the file.
 
-* 8. Making Our Own Types and Typeclasses
+* 7. Making Our Own Types and Typeclasses
 
   // 这个类型系统 和 SICP 中的 abstraction 有区别么？ 好像连实现方式都是那么相似，使用 function 或 procedure 来实现的。但是确实是明确的表明了这是 type 而不是 function，或者是 procedure，这种将 data 和 control 分开的思想。。。
 
@@ -259,4 +259,4 @@
 ** Kind
 
    We saw that there are interesting parallels between functions and type constructors. They are, however, two completely different things.
-* 9. Input and Output
+* 8. Input and Output
