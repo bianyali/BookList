@@ -173,7 +173,7 @@
     Point-free 风格更加的简洁和易读。它使你倾向于思考函数的组合方式，而不是数据的传递和变化。 利用函数组合，可以很方便的将一组简单的函数组合在一起，使之成为一个复杂的函数。
     不过函数若过于复杂，再使用 Point－Free 风格往往会适得其反，降低代码可读性。因此，不鼓励构造较长的函数组合链。
 
-* 6. Modules
+* 6. Modules :: 模块
 
   A Haskell module is a collection of related functions, types and typeclasses.
 
@@ -181,7 +181,7 @@
 
   The syntax for importing modules in Haskell script is *import <module name>*. This must be done before any functions, so imports are usually done at the top of the file.
 
-* 7. Making Our Own Types and Typeclasses
+* 7. Making Our Own Types and Typeclasses :: 构造我们自己的类型和类型类
 
   // 这个类型系统 和 SICP 中的 abstraction 有区别么？ 好像连实现方式都是那么相似，使用 function 或 procedure 来实现的。但是确实是明确的表明了这是 type 而不是 function，或者是 procedure，这种将 data 和 control 分开的思想。。。
 
