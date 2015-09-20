@@ -141,6 +141,14 @@
 
    Haskell 果然可以信手拈来的获得 partial-application 的功能啊。
 
+** 函数式程序员工具箱
+
+   身为函数式程序员，我们很少需要对单个值多费心思。更多的情景是，处理一系列的数字，字母或者是其他类型的数据，通过转换这一类集合来求取最后的结果。
+
+   // 像 map 或者 filter 这种函数，并没有规定，参数中的 函数，或数据的 类型是什么，只要，这个参数中的函数的类型，和参数中的数据的类型，相一致就行。 这样的函数，如何可视化展示，这是什么类型的函数！！！
+
+   // 我将函数分成三类，不知对不对： 变量函数，（参数中的类型不重要，必要几个参数之间协调好就行。）；固定函数（函数的参数值，不过有几个，都必须是固定的类型）；类型类函数（函数的参数值，必须是属于某个固定的类型类的类型）
+
 ** Lambda
 
    People who are not well acquainted with how curry and partial application works often use lambdas where they don't need to.
@@ -159,6 +167,11 @@
    A point free style is more readable and concise, because it makes you think about functions and what kind of functions composing them results in instead of thinking about data and how it's shuffled around.
 
    A composition chain is more pretty than the simple (i mean common way) one.
+
+*** Point-Free Style
+
+    Point-free 风格更加的简洁和易读。它使你倾向于思考函数的组合方式，而不是数据的传递和变化。 利用函数组合，可以很方便的将一组简单的函数组合在一起，使之成为一个复杂的函数。
+    不过函数若过于复杂，再使用 Point－Free 风格往往会适得其反，降低代码可读性。因此，不鼓励构造较长的函数组合链。
 
 * 6. Modules
 
