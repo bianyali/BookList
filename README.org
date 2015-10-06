@@ -146,3 +146,11 @@
    + Tag: Lang, PLT, OCaml, FP
    + Date: 2015/09/07
    + Reference:
+
+** Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists, and Iconoclasts-- the Programmers Who Created the Software Revolution
+
+   + Name: [[http://www.amazon.com/Engineers-Scientists-Iconoclasts---Programmers-Revolution/dp/0465042260/ref=sr_1_1?ie=UTF8&qid=1320204968&sr=8-1][Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists and Iconoclasts--The Programmers Who Created the Software Revolution]]
+   + Directory: None
+   + Tag: CS, History, Hack, Lang
+   + Date: 2015/10/05 - 2015/10/06
+   + Reference:

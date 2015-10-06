@@ -269,6 +269,8 @@
 
 ** A yes-no typeclass
 ** The Functor typeclass
+
+   凡是拥有容器性质的类型都可以视为函子。我们可以将列表视为容器，它可以为空，也可以装有某些东西。
 ** Kind
 
    We saw that there are interesting parallels between functions and type constructors. They are, however, two completely different things.
