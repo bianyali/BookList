@@ -1,0 +1,10 @@
+#+TITLE:       How Program Works
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-10-06 Wed
+
+* 对程序员来说 CPU 是什么
+* 数据是用二进制数表示的
+* 计算机进行小数运算时出错的原因
+* 熟练的使用有棱有角的内存
+* 内存与磁盘的亲密关系
