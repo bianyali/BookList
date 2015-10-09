@@ -134,7 +134,6 @@ In c++, you can create objects on the stack, and in this case they are automatic
 
    Indentation makes Java code easier to read. Since Java is a free form language, the extra space, tabs and carriage returns do not affect the resulting program.e
 
-
 ** Garbage collector
 
    Java has a garbage collector, which looks at all the objects that were created with new and figures out which ones are not being referenced anymore. Then it releases the memory for those objects, so the memory can be used for new objects. This means that you never neeed to worry about reclaiming memory youself. You simply create objects, and when you no longer need them they will go away by themselves. This eliminates a certain class of programming problem: the so-called "memory leak", in which a programmer forgets to relsease memory.
@@ -156,50 +155,6 @@ In c++, you can create objects on the stack, and in this case they are automatic
 ** Forward referencing
 
 Whenever you want to use a predefined class in you program, the compiler must know how to locate it. Of course, the class might already exist in the same source code file that it is being called from. In that case, you simply use the class - even if the class doesn't get defined until later in the file. Java eliminates the "forward referencing" problems so you do not need to think about it.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 * 3. Operators
 
@@ -266,7 +221,6 @@ Whenever you want to use a predefined class in you program, the compiler must kn
   - =url= This element indicates where the project's site can be found. This is often used in Maven's generated documentation.
 
   - =description= This element provides a basic description of your project. This is often used in Maven's generated documentation.
-
 
 * Create a web project:
 

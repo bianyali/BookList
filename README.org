@@ -162,3 +162,11 @@
    + Tag: CS, Lang
    + Date: 2015/10/06 - 2015/10/08
    + Reference:
+
+** Web Development with Node and Express: Leveraging the JavaScript Stack
+
+   + Name: [[http://www.amazon.com/Web-Development-Node-Express-Leveraging/dp/1491949309][Web Development with Node and Express: Leveraging the JavaScript Stack]]
+   + Directory: Null
+   + Tag: Node.js, JavaScript, Express
+   + Date: 2015/10/07 - Present
+   + Reference:
