@@ -1,0 +1,13 @@
+#+TITLE:       Web Development with Node and Express: Leveraging the JavaScript Stack
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-10-07 Wed
+
+* Introducing Express
+* Getting Started with Node
+* Saving Time with Express
+* Tidying Up
+* Quality Assurance
+* The Request and Response Objects
+* Templating with Handlebars
+* Form Handling
