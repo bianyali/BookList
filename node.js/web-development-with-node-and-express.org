@@ -11,3 +11,7 @@
 * The Request and Response Objects
 * Templating with Handlebars
 * Form Handling
+* Cookies and Sessions
+* Middleware
+* Sending Email
+* Production Concerns
