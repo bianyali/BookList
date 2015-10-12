@@ -17,3 +17,5 @@
 * Production Concerns
 * Persistence
 * Routing
+* REST APIs and JSON
+* Static Content
