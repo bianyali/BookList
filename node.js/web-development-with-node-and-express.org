@@ -15,3 +15,5 @@
 * Middleware
 * Sending Email
 * Production Concerns
+* Persistence
+* Routing
