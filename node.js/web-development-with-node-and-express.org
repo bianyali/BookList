@@ -34,3 +34,13 @@
 ** View Models
 ** Controllers
 ** Conclusion
+* Security
+** HTTPS
+** Cross-Site Request Forgery
+** Authentication
+** Conclusion
+* Integrating with Third-Party APIs
+** Social Media
+** Geocoding
+** Weather Data
+** Conclusion
