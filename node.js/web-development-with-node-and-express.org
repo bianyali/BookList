@@ -19,3 +19,18 @@
 * Routing
 * REST APIs and JSON
 * Static Content
+** Performance Considerations
+** Future-Proofing Your Websites
+** Static Resources in Server-Side JavaScript
+** Static Resources in Client-Side JavaScript
+** Serving Static Resources
+** Changing Your Static Content
+** Bundling and Minification
+** A Note on Thrid-Party Libraries
+** QA
+** Summary
+* Implementing MVC in Express
+** Models
+** View Models
+** Controllers
+** Conclusion
