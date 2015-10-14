@@ -170,3 +170,11 @@
    + Tag: Node.js, JavaScript, Express
    + Date: 2015/10/07 - 2015/10/14
    + Reference:
+
+** Mastering Emacs
+
+   + Name: [[https://www.masteringemacs.org/book][Mastering Emacs]]
+   + Directory: node.js
+   + Tag: Node.js, JavaScript, Express
+   + Date: 2015/10/14 - Present
+   + Reference:

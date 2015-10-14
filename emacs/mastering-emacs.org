@@ -1,0 +1,26 @@
+#+TITLE:       Mastering Emacs
+#+AUTHOR:      Yali Bian
+#+EMAIL:       byl.lisp@gmail.com
+#+DATE:        2015-10-14 Wed
+
+* Introduction
+
+** Thank You
+** Inteded Audience
+** What You'll Learn
+
+* The Way of Emacs
+
+** Guiding Philosophy
+
+*** LISP?
+*** Extensibility
+
+** Imprtant Conventions
+
+*** The Buffer
+*** The Window and the Frame
+*** The Point and Mark
+*** Killing, Yanking and CUA
+*** .emacs.d, init.el, and .emacs
+*** Major Modes and Minor Modes
