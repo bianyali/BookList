@@ -274,4 +274,17 @@
 ** Kind
 
    We saw that there are interesting parallels between functions and type constructors. They are, however, two completely different things.
-* 8. Input and Output
+* 8. Input and Output :: 输入与输出
+** Separating the Pure from the Impure
+** Hello, World!
+** Gluing I/O Functions
+** I/O Action Review
+* 9. More Input and More Output :: 更多的输入输出操作
+** Files and Streams
+** Reading and Writing Files
+** To-Do Lists
+** Command-Line Arguments
+** More Fun with To-Do Lists
+** Randomness
+** Bytestrings
+* Functionally Solving Problems
