@@ -730,3 +730,40 @@
    + Tag: Node.js, JavaScript, Express
    + Date: 2015/10/14 - Present
    + Reference:
+
+** 10PL
+
+   + Name: [[https://github.com/nuprl/10PL][10 papers that all PhD students in programming languages ought to know, for some value of 10]]
+   + Directory: 10PL
+   + Tag: Programming Languages
+   + Intro:
+     10 papers that all PhD students in programming languages ought to know, for some value of 10
+     - What
+       Programming language researchers investigate the analysis, design, implementation, and evaluation of programming languages. Our goal is that the papers come from all of these areas.
+     - Why
+       A paper makes it on this list if one of us proposes the paper and none of the others disagrees.
+       A paper may make it on the list if it is a milestone in the intellectual history of programming languages, if it is a good paper, and if its ideas are still good today.
+       A paper may make it on the list if it covers an area particularly well.
+       A paper may make it on the list if a PhD student in PL should know about this topic---even if it is outside of the confines of PL.
+   + List:
+
+     - Type systems
+       L. Cardelli. Type systems. Handbook of Computer Science and Engineering, 1997, 2208-2236. [[http://lucacardelli.name/papers/typesystems.pdf][URL]]
+     - Compiler
+       C. Chambers and D. Ungar. Customization: Optimizing Compiler Technology for SELF, a Dynamically-typed Object-oriented Programming Language. PLDI 1989, 146--160. [[http://dl.acm.org/citation.cfm?id=74831][URL]]
+     - Axiomatic Basis
+       C.A.R. Hoare. An axiomatic basis for computer programming. Communications of the ACM, 1969, 12(10), 576-–580. [[http://dl.acm.org/citation.cfm?id=363259][URL]]
+     - Program Languages
+       P.J. Landin. The next 700 programming languages. Communications of the ACM, 1966, 9(3), 157--166. [[http://dl.acm.org/citation.cfm?id=365257][URL]]
+     - Lambda-Calculus
+       G.D. Plotkin. Call-by-name, call-by-value, and the λ-calculus. Theoretical Computer Science 1 (1975), 125--159. [[http://homepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf][URL]]
+     - Type Structure
+       J.C. Reynolds. Three approaches to type structure. Theory and Practice of Software Development, 1985, 97--138. [[http://link.springer.com/chapter/10.1007%2F3-540-15198-2_7][URL]]
+     - Algol
+       J.W. Backus et al. P. Naur (ed). The report on the algorithmic language Algol 60. Communications of the ACM, 1963, 6(1), 1--17. [[http://dl.acm.org/citation.cfm?id=366193.366201&coll=DL&dl=ACM&CFID=553200397&CFTOKEN=50185488][URL]]
+     - Programming Language
+       K.E. Ivarson. A Programming Language. John Wiley & Son's. 1962. [[http://www.jsoftware.com/papers/APL.html][URL]]
+     - Distributed System
+       L. Lamport. Time, clocks, and the ordering of events in a distributed system. Communications of the ACM, 1978, 21(7), 558--565.
+     - Symbolic Expressions
+       J. McCarthy. Recursive functions of symbolic expressions and their computation by machine, part I. Communications of the ACM, 1960, 3(4), 184--195 [[http://dl.acm.org/citation.cfm?id=367199][URL]]

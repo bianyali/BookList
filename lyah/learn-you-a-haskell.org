@@ -287,4 +287,6 @@
 ** More Fun with To-Do Lists
 ** Randomness
 ** Bytestrings
-* Functionally Solving Problems
+* 10. Functionally Solving Problems :: 函数式的解决问题
+* 11. Applicative Functors :: applicative 函子
+* 12. Monoids
