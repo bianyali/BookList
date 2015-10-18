@@ -289,5 +289,7 @@
 ** Bytestrings
 * 10. Functionally Solving Problems :: 函数式的解决问题
 * 11. Applicative Functors :: applicative 函子
-* 12. Monoids
+* 12. Monoids :: monoids
 * 13. A Fistful of Monads :: 更多 Monad 的例子
+* 14. For a Frew Monads More :: 再多一些 monad
+* 15. Zipper :: zipper
