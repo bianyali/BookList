@@ -734,8 +734,9 @@
 ** 10PL
 
    + Name: [[https://github.com/nuprl/10PL][10 papers that all PhD students in programming languages ought to know, for some value of 10]]
-   + Directory: 10PL
+   + Directory: 10pl
    + Tag: Programming Languages
+   + Date: 2015/10/18 - Present
    + Intro:
      10 papers that all PhD students in programming languages ought to know, for some value of 10
      - What
@@ -745,7 +746,7 @@
        A paper may make it on the list if it is a milestone in the intellectual history of programming languages, if it is a good paper, and if its ideas are still good today.
        A paper may make it on the list if it covers an area particularly well.
        A paper may make it on the list if a PhD student in PL should know about this topic---even if it is outside of the confines of PL.
-   + List:
+   + Reference:
 
      - Type systems
        L. Cardelli. Type systems. Handbook of Computer Science and Engineering, 1997, 2208-2236. [[http://lucacardelli.name/papers/typesystems.pdf][URL]]
