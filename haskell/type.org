@@ -1,0 +1,122 @@
+#+TITLE:       What exactly makes the Haskell type system so revered (vs say, Java)?
+#+AUTHOR:      Benjamin Hodgson, J. Abrahamson
+
+Here's an unordered list of type system features available in Haskell and either unavailable or less nice in Java (to my knowledge, which is admittedly weak w.r.t. Java)
+
+* Safety
+
+  Haskell's types have pretty good "type safety" properties. This is pretty specific, but it essentially means that values at some type cannot wantonly transform into another type. This is sometimes at odds with mutability (see OCaml's value restriction)
+
+* Algebraic Data Types
+
+  Types in Haskell have essentially the same structure as high school mathematics. This is outrageously simple and consistent, yet, as it turns out, as powerful as you could possibly want. It's simply a great foundation for a type system.
+
+** Datatype-generic programming.
+
+   This is not the same as generic types (see generalization). Instead, due to the simplicity of the type structure as noted before it's relatively easy to write code which operates generically over that structure. Later I talk about how something like Equality might be auto-derived for a user-defined type by a Haskell compiler. Essentially the way that it does this is walk over the common, simple structure underlying any user-defined type and match it up between values—a very natural form of structural equality.
+
+* Mutually recursive types
+
+  This is just an essential component of writing non-trivial types.
+
+** Nested types.
+
+   This allows you to define recursive types over variables which recurse at different types. For instance, one type of balanced trees is data Bt a = Here a | There (Bt (a, a)). Think carefully about the valid values of Bt a and notice how that type works. It's tricky!
+
+* Generalization.
+
+  This is almost too silly to not have in a type system (ahem, looking at you, Go). It's important to have notions of type variables and the ability to talk about code which is independent of the choice of that variable. Hindley Milner is a type system which is derived from System F. Haskell's type system is an elaboration of HM typing and System F is essentially the hearth of generalization. What I mean to say is that Haskell has a very good generalization story.
+
+* Abstract types.
+
+  Haskell's story here is not great but also not non-existent. It's possible to write types which have a public interface but a private implementation. This allows us to both admit changes to the implementation code at a later time and, importantly since it's the basis of all operation in Haskell, write "magic" types which have well-defined interfaces such as IO. Java probably actually has a nicer abstract type story, to be honest, but I don't think until Interfaces became more popular was that genuinely true.
+
+* Parametricity.
+
+  Haskell values do not have any universal operations. Java violates this with things like reference equality and hashing and even more flagrantly with coercions. What this means is that you get free theorems about types which allow you to know the meaning of an operation or value to a remarkable degree entirely from its type---certain types are such that there can only be a very small number of inhabitants.
+
+* Higher-kinded types
+
+  Higher-kinded types show up all the type when encoding trickier things. Functor/Applicative/Monad, Foldable/Traversable, the entire mtl effect typing system, generalized functor fixpoints. The list goes on and on. There are a lot of things which are best expressed at higher kinds and relatively few type systems even allow the user to talk about these things.
+
+* Type classes.
+
+  If you think of type systems as logics—which is useful—then you often are demanded to prove things. In many cases this is essentially line noise: there may be only one right answer and it's a waste of time and effort for the programmer to state this. Typeclasses are a way for Haskell to generate the proofs for you. In more concrete terms, this lets you solve simple "type equation systems" like "At which type are we intending to (+) things together? Oh, Integer, ok! Let's inline the right code now!". At more complex systems you might be establishing more interesting constraints.
+
+** Constraint calculus
+
+  Constraints in Haskell—which are the mechanism for reaching into the typeclass prolog system—are structurally typed. This gives a very simple form of subtyping relationship which lets you assemble complex constraints from simpler ones. The entire mtl library is based on this idea.
+
+** Deriving
+
+  In order to drive the canonicity of the typeclass system it's necessary to write a lot of often trivial code to describe the constraints user-defined types must instantiate. Do to the very normal structure of Haskell types, it is often possible to ask the compiler to do this boilerplate for you.
+
+** Type class prolog
+
+   The Haskell type class solver—the system which is generating those "proofs" I referred to earlier—is essentially a crippled form of Prolog with nicer semantic properties. This means you can encode really hairy things in type prolog and expect them to be handled all at compile time. A good example might be solving for a proof that two heterogenous lists are equivalent if you forget about the order—they're equivalent heterogenous "sets".
+
+** Multi-parameter type classes and functional dependencies
+
+   These are just massively useful refinements to base typeclass prolog. If you know Prolog, you can imagine how much the expressive power increases when you can write predicates of more than one variable.
+
+* Pretty good inference
+
+  Languages based on Hindley Milner type systems have pretty good inference. HM itself has complete inference which means that you never need to write a type variable. Haskell 98, the simplest form of Haskell, already throws that out in some very rare circumstances. Generally, modern Haskell has been an experiment in slowly reducing the space of complete inference while adding more power to HM and seeing when users complain. People very rarely complain—Haskell's inference is pretty good.
+
+* Very, very, very weak subtyping only
+
+  I mentioned earlier that the constraint system from typeclass prolog has a notion of structural subtyping. That is the only form of subtyping in Haskell. Subtyping is terrible for reasoning and inference. It makes each of those problems significantly harder (a system of inequalities instead of a system of equalities). It's also really easy to misunderstand (Is subclassing the same as subtyping? Of course not! But people very frequently confuse that and many languages aid in that confusion! How did we end up here? I suppose nobody ever examines the LSP.)
+
+* Higher rank types
+
+  I talked about generalization earlier, but more than just mere generalization it's useful to be able to talk about types which have generalized variables within them. For instance, a mapping between higher order structures which is oblivious (see parametricity) to what those structures "contain" has a type like (forall a. f a -> g a). In straight HM you can write a function at this type, but with higher-rank types you demand such a function as an argument like so: mapFree :: (forall a . f a -> g a) -> Free f -> Free g. Notice that the a variable is bound only within the argument. This means that the definer of the function mapFree gets to decide what a is instantiated at when they use it, not the user of mapFree.
+
+* Existential types.
+
+  While higher-rank types allow us to talk about universal quantification, existential types let us talk about existential quantification: the idea that there merely exists some unknown type satisfying some equations. This ends up being useful and to go on for longer about it would take a long while.
+
+* Type families
+
+  Sometimes the typeclass mechanisms are inconvenient since we don't always think in Prolog. Type families let us write straight functional relationships between types.
+
+** Closed type families.
+
+   Type families are by default open which is annoying because it means that while you can extend them at any time you cannot "invert" them with any hope of success. This is because you cannot prove injectiveness, but with closed type families you can.
+
+* Kind indexed types and type promotion.
+
+  I'm getting really exotic at this point, but these have practical use from time to time. If you'd like to write a type of handles which are either open or closed then you can do that very nicely. Notice in the following snippet that State is a very simple algebraic type which had its values promoted into the type-level as well. Then, subsequently, we can talk about type constructors like Handle as taking arguments at specific kinds like State. It's confusing to understand all the details, but also so very right.
+
+#+BEGIN_SRC Haskell
+
+data State = Open | Closed
+
+data Handle :: State -> * -> * where
+  OpenHandle :: {- something -} -> Handle Open a
+  ClosedHandle :: {- something -} -> Handle Closed a
+
+#+END_SRC
+
+* Runtime type representations that work.
+
+  Java is notorious for having type erasure and having that feature rain on some people's parades. Type erasure is the right way to go, however, as if you have a function getRepr :: a -> TypeRepr then you at the very least violate parametricity. What's worse is that if that's a user-generated function which is used to trigger unsafe coercions at runtime... then you've got a massive safety concern. Haskell's Typeable system allows the creation of a safe coerce :: (Typeable a, Typeable b) => a -> Maybe b. This system relies on Typeable being implemented in the compiler (and not userland) and also could not be given such nice semantics without Haskell's typeclass mechanism and the laws it is guaranteed to follow.
+
+More than just these however the value of Haskell's type system also relates to how the types describe the language. Here are a few features of Haskell which drive value through the type system.
+
+* Purity
+
+  Haskell allows no side effects for a very, very, very wide definition of "side effect". This forces you to put more information into types since types govern inputs and outputs and without side effects everything must be accounted for in the inputs and outputs.
+
+** IO
+
+   Subsequently, Haskell needed a way to talk about side effects—since any real program must include some—so a combination of typeclasses, higher kinded types, and abstract types gave rise to the notion of using a particular, super-special type called IO a to represent side-effecting computations which result in values of type a. This is the foundation of a very nice effect system embedded inside of a pure language.
+
+* Lack of null.
+
+  Everyone knows that null is the billion dollar mistake of modern programming languages. Algebraic types, in particular the ability to just append a "does not exist" state onto types you have by transforming a type A into the type Maybe A, completely mitigate the problem of null.
+
+* Polymorphic recursion.
+
+  This lets you define recursive functions which generalize type variables despite using them at different types in each recursive call in their own generalization. This is difficult to talk about, but especially useful for talking about nested types. Look back to the Bt a type from before and try to write a function to compute its size: size :: Bt a -> Int. It'll look a bit like size (Here a) = 1 and size (There bt) = 2 * size bt. Operationally that isn't too complex, but notice that the recursive call to size in the last equation occurs at a different type, yet the overall definition has a nice generalized type size :: Bt a -> Int. Note that this is a feature which breaks total inference, but if you provide a type signature then Haskell will allow it.
+
+I could keep going, but this list ought to get you started-and-then-some.
