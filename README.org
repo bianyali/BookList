@@ -440,7 +440,7 @@
    + Name: [[https://github.com/nuprl/10PL][10 papers that all PhD students in programming languages ought to know, for some value of 10]]
    + Directory: 10pl
    + Tag: Programming Languages
-   + Date: 2015/10/18 - Present
+   + Date: 2015/10/18 - Keep Reading
    + Intro:
      10 papers that all PhD students in programming languages ought to know, for some value of 10
      - What
@@ -478,8 +478,17 @@
    + Name: Program Visualization
    + Directory: pro-vis
    + Tag: Program Visualization
-   + Date: 2015/10/20 - Present
+   + Date: 2015/10/20 - Keep Reading
    + Reference:
      - A Review of Generic Program Visualization Systems for Introductory Programming Education.
      - Visual Program Simulation in Introductory Programming Education
      - [[http://www.amazon.com/gp/product/8184898045][Software Visualization: From Theory to Practice]]
+
+** Code Complete
+
+   + Name: [[http://www.amazon.com/gp/product/0735619670][Code Complete]]
+   + Directory: cc
+   + Tag: Software Construction
+   + Date: 2015/10/24
+   + Reference
+     -
