@@ -1,0 +1,12 @@
+#+TITLE:       Racket: Web Server
+#+AUTHOR:      Yali Bian
+
+
+
++ 看第一遍的时候，发现大部分函数还是能够看懂的，但是有些racket特有的语法没有看懂，比如协议，比如函数名后缀的含义等，或许可以将rakcet web 实现源码通读，加深理解。
++ 对于Racket Web API同其他语言API的对比
++ 各个部分之间的关系，如何结合？ 是只能通过servlet还是怎样？
++ web-server 下面有 serve/servlet 也就是使用这个函数，作为整个web app的出发点，也就是以一个添加各种参数以及一个servlet的函数是整个server的出发点。
+5. serlet 执行的条件是符合servlet的模式识别
+
+1. start is loaded as a servlet and responds to requests that match servlet-regexp. The current directory of serlet execution is servlet-current-directory.

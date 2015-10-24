@@ -6,374 +6,78 @@
 
 ** ANSI Common Lisp
 
-   + TIME
-     1. 2014年12月07日 - 2014年12月17日
-   + COMMENT
-   + QUOTE
+   + Name: ANSI Common Lisp
+   + Tag: Common-Lisp, Lisp
+   + Date:
+     - 2014/12/07 - 2014/12/17
 
 ** How to Design Programs
 
-   + TIME
-     1. 2014年12月22日 - 2014年12月28日
-   + COMMENT
-   + QUOTE
+   + Name: How to Design Programs
+   + Tag: PLT, Racket, Lisp
+   + Date:
+     - 2014/12/22 - 2014/12/28
 
 ** One Two Three... Infinity
 
    + Name: [[http://www.amazon.com/One-Two-Three-Infinity-Speculations/dp/0486256642][One Two Three... Infinity]]
    + Date:
-     1. 2014年12月22日 - now
-   + COMMENT
-   + QUOTE
+     - 2014/12/22 - Present
+   + Tag: Math
 
 ** The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine
 
    + Name: [[http://www.amazon.com/Annotated-Turing-Through-Historic-Computability/dp/0470229055/][The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine]]
-   + Date: 2015年01月03日 - now
-   + COMMENT
-   + QUOTE
+   + Tag:  Computation, Turing
+   + Date:
+     - 2015/01/03 - Present
 
 ** The Racket Guide
 
-   + TIME
-    1. 2014年12月29日 - 2015年01月05日
-    2. 2015年01月05日 - 2015年01月14日
-   + COMMENT
-   + QUOTE
+   + Name: The Racket Guide
+   + Tag: Racket, Scheme, Lisp
+   + Date:
+     - 2014/12/29 - 2015/01/05
+     - 2015/01/05 - 2015/01/14
 
 ** The little Schemer
 
-   + TIME
-     1. 2015年01月04日 - 2015年01月06日
-   + COMMENT
-   + QUOTE
+   + Name: The little Schemer
+   + Tag: Scheme, Lisp
+   + Date:
+     - 2015/01/04 - 2015/01/06
 
 ** HTTP: The Definitive Guide
 
    + Name: [[http://shop.oreilly.com/product/9781565925090.do#][HTTP: The Definitive Guide]]
+   + Tag: HTTP, Internet
    + Date:
-     1. 2015年01月07日 - 2015年01月18日
-   + COMMENT
-
-    1. 万物皆是数据:
-        其实HTTP也好，Internet也好。都是为了进行信息的传递，都是为了人类之间的交流，这和programming language 不谋而合， 都是为了进行信息的传递和交流， programming language 是为了进行信息的处理。其他的所谓的算法和过程都是为了更好的进行信息的处理。将所有的信息都转换成list吧，讲programming language 中的code也用来作为信息吧， 都用list进行表示吧，都是可以的，其他的所谓的markdown， markup language都是另外一种形式的list吧，现在的信息还都是以大量，海量， 大数据著称的数据，其实从复杂程度上来说，只是一个单层的信息数据结构，还没有到达一个多层的复杂的信息呈现上，大多数人类现在还无法理解得高度。
-    2. 如果你想学习HTTP协议，除了RFC2616以外，必不可少的三本书:
-       1. HTTP: The Definitive Guide
-       2. HTTP Developer's Handbook
-       3. Web Protocols and Practice
-    3. 虽然学习了很多的关于HTTP的知识，但是还有一些知识，这本书没有提到，也就是我要认真学习的
-
-       1. 没有讲解关于CGI以及当前将HTTP与servlet结合到的技术
-       2. 对于HTTP与WEB开发之间的关系没有讲解
-       3. 没有关于HTTP具体配置的介绍，更像是对rfc的易于理解的表达
-   + QUOTE
-
-    #+BEGIN_QUOTE
-      * Http request message contains the command and the URI
-      * The browser performs one transaction to fetch the HTML "skeleton" that describes the page layout, then issues additional HTTP transactions for each embedded image, graphics pane, Java applet, etc.
-      * A "web page" often is a collection of resources, not a single resource.
-      * Composite web pages require separate HTTP transactions for each embedded resource.
-      * Unlike the start lines and headers, which are textual and structured, the body can contain arbitrary binary data (e.g., images, videos, audio tracks, software applications). Of course, the body can also contain text.
-      * TCP/IP hides the peculiarities and foibles of individual networks and hardware, letting computers and works of any type talk together reliably.
-      * In TCP, you need the IP address of the server computer and the TCP port number(port number belongs to TCP port) associated with the specific software program running on the server.
-      * How do you get the IP address and port number of the HTTP server in the first place? Why, the URI, of course!
-      * When the port number is missing from an HTTP URL, you can assume the default value of port 80.
-      * Because HTTP uses TCP/IP, and is text-based, as opposed to using some obscure binary format, it is simple to talk directly to a web server.
-      * Telnet mimics HTTP clients well but doest't work well as a server. And automated Telnet scripting is no fun at all.
-      * HTTP 是不是就是两步交流， 一个request，然后一个response，接下来就没了。
-      * We highlights HTTP's role as multimedia transport protocol.
-      * Uniform resource locators (URLs) are the standardized names for the Internat's resources. URLs point to pieces of electronic information, telling you where they are located and how to interact with them.
-      * URLs are the usual human access point to HTTP and other proctocols: a person points a browser at a URL and behind the scenes, the browser sends the appropriate procotol messages to get the resource that the person wants.
-      * The HTTP specification uses the more general concept of URIs as its resource identifiers.
-      * URLs can direct you to the resources available through protocols other than HTTP. They can point you to any resource on the Intenet, from a person's email account to files that are available through other protocols, such as the File Transfer Protocol (FTP).
-      * With web browsers, you no longer need a news reader to read Internet news  or FTP client to access files on FTP servers. You don't need an eletronic mail program to send and receive email messages. URLs have helped to simplify the online world, by allowing the browser to be smart about how to access and handle resources. Applications can use URLs to simplify access to information.
-      * URLs give you and your browser all you need to find a piece of information. They define the particular resource you want, where it is located, and how to get it.
-      * Frag: A name for a piece or part of the resource. The frag is not passed to the server when referencing the object; it is used internally by the client. It is separated from the rest of the URL by the "#" character.
-      * The scheme is really the main identifier of how to access a given resource. Scheme names are case-insentitive.
-      * If HTTP is the Internet's courier, HTTP messages are the packages it uses to move things around.
-      * HTTP messages are the blocks of data sent between HTTP applications. These blocks of data begin with some text meta-indomation describing the message contents and meaning, followed by optional data. These messages flow between clients, servers, and proxies. The terms "inbound", "outbound", "upstream", and "downstream" describe message direction.
-      * The terms "upstream" and "downstream" related only to the sender and receiver. We can not tell whether a message is heading to the orgin server or the client, because both are downstream.
-      * method: THe action that the client wants the server to perform on the resource. It is a singile word, like "GET", "HEAD", or "POST". Request message ask servers to do somethin to a resource. The start line for a request message, or request line, contains a method describing what operation  the server should perform and a request URL describing the resource on wihch to perform the method. The request line also includes an HTTP version which tells the server what dialect of HTTP the client is speaking.
-      * Not all servers implement all seven of the methods. Furthermore, because HTTP was designed to be easily extensible, other servers may implement their own request methods in addition to these. These additional methods are called extension methods, because they extend the HTTP specification.
-      * As methods tell the server what to do, status codes tell the client what happened. THe numberic code makes error processing easy for programs, while the reason phrase is easily understood by humans.
-      * The third part of an HTTP message is the optional entity body. Entity bodies are the payload of HTTP messages. They are the things that HTTP was designed to transport. HTTP messages can carry many kinds of digital data: images, video, HTML, documents, software appplications, credit card transactions, electronic mail, and so on.
-      * Accept headers benefit both sides of the connection. Clients get what thet want, and servers don't waste their time and bandwidtih sending something the client can't use.
-      * HTTP connections really are nothing more than TCP connections, plus a few rules about how to use them. TCP connections are the reliable connections of the Internet. To send data accurately and quickly, you need to know the basics of TCP. TCP gives HTTP a reliable bit pipe. Bytes stuffed in one side of a TCP connection come out the other side correctly, and in the right order.
-      * If you are trying to write sophisticated HTTP applications, and especially if you want them to be fast, you'll want to learn a lot more about the internals and performance of TCP than we discuss in this chaper.
-      * Operatng systems provide different facilities for manipulating their TCP connections. Socket API hides all details of TCP and IP from the HTTP programmer. The sockets API was first developed for the Unix operating system, but variants are now available for almost every operating system and language.
-      * Common socket interface functions for programming TCP connections.
-      * The sockets API lets you create TCP endpoint data structures, connect these endpoints to remote server TCP endpoints, and read and write data streams. The TCP API hides all the details of the underlying network protocol handshaking and the segmentation and reassembly of the TCP data stream to and from IP packets.
-      * Becuase the Internet itself does not guarantee reliable packet delivery (Internet routers are free to destroy packets at will if they are overloaded), TCP implements its own acknowledgment scheme to guarantee successful data delivery.
-      * Web servers comes in all flavors, shapes, and sizes. There are trivial 10-line Perl script web servers, 50-MB secure commerce engines, and tiny servers-on-a-card. But whatever the functional differences, all web  servers receive HTTP requests for resources and serve content back to the clients.
-      * Web servers implement HTTP and the related TCP connection handling. They also manage the resources served by the web server and provide administratice features to configure, control and enhance the web server.
-      * Web server appliances are prepackaged software/hardware solutions. The vendor preinstalls a software server onto a vendor-chosen computer platform and preconfigures the software. Some examples of web server appliances include:
-          Sun/Cobalt RaQ web appliances
-          IBM Whistle web server appliance.
-      * All this software is needed to support HTTP/1.1 features: rich resource support, virtual hosting, access control, logging, configuration, monitoring, and performance features. That said, you can create a minimally functional HTTP server in under 30 lins of Perl.
-      * State-of-the-art commercial web servers are much more complicated, but they do perform several common tasks, as follows:
-        1. Set up connection -- accept a client connection, or close if the client is unwanted.
-        2. Receive request -- read an HTTP request message from the network.
-        3. Process request -- interpret the request message from the network.
-        4. Access resource -- access the resource message and take action.
-        5. Construct reponse -- access the resource specified in the message.
-        6. Send response -- create the HTTP response message with the right headers.
-        7. Log transacton -- place notes about the completed transaction in a log file.
-      * When a client request a TCP connection to the web serve, the web server establishes the connection and deternines which client is on the other side of the connection, extracting the IP address from the TCP connection. Once a new connection is established and acceped, the server adds the new connection to its list of existing web server connections and prepares to wathch for data on the connection
-      * Different operating systems have different interfaces and data structures for manipulating TCP connections. In Unix environments, the TCP connection is represented by a socket, and the IP address of the client can be found from the socket using the getpeername call.
-      * Internal Representations of Message: Some web servers also store the request message in internal data structures that make the message easy to manipulate. For example, the data structure might contain pointeers and lengths of each piece of the request message, and the headers might be stored in a fast lookup table so the specific values of particular headers can be accessed quickly.
-      * Many web servers support LF or CRLF as end-of-line sequences, because some clients mistakenly send LF as end-of-line terminator.
-      * Web servers constantly watch for new web requests, because requests can arrive at any time. Different web server architectures service requests in different ways:
-        1. Single-threaded web servers:
-           Single-threaded web servers process one request at a time until completion. When the transaction is complete, the next connection is processed. This architecture is simple to implement, but during processing, all the other connections are ignored. This creates serious performance problems and is appropriate only for low-load servers and diagnostic tools like type-o-server.
-        2. Multiprocess and multithreaded web servers
-        3. Multiplexed I/O servers
-        4. Multiplexed multithreaded web servers
-      * Processing Requests:
-        Once the web server has received a request, it can process the request using the method, resource, headers, and opthonal body.
-        We won't talk about request processing here, because it's the subject of most of the chapters in the rest of this book!
-      * Web servers are resource servers. They deliver precreated content, such as HTML pages or JPEG images, as well as dynamic content from resource=generating applications running on the servers. Before the server can deliver content to the client, it needs to identify the source of the content, by mapping the URI from the request message to the proper content or generator on the web server.
-      * If a user requests a URL for a directory and the directory contains a file named index.html (or index.htm), the server will return the contents of that file.
-      * Dynamic Content Resource Mapping:
-        Web servers also can map URIs to dynamic resources -- that is, to programs that generate content on demand. In fact, a whole class of web servers called application servers connect web servers to sophisticated backend applications. The web server need to be able to tell when a resource is a dynamic resource, where the dynamic content generator program is located, and how to run the program. Most web servers provide basic mechanisms to identify and map dynamic resources.
-        Apache lets you map URI pathname components into executable program directories. When a server receives a request for a URI with an executable path component, it attempts to execute a program in a corresponding server direcroy. For ecample, the following Apache configuration directive specifies that all URIs whose paths begin with /CGI-BIN/ should execute corresponding programs found in the directory /usr/local/etc/httpd/cgi-programs/:
-      * CGI is an early, simple, and popular interface for executing server-side applications. Modern application servers have more powerful and efficent server-side dynamic content support, including Microsoft's Active Server Pages and Java servlets.
-      * How Proxies Get Traffic:
-        Because clients normally talk directly to web servers, we need to explain how HTTP traffic finds its way to a proxy in the first place. There are four common ways to cause client traffic to get to a proxy:
-        1. Modify the client
-           Many web clients, including Netscape and Microsoft browsers, support both manual and automated proxy configuration. If a client is configured to use a proxy server, the client sends HTTP requests directly and intentionally to the proxy, instead of to the origin server.
-        2. Modify the network
-        3. Modify the DNS namespace
-        4. Modify the web server
-      * Private Caches:
-        Private caches don't need much horsepower or storage space, so they can be made small and cheap. Web browers have private caches built right in -- most browers cache popular documents in the disk and memory of your personal computer and allow you to configure the cache size and settings. You also can peek inside the brower caches to see what they contain.
-      * Cache Processing Steps
-        Modern commercial proxy caches are quite complicated. They are built to be very high-performance and to support advanced features of HTTP and other technologies. But, despite some subtle details, the basic workings of a web cache are mostly simple. A basic cache-processing sequence for an HTTP GET message consists of seven steps :
-        1. Receiving -- Cache reads the arriving request message from the network.
-        2. Parsing -- Cache parses the message, extracting the URL and headers.
-        3. Lookup -- Cache checks if a local copy is available and, if not, fetches a copy (and stores it locally).
-        4. Freshness check -- Cache checks if cached copy is fresh enough and, if not, asks server for any updates.
-        5. Response creation -- Cache makes a response message with the new headers and cached body.
-        6. Sending -- Cache sends the response back to the client over the network.
-        7. Logging -- Optionally, cache creates a log file entry describing the transaction.
-      * HTTP is becoming a kind of "operating system" for distributed media applications.
-      * Client Identification and Cookies
-        * Web servers may talk to thousands of different clients simultaneously. There servers often need to keep track of who they are talking to, rather than treating all requests as coming from anonymous clients.
-        * The Personal Touch
-          HTTP gegin its life as an anonymous, stateless, request/response protocol. A request came from a client, was processed by the server, and a response was sent back to the client. Little information was avaiable to the web server to determine what user sent the request or to keep track of a sequence of requests from the visiting user.
-          Modern web sites want to provide a personal touch. They want to know more about users on the other ends of the connections and be able to keep track of those users as they browse. Popular online shopping sites like Amazon.com personalize their sites for you in several ways:
-          1. Personal greetings
-          2. Targeted recommendations
-          3. Administrative information on file
-          4. Session tracking
-        * To save users from having to log in for each request, most browers will remeber login information for a site and pass in the login information for each request to the site.
-      * Digest Authentication:
-        * Basic authentication is convenient and flezible but completely insecure. Usernames and passwords are sent in the clear (Usernames and passwords are scrambled using a trivial base-64 encoding, which can be decoded easily. This protects against unintentional accidental viewing but offers no protection against malicious parties), and there is no attempt to protect message from tampering. The only way to use basic authentication securely is to use it in comjunction with SSL.
-    #+END_QUOTE
+     - 2015/01/07 - 2015/01/18
 
 ** The Seasoned Schemer
 
-   +Name: [[www.ccs.neu.edu/home/matthias/BTSS][The Seasoned Schemer]]
+   + Name: [[www.ccs.neu.edu/home/matthias/BTSS][The Seasoned Schemer]]
+   + Tag: Scheme, Lisp
    + Date:
-     1. 2015年01月08日 - now
-   + COMMENT:
-   + QUOTE
-    #+BEGIN_QUOTE
-      * 内容是关于list的处理的，所以处理的过程中会使用到各种递归，函数的迭代操作等。当然，如果将这些都弄懂了，就可以在实际编程的过程中进行使用了。
-      * We must replace dot with (quote ()), because we are building a list.
-      * 我突然清楚了为什么要读"little三部曲"了.
-      * Little三部曲，阐述的是recurion算法的思想，而不仅仅是如何操作list，list可以代表当今世界的一切的数据问题(其实现在使用的数据，都比list要简单的多得多得多), 只要能够编写处理list的高级算法，就能够对当今的算法进行汇总。list是对所有数据的抽象，而program就是处理数据的。就像数学是世界的抽象一样，list类似于数学中得数值，而数学方程或者数学证明就如同program中得算法，程序一般。program是一种具体化的数学，都是对现实世界问题提供解决方案的。recursion-data就是list，是对现实世界所有事物最全面深刻的描述， recur 的算法也就是对现实世界事物最好的解决方法。
-      * C中的数组，字符串等只是单层的list，根本就没有涉及数据的本质，只是最简单地数据，当然也是现在最容易实现，最普遍使用的数据。要想控制program整个世界，你需要学会这种思想，学会 list 的思想，而不仅仅是单层的for或者iteration。
-      * 这才是我学习lisp需要学习的精髓。
-      * list的处理，最好的方法就是在list中，处理list，生成list，在自己的代码里面进行迭代处理list，才是最无缝的处理方式。
-      * 不同的语言对于编译有不同的理解，不同的编译方式，也就是对于programming language的语义的理解不同。C语言编译器理念，对于编译的理解是单层的，也就是字符串层次上面的，不同的字符串，因为单词的祝贺方式不同，有不同的语义，是对一个层面上的不同的排序方式的模式的识别，是一个层面上的，增加语义，就是增加一种不同的排序方式，然后使用正则文法进行分析，转换成相应地语义，进行计算机的执行。而lisp的理念，是讲语义理解为list，也就是多层次的，语义是可以层层叠加的。不同的语义，是不同的list，对于list的读取，也就是对list的文法的语义的分析，对于list的处理，也就是对list语义的改变；
-    #+END_QUOTE
+     - 2015/01/08 - 2015/10/24
 
 ** Web Application in Racket
 
    + Name: [[docs.racket-lang.org/web-server/][Web Application in Racket]]
+   + Tag: Web, HTTP, Racket, Scheme, Lisp
    + Date:
-
-     1. 2015年01月12日 - 2015年01月13日
-     2. 2015年01月18日 - 2015年01月21日
-     3. 2015年01月24日 - 2015年01月24日
-     4. 2015年01月27日 - 2015年01月28日
-   + COMMENT
-
-    1. insta
-       使用框架，即使是web-server/insta， 就像是写配置文件一样， 没有什么思路， 也就是将所有的文件的配置， 在所谓的代码里面写好， 当然根本不需要去考虑底层是怎么实现的， 只需要去烤炉自己的服务代码怎么实现就可以了。
-    2. 配置文件
-       一个serve/serlet相当于一个apache的xml的配置文件，只不过是，作为sevlet的参数实现的。serlet的参数可以包括http的各种配置。This sets up and starts a fairly default server instance.
-    3. Know the diffrence between Web Server and Servlet.
-    4. serve/servlet
-       当使用的server只有一个servlet的时候，我们可以使用 serve/servlet 开启一个server，只包含一个servlet，并且包含其他的服务器的配置关键字：
-       * #:command-line?
-       * #:connection-close:
-       * #launch-browser?
-       * #:quit?
-       * #:banner?
-       * #:listen-ip
-       * #:port
-       * #:max-waiting
-       * #:servlet-path
-       * #:servlet-regexp
-       * #:stateless?
-       * #:stuffer
-       * #:manager
-       * #:servlet-namespace
-       * #:server-root-path
-       * #:extra-file-paths
-       * #:servlets-files-paths
-       * #:servlets-root servlets-root
-       * #:servlet-current-directory
-       * #:file-not-found-responder
-       * #:servlet-loading-responder
-       * #:servlet-responder
-       * #:mime-types-path
-       * #:ssl?
-       * #:ssl-cert
-       * #:ssl-key
-       * #:log-file
-       * #:log-format
-    5. Continuation
-       * Continuations are the functional expression of the GOTO statement, and the same caveats apply. While they are a sensible opation in some special cases such as web programming, use of continuations can result in code that is difficult to follow. In fact, the esoteric programming language Unlambda includes call-with-current-continuation as one of its features solely because of its resistance to understanding. The external link
-    6. 补充资料
-       显然，只看 web server，internal 和 continue 是不够的，因为 racket 的 web server 本来就是含有升级版的 continuation 框架的。
-       在学习 web server 编程之前，需要学习关于 continuation，以及 racket web server 相关的几篇论文。（说明 racket web server 是比较学术和科学的。）
-    7. 第二遍看完
-       web server 其实除了实现了 HTTP 以外，还实现了框架的功能（包括 continuation， template）。 对于其他 API 没有太多的了解。 对于 dispatch， request， response 等。
-    8. Servlets
-       什么是 servlet？ Servlet 就是一个函数，这个函数，输入的是 request，输出的是response。
-       当然，这是基础类型的 servlet， 还有其他更为复杂形势的servlet。
-       比如，一个 servlet 根据不同类型的 request， 将这个servlet的输入，分给其他不同servlet，让他们返回response给自己，让自己使用这个response。
-       还有的response，可以产生类似于自己的 servlet，当产生一个response给client时，可以使用自己新产生的servlet来服务当前状态的client。
-    9. Stateful Servlet
-       为每个页面都产生一个相应状态的servlet与之对应。
-    10. Stateless Servlet
-       将这种对应变成参数，在client和server端进行传递，来确定状态。
-    11. Continuation
-       Continuation 是一个语言级别的东西，可以实现对于控制流的改变，这是必须的，人的语言不应该这么实现，但是编程语言就应该在基础上，核心上支持控制流的修改。
-    12. to learn
-       还有很多东西要学，包括，一个 list 里面是如何进行预算的，如何控制 flow 的流动。 control flow 的流动
-    13. 2-3章跳过
-       我将第2-3两章关于continuation的framework跳过了，原因是自己的racket语言功力尚浅，racket语言包含了很多其他语言没有的先进的programming language的特性。只要学会了rakcet，也就说明语言功底有了基础，现在的话，也自是学习racket的部分功能，使用的racket的功能，也都是和c相同的功能。
-    14. 关于 web 的 api 应该差不多
-       只有 continuation，这类的和 scheme 这类的 语言相关性的特性, 还有很多不明白的，所以说，c只是最简单的一种语言，也是设计的不合理的语言，组要是为了计算机着想的语言，而schemer才是真正的，programming language。
-   + QUOTE
-
-    1. Simple Single Servlet Servers -- serve/servlet
-       1. The web-server provides a way quickly configure and start a servlet with more customizability than web-server/insta provides. This is provided by the web-server/servlet-env moudule.
-       2. serve/servlet is simpler interface over serve/launch/wait, dispatch/servlet, and a few standard "Dispatcher". Some options, like port and max-waiting are transparently to serve/launch/wait. Some advanced customization requires using these underlying pieces of the web-server directly. However, may simpler customizations do not, which the rest of this section describes.
-       3. Servlet and Server
-          The servlet is loaded with manager as its continuation manager. (The default manager limits the amount of memory of 64MB and with memory pressure as discussed in the make-threshold-LRU-manager documentation)
-          The server files are rooted at server-root-path (which is the distribution root by default.) File Paths, in addation to the "htdocs" directory under server-root-path may be provided with extra-files-paths. These paths are checked first, in the order they appear in the list.
-          Other servlets are served from servlets-root. The modules specified by servlet-namespace are shared between servlets found in servlets-root and the current namespace (and therefore the start procedure.)
-    2. Stateful Servlets
-       1. A stateful servlet should provide the following exports:
-          * interface-version
-          * manager
-          * start
-       2. Resonses
-          Servlets communicate to the Web Server by returning HTTP response. In order to accommodate lightweight programs (and backwards compatibility), the Web Server provides an indirection from application-specific response formats and the internal HTTP response format, response. can-be-response?, any->response, set-any->response!.
-       3. Web Interaction
-          The web-server/servlet/web library provides the primary functions of interest for servlet developer.
-
-          * send/back
-            sends response to the client. No continuation is captured, so the servlet is done.
-          * send/suspend
-            captures the current continuation, stores it with exp as the expiration handler, and binds it to a URL. make-response is called with this URL and is expected to generate a can-be-response?, which is sent to the client. If the continuation URL is invoked, the captured continuation is invoked and the request is returned from this call to send/suspend.
-          * send/suspend/url
-            Like send/suspend but with a URL struct.
-          * send/suspend/dispatch
-            Calls make-response with a function (often named embed/url) that, when called with a procedure from request? to any/c will generate a URL, that when invoked will call the function with the request? object and return the result to the caller of send/suspend/dispatch. Therefore, if you pass embed/url the identity function, send/suspend/dispatch devolves into send/suspend.
-          * send/suspend/url/dispatch
-          * send/forward
-            Calls clear-continuation-table!, then send/suspend.
-          * send/finish
-            Calls clear-continuation-table!, then send/back.
-          * redirect/get
-            Calls send/request with redirect-to, passing hs as the headers.
-          * redirect/get/forget
-          * current-servlet-continuation-expiration-handler
-          * clear-continuation-table!
-            Calls the servlet's manager's clear-continuation-table! function. Normally, this deletes all the previously captured continuation.
-          * with-errors-to-browser
-          * adjust-timeout!
-            Calls the servlet's manager's adjust-timeout! function.
-          * continuation-url?
-            Checks if u is a URL that refers to a continuation, if so returns the instance id, continuation id, and nonce.
-          * servlet-prompt
-            The tag used for Web interaction continuation capture.
-       4. Web Cells
-          * The web-server/servlet/web-cells library provides the interface to Web cells. A Web cell is a kind of state defined relative to the frame tree. The frame-tree is a mirror of the user's browsing session. Every time a continuation is invoked, a new frame (called the current frame) is created as a child of the current frame when the continuation was captured.
-          * You should use Web cells if you want an effect to be encapsulated in all interactions linked from (in a transitive sense) the HTTP response being generated.
-          * web-cell?
-          * make-web-cell
-          * web-cell-ref
-          *
-       5. Continuation Managers
-    3. Stateless Servlets
-       1. A stateless should provide the following exports
-          * interface-version
-            This indicates that the servlet is a stateless servlet.
-          * stuffer
-            This is the stuffer that will be used for the servlet
-          * manager
-            This is the manager that will be used for the servlet
-          * start
-            This function is called when an instance of this servlet is started. The argument is the HTTP request that initiated the instance.
-       2.
-    4. HTTP: Hypertext Transfer Protocol
-       1. Requests
-       2. Bindings
-       3. Responses
-       4. Placing Cookies
-       5. Authenticated Cookies
-       6. Extracting Cookies
-       7. Redirect
-          1. redirect-to
-             Generates an HTTP response that redirects the browser to uri, while including the headers in the response.
-          2. redirection-status?
-             Determines if parameter is one of the following values.
-             * permanently
-             * temporarily
-             * see-other
-       8. Basic Authentication
-          1. make-basic-auth-header
-          2. request->basic-credentials
-       9. Digest Authentication
-          1. make-digest-auth-header
-          2. request->digest-credentials
-          3. username*realm->password/c
-          4. username*realm->digest-HA1/c
-          5. password->digest-HA1
-          6. make-check-digest-credentials
-       10. X-expression Support
-           1. response/xexpr
-              This is a viable function to pass to set-any->response!
-    5. URL-Based Dispatch : (require web-server/dispatch)
-       1. Using web-server/dispatch
-       2. APIs
-       3. Imperative Dispatch Containers
-       4. Built-in URL patterns
-       5. Extending web-server/dispatch
-    6. Formlets: Functional Form Abstraction
-    7. Servlets communicate to Web Server by returing HTTP responses.
+     - 2015/01/12 - 2015/01/13
+     - 2015/01/18 - 2015/01/21
+     - 2015/01/24 - 2015/01/24
+     - 2015/01/27 - 2015/01/28
 
 ** Racket: Web Server: HTTP Server
 
   + Name: [[http://docs.racket-lang.org/web-server-internal/index.html][Web Server: HTTP Server]]
+  + Tag: Web, HTTP, Web Server, Racket, Scheme, Lisp
   + Date:
-    1. 2015年01月18日 - 2015年01月18日
-    2. 2015年01月28日 - 2015年01月28日
-  + COMMENT:
-
-    1. 看第一遍的时候，发现大部分函数还是能够看懂的，但是有些racket特有的语法没有看懂，比如协议，比如函数名后缀的含义等，或许可以将rakcet web 实现源码通读，加深理解。
-    2. 对于Racket Web API同其他语言API的对比
-    3. 各个部分之间的关系，如何结合？ 是只能通过servlet还是怎样？
-    4. web-server 下面有 serve/servlet 也就是使用这个函数，作为整个web app的出发点，也就是以一个添加各种参数以及一个servlet的函数是整个server的出发点。
-    5. serlet 执行的条件是符合servlet的模式识别
-  + QUOTE:
-    1. start is loaded as a servlet and responds to requests that match servlet-regexp. The current directory of serlet execution is servlet-current-directory.
+    - 2015/01/18 - 2015/01/18
+    - 2015/01/28 - 2015/01/28
 
 ** Structure and Interpretation of Computer Programs
 
@@ -387,7 +91,7 @@
    + Name: Thinking in Java
    + Directory: tij
    + Tag: Java, Language
-   + Date: 2015/06/27 - Current
+   + Date: 2015/06/27 - 2015/10/24
 
 ** Programming Language Theory
 
@@ -429,7 +133,7 @@
    + Name: Articles of [[http://matt.might.net][Matt Might]]
    + Directory: matt
    + Tag: plt
-   + Date: 2015/07/30 - Current
+   + Date: 2015/07/30
    + PS: /it's not a single book, but papers and articles from [[http://matt.might.net/][Matt Might]]'s blog/
 
 ** How to Design Programs
@@ -778,3 +482,4 @@
    + Reference:
      - A Review of Generic Program Visualization Systems for Introductory Programming Education.
      - Visual Program Simulation in Introductory Programming Education
+     - [[http://www.amazon.com/gp/product/8184898045][Software Visualization: From Theory to Practice]]

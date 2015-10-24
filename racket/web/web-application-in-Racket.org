@@ -1,0 +1,162 @@
+#+TITLE:       Web Application in Racket
+#+AUTHOR:      Yali Bian
+
+1. insta
+       使用框架，即使是web-server/insta， 就像是写配置文件一样， 没有什么思路， 也就是将所有的文件的配置， 在所谓的代码里面写好， 当然根本不需要去考虑底层是怎么实现的， 只需要去烤炉自己的服务代码怎么实现就可以了。
+2. 配置文件
+       一个serve/serlet相当于一个apache的xml的配置文件，只不过是，作为sevlet的参数实现的。serlet的参数可以包括http的各种配置。This sets up and starts a fairly default server instance.
+3. Know the diffrence between Web Server and Servlet.
+4. serve/servlet
+   当使用的server只有一个servlet的时候，我们可以使用 serve/servlet 开启一个server，只包含一个servlet，并且包含其他的服务器的配置关键字：
+   * #:command-line?
+   * #:connection-close:
+   * #launch-browser?
+   * #:quit?
+   * #:banner?
+   * #:listen-ip
+   * #:port
+   * #:max-waiting
+   * #:servlet-path
+   * #:servlet-regexp
+   * #:stateless?
+   * #:stuffer
+   * #:manager
+   * #:servlet-namespace
+   * #:server-root-path
+   * #:extra-file-paths
+   * #:servlets-files-paths
+   * #:servlets-root servlets-root
+   * #:servlet-current-directory
+   * #:file-not-found-responder
+   * #:servlet-loading-responder
+   * #:servlet-responder
+   * #:mime-types-path
+   * #:ssl?
+   * #:ssl-cert
+   * #:ssl-key
+   * #:log-file
+   * #:log-format
+5. Continuation
+   * Continuations are the functional expression of the GOTO statement, and the same caveats apply. While they are a sensible opation in some special cases such as web programming, use of continuations can result in code that is difficult to follow. In fact, the esoteric programming language Unlambda includes call-with-current-continuation as one of its features solely because of its resistance to understanding. The external link
+6. 补充资料
+   显然，只看 web server，internal 和 continue 是不够的，因为 racket 的 web server 本来就是含有升级版的 continuation 框架的。
+   在学习 web server 编程之前，需要学习关于 continuation，以及 racket web server 相关的几篇论文。（说明 racket web server 是比较学术和科学的。）
+7. 第二遍看完
+   web server 其实除了实现了 HTTP 以外，还实现了框架的功能（包括 continuation， template）。 对于其他 API 没有太多的了解。 对于 dispatch， request， response 等。
+8. Servlets
+   什么是 servlet？ Servlet 就是一个函数，这个函数，输入的是 request，输出的是response。
+   当然，这是基础类型的 servlet， 还有其他更为复杂形势的servlet。
+   比如，一个 servlet 根据不同类型的 request， 将这个servlet的输入，分给其他不同servlet，让他们返回response给自己，让自己使用这个response。
+   还有的response，可以产生类似于自己的 servlet，当产生一个response给client时，可以使用自己新产生的servlet来服务当前状态的client。
+9. Stateful Servlet
+   为每个页面都产生一个相应状态的servlet与之对应。
+10. Stateless Servlet
+   将这种对应变成参数，在client和server端进行传递，来确定状态。
+11. Continuation
+   Continuation 是一个语言级别的东西，可以实现对于控制流的改变，这是必须的，人的语言不应该这么实现，但是编程语言就应该在基础上，核心上支持控制流的修改。
+12. to learn
+   还有很多东西要学，包括，一个 list 里面是如何进行预算的，如何控制 flow 的流动。 control flow 的流动
+13. 2-3章跳过
+   我将第2-3两章关于continuation的framework跳过了，原因是自己的racket语言功力尚浅，racket语言包含了很多其他语言没有的先进的programming language的特性。只要学会了rakcet，也就说明语言功底有了基础，现在的话，也自是学习racket的部分功能，使用的racket的功能，也都是和c相同的功能。
+14. 关于 web 的 api 应该差不多
+   只有 continuation，这类的和 scheme 这类的 语言相关性的特性, 还有很多不明白的，所以说，c只是最简单的一种语言，也是设计的不合理的语言，组要是为了计算机着想的语言，而schemer才是真正的，programming language。
+   + QUOTE
+
+1. Simple Single Servlet Servers -- serve/servlet
+   1. The web-server provides a way quickly configure and start a servlet with more customizability than web-server/insta provides. This is provided by the web-server/servlet-env moudule.
+   2. serve/servlet is simpler interface over serve/launch/wait, dispatch/servlet, and a few standard "Dispatcher". Some options, like port and max-waiting are transparently to serve/launch/wait. Some advanced customization requires using these underlying pieces of the web-server directly. However, may simpler customizations do not, which the rest of this section describes.
+   3. Servlet and Server
+      The servlet is loaded with manager as its continuation manager. (The default manager limits the amount of memory of 64MB and with memory pressure as discussed in the make-threshold-LRU-manager documentation)
+      The server files are rooted at server-root-path (which is the distribution root by default.) File Paths, in addation to the "htdocs" directory under server-root-path may be provided with extra-files-paths. These paths are checked first, in the order they appear in the list.
+      Other servlets are served from servlets-root. The modules specified by servlet-namespace are shared between servlets found in servlets-root and the current namespace (and therefore the start procedure.)
+2. Stateful Servlets
+   1. A stateful servlet should provide the following exports:
+      * interface-version
+      * manager
+      * start
+   2. Resonses
+      Servlets communicate to the Web Server by returning HTTP response. In order to accommodate lightweight programs (and backwards compatibility), the Web Server provides an indirection from application-specific response formats and the internal HTTP response format, response. can-be-response?, any->response, set-any->response!.
+   3. Web Interaction
+      The web-server/servlet/web library provides the primary functions of interest for servlet developer.
+
+      * send/back
+        sends response to the client. No continuation is captured, so the servlet is done.
+      * send/suspend
+        captures the current continuation, stores it with exp as the expiration handler, and binds it to a URL. make-response is called with this URL and is expected to generate a can-be-response?, which is sent to the client. If the continuation URL is invoked, the captured continuation is invoked and the request is returned from this call to send/suspend.
+      * send/suspend/url
+        Like send/suspend but with a URL struct.
+      * send/suspend/dispatch
+        Calls make-response with a function (often named embed/url) that, when called with a procedure from request? to any/c will generate a URL, that when invoked will call the function with the request? object and return the result to the caller of send/suspend/dispatch. Therefore, if you pass embed/url the identity function, send/suspend/dispatch devolves into send/suspend.
+      * send/suspend/url/dispatch
+      * send/forward
+        Calls clear-continuation-table!, then send/suspend.
+      * send/finish
+        Calls clear-continuation-table!, then send/back.
+      * redirect/get
+        Calls send/request with redirect-to, passing hs as the headers.
+      * redirect/get/forget
+      * current-servlet-continuation-expiration-handler
+      * clear-continuation-table!
+        Calls the servlet's manager's clear-continuation-table! function. Normally, this deletes all the previously captured continuation.
+      * with-errors-to-browser
+      * adjust-timeout!
+        Calls the servlet's manager's adjust-timeout! function.
+      * continuation-url?
+        Checks if u is a URL that refers to a continuation, if so returns the instance id, continuation id, and nonce.
+      * servlet-prompt
+        The tag used for Web interaction continuation capture.
+   4. Web Cells
+      * The web-server/servlet/web-cells library provides the interface to Web cells. A Web cell is a kind of state defined relative to the frame tree. The frame-tree is a mirror of the user's browsing session. Every time a continuation is invoked, a new frame (called the current frame) is created as a child of the current frame when the continuation was captured.
+      * You should use Web cells if you want an effect to be encapsulated in all interactions linked from (in a transitive sense) the HTTP response being generated.
+      * web-cell?
+      * make-web-cell
+      * web-cell-ref
+      *
+   5. Continuation Managers
+3. Stateless Servlets
+   1. A stateless should provide the following exports
+      * interface-version
+        This indicates that the servlet is a stateless servlet.
+      * stuffer
+        This is the stuffer that will be used for the servlet
+      * manager
+        This is the manager that will be used for the servlet
+      * start
+        This function is called when an instance of this servlet is started. The argument is the HTTP request that initiated the instance.
+   2.
+4. HTTP: Hypertext Transfer Protocol
+   1. Requests
+   2. Bindings
+   3. Responses
+   4. Placing Cookies
+   5. Authenticated Cookies
+   6. Extracting Cookies
+   7. Redirect
+      1. redirect-to
+         Generates an HTTP response that redirects the browser to uri, while including the headers in the response.
+      2. redirection-status?
+         Determines if parameter is one of the following values.
+         * permanently
+         * temporarily
+         * see-other
+   8. Basic Authentication
+      1. make-basic-auth-header
+      2. request->basic-credentials
+   9. Digest Authentication
+      1. make-digest-auth-header
+      2. request->digest-credentials
+      3. username*realm->password/c
+      4. username*realm->digest-HA1/c
+      5. password->digest-HA1
+      6. make-check-digest-credentials
+   10. X-expression Support
+       1. response/xexpr
+          This is a viable function to pass to set-any->response!
+5. URL-Based Dispatch : (require web-server/dispatch)
+   1. Using web-server/dispatch
+   2. APIs
+   3. Imperative Dispatch Containers
+   4. Built-in URL patterns
+   5. Extending web-server/dispatch
+6. Formlets: Functional Form Abstraction
+7. Servlets communicate to Web Server by returing HTTP responses.

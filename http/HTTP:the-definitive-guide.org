@@ -1,0 +1,115 @@
+#+TITLE:       HTTP: the definitive
+#+AUTHOR:      Yali Bian
+
+
+1. 万物皆是数据:
+    其实HTTP也好，Internet也好。都是为了进行信息的传递，都是为了人类之间的交流，这和programming language 不谋而合， 都是为了进行信息的传递和交流， programming language 是为了进行信息的处理。其他的所谓的算法和过程都是为了更好的进行信息的处理。将所有的信息都转换成list吧，讲programming language 中的code也用来作为信息吧， 都用list进行表示吧，都是可以的，其他的所谓的markdown， markup language都是另外一种形式的list吧，现在的信息还都是以大量，海量， 大数据著称的数据，其实从复杂程度上来说，只是一个单层的信息数据结构，还没有到达一个多层的复杂的信息呈现上，大多数人类现在还无法理解得高度。
+2. 如果你想学习HTTP协议，除了RFC2616以外，必不可少的三本书:
+   1. HTTP: The Definitive Guide
+   2. HTTP Developer's Handbook
+   3. Web Protocols and Practice
+3. 虽然学习了很多的关于HTTP的知识，但是还有一些知识，这本书没有提到，也就是我要认真学习的
+
+   1. 没有讲解关于CGI以及当前将HTTP与servlet结合到的技术
+   2. 对于HTTP与WEB开发之间的关系没有讲解
+   3. 没有关于HTTP具体配置的介绍，更像是对rfc的易于理解的表达
+
+  - Http request message contains the command and the URI
+  - The browser performs one transaction to fetch the HTML "skeleton" that describes the page layout, then issues additional HTTP transactions for each embedded image, graphics pane, Java applet, etc.
+  - A "web page" often is a collection of resources, not a single resource.
+  - Composite web pages require separate HTTP transactions for each embedded resource.
+  - Unlike the start lines and headers, which are textual and structured, the body can contain arbitrary binary data (e.g., images, videos, audio tracks, software applications). Of course, the body can also contain text.
+  - TCP/IP hides the peculiarities and foibles of individual networks and hardware, letting computers and works of any type talk together reliably.
+  - In TCP, you need the IP address of the server computer and the TCP port number(port number belongs to TCP port) associated with the specific software program running on the server.
+  - How do you get the IP address and port number of the HTTP server in the first place? Why, the URI, of course!
+  - When the port number is missing from an HTTP URL, you can assume the default value of port 80.
+  - Because HTTP uses TCP/IP, and is text-based, as opposed to using some obscure binary format, it is simple to talk directly to a web server.
+  - Telnet mimics HTTP clients well but doest't work well as a server. And automated Telnet scripting is no fun at all.
+  - HTTP 是不是就是两步交流， 一个request，然后一个response，接下来就没了。
+  - We highlights HTTP's role as multimedia transport protocol.
+  - Uniform resource locators (URLs) are the standardized names for the Internat's resources. URLs point to pieces of electronic information, telling you where they are located and how to interact with them.
+  - URLs are the usual human access point to HTTP and other proctocols: a person points a browser at a URL and behind the scenes, the browser sends the appropriate procotol messages to get the resource that the person wants.
+  - The HTTP specification uses the more general concept of URIs as its resource identifiers.
+  - URLs can direct you to the resources available through protocols other than HTTP. They can point you to any resource on the Intenet, from a person's email account to files that are available through other protocols, such as the File Transfer Protocol (FTP).
+  - With web browsers, you no longer need a news reader to read Internet news  or FTP client to access files on FTP servers. You don't need an eletronic mail program to send and receive email messages. URLs have helped to simplify the online world, by allowing the browser to be smart about how to access and handle resources. Applications can use URLs to simplify access to information.
+  - URLs give you and your browser all you need to find a piece of information. They define the particular resource you want, where it is located, and how to get it.
+  - Frag: A name for a piece or part of the resource. The frag is not passed to the server when referencing the object; it is used internally by the client. It is separated from the rest of the URL by the "#" character.
+  - The scheme is really the main identifier of how to access a given resource. Scheme names are case-insentitive.
+  - If HTTP is the Internet's courier, HTTP messages are the packages it uses to move things around.
+  - HTTP messages are the blocks of data sent between HTTP applications. These blocks of data begin with some text meta-indomation describing the message contents and meaning, followed by optional data. These messages flow between clients, servers, and proxies. The terms "inbound", "outbound", "upstream", and "downstream" describe message direction.
+  - The terms "upstream" and "downstream" related only to the sender and receiver. We can not tell whether a message is heading to the orgin server or the client, because both are downstream.
+  - method: THe action that the client wants the server to perform on the resource. It is a singile word, like "GET", "HEAD", or "POST". Request message ask servers to do somethin to a resource. The start line for a request message, or request line, contains a method describing what operation  the server should perform and a request URL describing the resource on wihch to perform the method. The request line also includes an HTTP version which tells the server what dialect of HTTP the client is speaking.
+  - Not all servers implement all seven of the methods. Furthermore, because HTTP was designed to be easily extensible, other servers may implement their own request methods in addition to these. These additional methods are called extension methods, because they extend the HTTP specification.
+  - As methods tell the server what to do, status codes tell the client what happened. THe numberic code makes error processing easy for programs, while the reason phrase is easily understood by humans.
+  - The third part of an HTTP message is the optional entity body. Entity bodies are the payload of HTTP messages. They are the things that HTTP was designed to transport. HTTP messages can carry many kinds of digital data: images, video, HTML, documents, software appplications, credit card transactions, electronic mail, and so on.
+  - Accept headers benefit both sides of the connection. Clients get what thet want, and servers don't waste their time and bandwidtih sending something the client can't use.
+  - HTTP connections really are nothing more than TCP connections, plus a few rules about how to use them. TCP connections are the reliable connections of the Internet. To send data accurately and quickly, you need to know the basics of TCP. TCP gives HTTP a reliable bit pipe. Bytes stuffed in one side of a TCP connection come out the other side correctly, and in the right order.
+  - If you are trying to write sophisticated HTTP applications, and especially if you want them to be fast, you'll want to learn a lot more about the internals and performance of TCP than we discuss in this chaper.
+  - Operatng systems provide different facilities for manipulating their TCP connections. Socket API hides all details of TCP and IP from the HTTP programmer. The sockets API was first developed for the Unix operating system, but variants are now available for almost every operating system and language.
+  - Common socket interface functions for programming TCP connections.
+  - The sockets API lets you create TCP endpoint data structures, connect these endpoints to remote server TCP endpoints, and read and write data streams. The TCP API hides all the details of the underlying network protocol handshaking and the segmentation and reassembly of the TCP data stream to and from IP packets.
+  - Becuase the Internet itself does not guarantee reliable packet delivery (Internet routers are free to destroy packets at will if they are overloaded), TCP implements its own acknowledgment scheme to guarantee successful data delivery.
+  - Web servers comes in all flavors, shapes, and sizes. There are trivial 10-line Perl script web servers, 50-MB secure commerce engines, and tiny servers-on-a-card. But whatever the functional differences, all web  servers receive HTTP requests for resources and serve content back to the clients.
+  - Web servers implement HTTP and the related TCP connection handling. They also manage the resources served by the web server and provide administratice features to configure, control and enhance the web server.
+  - Web server appliances are prepackaged software/hardware solutions. The vendor preinstalls a software server onto a vendor-chosen computer platform and preconfigures the software. Some examples of web server appliances include:
+      Sun/Cobalt RaQ web appliances
+      IBM Whistle web server appliance.
+  - All this software is needed to support HTTP/1.1 features: rich resource support, virtual hosting, access control, logging, configuration, monitoring, and performance features. That said, you can create a minimally functional HTTP server in under 30 lins of Perl.
+  - State-of-the-art commercial web servers are much more complicated, but they do perform several common tasks, as follows:
+    1. Set up connection -- accept a client connection, or close if the client is unwanted.
+    2. Receive request -- read an HTTP request message from the network.
+    3. Process request -- interpret the request message from the network.
+    4. Access resource -- access the resource message and take action.
+    5. Construct reponse -- access the resource specified in the message.
+    6. Send response -- create the HTTP response message with the right headers.
+    7. Log transacton -- place notes about the completed transaction in a log file.
+  - When a client request a TCP connection to the web serve, the web server establishes the connection and deternines which client is on the other side of the connection, extracting the IP address from the TCP connection. Once a new connection is established and acceped, the server adds the new connection to its list of existing web server connections and prepares to wathch for data on the connection
+  - Different operating systems have different interfaces and data structures for manipulating TCP connections. In Unix environments, the TCP connection is represented by a socket, and the IP address of the client can be found from the socket using the getpeername call.
+  - Internal Representations of Message: Some web servers also store the request message in internal data structures that make the message easy to manipulate. For example, the data structure might contain pointeers and lengths of each piece of the request message, and the headers might be stored in a fast lookup table so the specific values of particular headers can be accessed quickly.
+  - Many web servers support LF or CRLF as end-of-line sequences, because some clients mistakenly send LF as end-of-line terminator.
+  - Web servers constantly watch for new web requests, because requests can arrive at any time. Different web server architectures service requests in different ways:
+    1. Single-threaded web servers:
+       Single-threaded web servers process one request at a time until completion. When the transaction is complete, the next connection is processed. This architecture is simple to implement, but during processing, all the other connections are ignored. This creates serious performance problems and is appropriate only for low-load servers and diagnostic tools like type-o-server.
+    2. Multiprocess and multithreaded web servers
+    3. Multiplexed I/O servers
+    4. Multiplexed multithreaded web servers
+  - Processing Requests:
+    Once the web server has received a request, it can process the request using the method, resource, headers, and opthonal body.
+    We won't talk about request processing here, because it's the subject of most of the chapters in the rest of this book!
+  - Web servers are resource servers. They deliver precreated content, such as HTML pages or JPEG images, as well as dynamic content from resource=generating applications running on the servers. Before the server can deliver content to the client, it needs to identify the source of the content, by mapping the URI from the request message to the proper content or generator on the web server.
+  - If a user requests a URL for a directory and the directory contains a file named index.html (or index.htm), the server will return the contents of that file.
+  - Dynamic Content Resource Mapping:
+    Web servers also can map URIs to dynamic resources -- that is, to programs that generate content on demand. In fact, a whole class of web servers called application servers connect web servers to sophisticated backend applications. The web server need to be able to tell when a resource is a dynamic resource, where the dynamic content generator program is located, and how to run the program. Most web servers provide basic mechanisms to identify and map dynamic resources.
+    Apache lets you map URI pathname components into executable program directories. When a server receives a request for a URI with an executable path component, it attempts to execute a program in a corresponding server direcroy. For ecample, the following Apache configuration directive specifies that all URIs whose paths begin with /CGI-BIN/ should execute corresponding programs found in the directory /usr/local/etc/httpd/cgi-programs/:
+  - CGI is an early, simple, and popular interface for executing server-side applications. Modern application servers have more powerful and efficent server-side dynamic content support, including Microsoft's Active Server Pages and Java servlets.
+  - How Proxies Get Traffic:
+    Because clients normally talk directly to web servers, we need to explain how HTTP traffic finds its way to a proxy in the first place. There are four common ways to cause client traffic to get to a proxy:
+    1. Modify the client
+       Many web clients, including Netscape and Microsoft browsers, support both manual and automated proxy configuration. If a client is configured to use a proxy server, the client sends HTTP requests directly and intentionally to the proxy, instead of to the origin server.
+    2. Modify the network
+    3. Modify the DNS namespace
+    4. Modify the web server
+  - Private Caches:
+    Private caches don't need much horsepower or storage space, so they can be made small and cheap. Web browers have private caches built right in -- most browers cache popular documents in the disk and memory of your personal computer and allow you to configure the cache size and settings. You also can peek inside the brower caches to see what they contain.
+  - Cache Processing Steps
+    Modern commercial proxy caches are quite complicated. They are built to be very high-performance and to support advanced features of HTTP and other technologies. But, despite some subtle details, the basic workings of a web cache are mostly simple. A basic cache-processing sequence for an HTTP GET message consists of seven steps :
+    1. Receiving -- Cache reads the arriving request message from the network.
+    2. Parsing -- Cache parses the message, extracting the URL and headers.
+    3. Lookup -- Cache checks if a local copy is available and, if not, fetches a copy (and stores it locally).
+    4. Freshness check -- Cache checks if cached copy is fresh enough and, if not, asks server for any updates.
+    5. Response creation -- Cache makes a response message with the new headers and cached body.
+    6. Sending -- Cache sends the response back to the client over the network.
+    7. Logging -- Optionally, cache creates a log file entry describing the transaction.
+  - HTTP is becoming a kind of "operating system" for distributed media applications.
+  - Client Identification and Cookies
+    * Web servers may talk to thousands of different clients simultaneously. There servers often need to keep track of who they are talking to, rather than treating all requests as coming from anonymous clients.
+    * The Personal Touch
+      HTTP gegin its life as an anonymous, stateless, request/response protocol. A request came from a client, was processed by the server, and a response was sent back to the client. Little information was avaiable to the web server to determine what user sent the request or to keep track of a sequence of requests from the visiting user.
+      Modern web sites want to provide a personal touch. They want to know more about users on the other ends of the connections and be able to keep track of those users as they browse. Popular online shopping sites like Amazon.com personalize their sites for you in several ways:
+      1. Personal greetings
+      2. Targeted recommendations
+      3. Administrative information on file
+      4. Session tracking
+    * To save users from having to log in for each request, most browers will remeber login information for a site and pass in the login information for each request to the site.
+  - Digest Authentication:
+    * Basic authentication is convenient and flezible but completely insecure. Usernames and passwords are sent in the clear (Usernames and passwords are scrambled using a trivial base-64 encoding, which can be decoded easily. This protects against unintentional accidental viewing but offers no protection against malicious parties), and there is no attempt to protect message from tampering. The only way to use basic authentication securely is to use it in comjunction with SSL.
