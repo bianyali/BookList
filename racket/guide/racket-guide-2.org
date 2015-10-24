@@ -1,0 +1,178 @@
+  * TIME
+
+    1. 2015年01月21日 - 2015年01月23日
+
+  * COMMENT
+
+    1. 使用 HTTP 和使用 SQL Data Base 有共同的特点，就是可以使用一定的规则，对于不是该语言处理范围内容的东西，进行传递。
+    2. what's servlet
+       不要对 servlet 有任何的陌生感，其实servlet和 c-lang 中得 main 函数没有任何的不同。 只不过是编译环境变了， standard API 变了。 其实，一个软件，不也就是操作系统上的一个 servlet 么？
+
+  * QUOTE
+
+    1. send/suspend/dispatch
+       Let's look more closely at the send/suspend/dispatch mechanism. send/suspend/dispatch consumes a response-generating function and give it another function, called embed/url, that we will use to build special URLs. What makes these URLs special is this: when a web browser visits one of them, our web application restarts, not from start, but from the handler that we associate with the URL.
+    2. handlers
+       We can be even more sophisticated about the handlers associated with embed/url. Because a handler is just a request-consuming function, it can be defined within a local and so can see all the other variables in the scope of its definition.
+    3. mutable
+       By default, structures in Racket are immutable. To gain access to structure mutators, we'll need to override this default, by adding the #:mutable keyword to some of our structure definiations.
+       A mutable structure provides functions that change its fields; in this case, we are provided the structure mutator set-blog-posts!, which allows us to change the posts of a blog.
+       Now, when you visit the blog from two seperate browser windows and add posts from each of them. You'll be glad to see that both windows share the same blog.
+    4. prefab
+    5. Using an SQL database
+    6. Using Formlets
+       The Racket Web framework provides formlets to abstract these names away, by adjusting them automatically in the HTML, and by presenting the following interface for the display and processing of forms.
+    7. Leaving DrRacket
+       We've been in the habit of pressing the Run button to run our application in DrRacket. But if we were actually to deploy an application, we'd need to launch it by a different method.
+       The simplest alternatives is to use web-server/servlet-env.
+
+     - [[http://docs.racket-lang.org/more/][More: Systems Programming with Racket]]
+
+  * TIME
+
+    1. 2015年01月23日 - 2015年01月23日
+
+  * COMMENT
+
+  * QUOTE
+
+    1. Subject
+       Underneath the facade of DrRacket lies a sophisticated toolbox for managing threads and processes, which is the subject of this tutorial.
+       Specifically, we show how to build a secure, multi-threaded, serlet-extansible, continuation-based web server.
+    2. "Hello World" Server
+       1. serve
+          We'll implement the web server through a serve functino that takes an IP port number for client connection.
+          The server accepts TCP connections through a listener, which we create with tcp-listen. To make interactive development easier, we supply #t as the third argument to tcp-listen, which lets use re-use the port immediately, without waiting for a TCP timeout.
+    3. Server Thread
+    4. Terminating Connections
+       A malicious client could connect to our web server and not send the HTTP header, in which case a connection thread will idle forever, waiting for the end of the header. To avoid this possibility, we'd like to implement a timeout for each connection thread.
+    5. Dispatch
+       To parse the incoming URL and to more easily format HTML output, we'll require two extract libraries: (rquire xml net/url)
+    6. Limiting Memory Use
+       With our latest "many" servlet, we seem to have a new problem: a malicious client could request so many "hello"s that the serve runs out of memory. Actually, a malicious client could also supply an HTTP request whose first line is arbitrarily long.
+       The solution to this class of problems is to limit the memory use of a connection.
+    7. Continuation
+       As a system example, the problem of implementing a web server exposes many system and security issues where a programming language can help. The web-server example also lead to a classic, advanced Racket topic: continuations. In fact, this facet of a web server need delimited continuations, which Racket provides.
+       The problem solved by continuation is related to servlet sessions and user input, where a computation spans multiplea client connections. Often, client-side computation (as in AJAX) is the right solution to the problem, but many problems are best solved with a mixture of techniques (e.g., to take advantage of the brower's "back" button).
+       As the multi-connection computation becomes more complex, propagating arguments through query becomes inscreasing tedious.
+       Continuation let us implement a send/suspend operation that performs exactly that operation. The send/suspend procedure generates a URL that represents the current connect's computation, capturingit as a continuation. It passes the generated URL to a procedure that creates the query page; this query page is used as the result of the current connection, and the surrounding computation (i.e., the continuation) is aborted. Finally, send/suspend arranges for a request to the generated URL (in a new connection) to restore teh aborted computation.
+
+
+
+
+
+     - [[docs.racket-lang.org/xrepl][XREPL: eXtended REPL]]
+
+  * TIME
+
+    1. 2015年01月23日 - 2015年01月23日
+
+  * COMMENT
+
+  * QUOTE
+
+    * xrepl-lib
+      Loading the xrepl library enables XREPL, which extands the racket REPL significantly, turning it into a more useful tool for interactive exploration and development. Additions include "meta commands," using readline, keeping past evaluation results, and more.
+    * Meta REPL Commands
+      * Sum
+        Most  of the XREPL extensions are implemented as meta commands. These commands are entered at the REPL, prefixed by a , and followed by the command name. Note that several commands correspond directly to Racket functions (e.g., ,exit) -- but since they work outside of your REPL, they can be used even if the matching bindings are not available.
+      * Generic Commands
+        1. ,help
+           display available commands
+        2. ,exit
+           exit racket
+        3. cd
+           change the current directory
+        4. ,pwd
+           display the current directory
+        5. ,shell / ,sh
+           Use ,shell (or ,sh) to run a generic shell command (via system). For convenience, a few synonyms are provided -- they run the specified executables (still using the system).
+        6. ,edit
+           edit files in your $EDITOR
+      * Binding Information
+        1. ,apropos / ,ap
+           Searches for known bindings in the current namespace.
+        2. ,describe / ,desc / ,id
+           For each of the specific names, describe where it is coming from and how it was defined if it names a known binding. In addition, describe the module (list its imports and exports) that is named by arguments that are known module names.
+           By default, bindings are searched for at the runtime level (phase 0). You can add a different phase level for identifier lookups as a first argument. In this case, only a binding can be described, even if the same name is a known mudule.
+        3. ,doc
+           browser the racket documentation
+      * Requiring and Loading Files
+        1. ,requre / ,req / ,r
+           require a module
+        2. ,require-reloadble
+           require a module, make it reloadable
+           Same as ,require, but arranges to load the code in a way that makes it possible to reload it later, or if a module was already load (using this command) then reload it.
+        3. ,enter / ,en
+           Requre a module and go into its namespace
+        4. ,toplevel / ,top
+           Go back to the toplevel
+        5. ,load / ,ld
+           Load a file
+      * Deguging
+        1. ,backtrace / ,bt
+           See a backtrace of the last exception
+           Whenever an error is diaplayed, XREPL will not show its context printout. Instead, use the ,backtrace command to diaplay the backtrace for the last error.
+        2. ,time
+           Time an expression.
+           Times execution of an expression (expressions). This is similar to "time" but the information that is dispalyed is a bit easier to read.
+        3. ,trace / ,tr
+           trace a function
+        4. ,untrace / ,untr
+           untrace a function
+      * Miscellaneous Commands
+        1. ,switch-namespace / ,switch
+           Switch to different repl namespace.
+           This powerful command controls the REPL's namespace. While ,enter can be used to make REPL go into the namespace of a specific module, the ,switch-namesapce command can switch between toplevel namesapces, allowing you to get multiple separate "workspaces".
+    * Past Evaluation Results
+    * Hacking XREPL
+      1. Sum
+         XREPL is mainly a convenience tool, and as such you might want to hack it to better suit your needs. Currently, there is no convient way to customize and extend it, but this will be added in the future.
+         While this is not intended as the way to extend and customize XREPL, it is a useful debugging tool should you want to do so.
+
+     - [[docs.racket-lang.org/json][JSON in Racket]]
+
+  * TIME
+
+    2015年01月24日 - 2015年01月24日
+
+  * COMMENT
+
+    1. Json 把它理解成是 js 中一种 struct 就可以， 其实本来就是。 为了让后端的各种语言，将数据传递到前端的 JS 上面。
+
+  * QUOTE
+
+    1. JSON
+       JavaScript Object Notation (JSON) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language.
+
+    2. JS-Expression - jsexpr
+       Some names in this library use “jsexpr” and some use “json”. The rationale that the first is used for our representation, and the second is used as information that is received from or sent to the outside world.
+
+     - [[http://planet.racket-lang.org/package-source/jaymccarthy/mongodb.plt/1/4/planet-docs/mongodb/][MongoDB in Racket]]
+
+  * TIME
+
+    1. 2015年01月24日 - 2015年01月24日
+
+  * COMMENT
+
+    1. 看 MongoDB 看多了，就会想着去查看 MongoDB 更多的功能，然后想着去实现 MongoDB 需要什么？ 然后就会去看 DB 的实现， nosql 的实现。
+    2. MongoDB 也是一个server，也是一个 网络服务，和 web 服务没有什么不同，最大的不同就是他已经全部编辑好的一个实用的软件，而不是一个需要构件的容器。
+    3. 软件之间进行交互，不仅仅可以通过 脚本文件，通过 操作系统 中的调用，还可以通过 localhost 中的 port 使用 网络数据交互的方式进行交互。当然也是通过 OS 的 套接字编程实现的。
+    4. 自己对 language 本身自带的数据结构 data structure ( hash dict list verctor) 还没有搞明白就像编代码。。。 本来就是想要使用电脑操纵数据，现在你连数据格 式都不会。
+    5. ORM
+       因为在对 MongoDB 的基础操作中，要对 find 出来得 cursor 一个一个进行处理，然后收工形成一个 sequence，在使用 ORM 的时候，就可以直接得到一个 find 的 sequence。
+
+  * QUOTE
+
+     - [[http://pkg-build.racket-lang.org/doc/pkg][Package Management in Racket]]
+
+  * TIME
+
+    1. 2015年01月24日 - 2015年01月24日
+
+  * COMMENT
+
+  * QOUTE
+
+*

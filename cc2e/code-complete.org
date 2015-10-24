@@ -1,0 +1,9 @@
+#+TITLE:       Code Complete
+#+AUTHOR:      Yali Bian
+#+DATE:        2015-07-06 Mon
+
+
+* Part I - Laying the Foundation
+
+** Chapter 1. Welcome to Software Construction
+** Chapter 2. Metaphors for a Richer Understanding of Software Development
