@@ -98,7 +98,7 @@
    + Name: Programming Language Theory
    + Directory: plt
    + Tag: PLT
-   + Date: 2015/03/16 - Current
+   + Date: 2015/03/16 - Keep Reading
    + PS: /it's not a single book, but several materials about PLT from wikipedia or blog/
 
 ** The Scheme Programming Language
@@ -133,7 +133,7 @@
    + Name: Articles of [[http://matt.might.net][Matt Might]]
    + Directory: matt
    + Tag: plt
-   + Date: 2015/07/30
+   + Date: 2015/07/30 - Keep Reading
    + PS: /it's not a single book, but papers and articles from [[http://matt.might.net/][Matt Might]]'s blog/
 
 ** How to Design Programs
@@ -223,7 +223,7 @@
    + Date: 2015/09/07
    + Reference:
 
-** Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists, and Iconoclasts-- the Programmers Who Created the Software Revolution
+** Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists, and Iconoclasts
 
    + Name: [[http://www.amazon.com/Engineers-Scientists-Iconoclasts---Programmers-Revolution/dp/0465042260/ref=sr_1_1?ie=UTF8&qid=1320204968&sr=8-1][Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists and Iconoclasts--The Programmers Who Created the Software Revolution]]
    + Directory: None
@@ -307,7 +307,7 @@
 ** Code Complete
 
    + Name: [[http://www.amazon.com/gp/product/0735619670][Code Complete]]
-   + Directory: cc
+   + Directory: cc2e
    + Tag: Software Construction
    + Date: 2015/10/24
    + Reference

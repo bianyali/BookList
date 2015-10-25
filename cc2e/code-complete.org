@@ -7,3 +7,7 @@
 
 ** Chapter 1. Welcome to Software Construction
 ** Chapter 2. Metaphors for a Richer Understanding of Software Development
+
+*** 2.1 The Importance of Metaphors
+*** 2.2 How to Use Software Metaphors
+*** 2.3 Common Software Metaphors
