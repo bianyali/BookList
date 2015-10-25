@@ -22,3 +22,8 @@
 *** 3.6 Amount of Time to Spend on Upstream Prerequisites
 
 ** Chapter 4. Key Construction Decisions
+
+*** 4.1 Choice of Programming Language
+*** 4.2 Programming Conventions
+*** 4.3 Your Location on the Technology Wave
+*** 4.4 Selection of Major Construction Practices
