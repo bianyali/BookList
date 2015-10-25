@@ -11,3 +11,14 @@
 *** 2.1 The Importance of Metaphors
 *** 2.2 How to Use Software Metaphors
 *** 2.3 Common Software Metaphors
+
+** Chapter 3. Measure Twice, Cut Once: Upstream Prerequisites
+
+*** 3.1 Importance of Prerequisites
+*** 3.2 Determine the Kind of Software You’re Working On
+*** 3.3 Problem-Definition Prerequisite
+*** 3.4 Requirements Prerequisite
+*** 3.5 Architecture Prerequisite
+*** 3.6 Amount of Time to Spend on Upstream Prerequisites
+
+** Chapter 4. Key Construction Decisions
