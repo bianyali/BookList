@@ -27,3 +27,11 @@
 *** 4.2 Programming Conventions
 *** 4.3 Your Location on the Technology Wave
 *** 4.4 Selection of Major Construction Practices
+
+* Part II - Creating High-Quality Code
+
+** Chapter5: Design in Construction
+** Chapter6: Working Classes
+** Chapter7: High-Quality Routines
+** Chapter8: Defensive Programming
+** Chapter9: The Pseudocode Programming Process
