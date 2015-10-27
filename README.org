@@ -303,6 +303,7 @@
      - A Review of Generic Program Visualization Systems for Introductory Programming Education.
      - Visual Program Simulation in Introductory Programming Education
      - [[http://www.amazon.com/gp/product/8184898045][Software Visualization: From Theory to Practice]]
+     - Milestones in the history of thematic cartography, statistical graphics, and data visualization
 
 ** Code Complete
 

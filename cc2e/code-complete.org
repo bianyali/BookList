@@ -31,7 +31,22 @@
 * Part II - Creating High-Quality Code
 
 ** Chapter5: Design in Construction
+
+*** 5.1 Design Challenges
+*** 5.2 Key Design Concepts
+*** 5.3 Design Building Blocks: Heuristics
+*** 5.4 Design Practices
+*** 5.5 Comments on Popular Methodologies
+
 ** Chapter6: Working Classes
+
+*** 6.1 Class Foundations: Abstract Data Types (ADTs)
+*** 6.2 Good Class Interfaces
+*** 6.3 Design and Implementation Issues
+*** 6.4 Reasons to Create a Class
+*** 6.5 Language-Specific Issues
+*** 6.6 Beyond Classes: Packages
+
 ** Chapter7: High-Quality Routines
 ** Chapter8: Defensive Programming
 ** Chapter9: The Pseudocode Programming Process
