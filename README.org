@@ -312,4 +312,11 @@
    + Tag: Software Construction
    + Date: 2015/10/24
    + Reference
-     -
+
+** Data Visualization - Principles and Practice
+
+   + Name:  [[http://www.amazon.com/Data-Visualization-Principles-Practice-Second/dp/1466585269][Data Visualization - Principles and Practice]]
+   + Directory: data-vis
+   + Tag: Data Visualization, Visualization, Graphics
+   + Date: 2015/10/28
+   + Reference
