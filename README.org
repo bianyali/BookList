@@ -315,7 +315,7 @@
 
 ** Data Visualization - Principles and Practice
 
-   + Name:  [[http://www.amazon.com/Data-Visualization-Principles-Practice-Second/dp/1466585269][Data Visualization - Principles and Practice]]
+   + Name:  [[http://www.cs.rug.nl/svcg/DataVisualizationBook/DataVisualizationBook][Data Visualization - Principles and Practice]]
    + Directory: data-vis
    + Tag: Data Visualization, Visualization, Graphics
    + Date: 2015/10/28
