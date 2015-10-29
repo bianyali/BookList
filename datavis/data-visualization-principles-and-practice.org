@@ -12,4 +12,13 @@
 ** 1.4 Notation
 ** 1.5 Online Material
 
-*
+* 2 From Graphics to Visualization
+
+** 2.1 A Simple Example
+** 2.2 Graphics-Rendering Basics
+** 2.3 Rendering the HeightPlot
+** 2.4 Texture Mapping
+** 2.5 Transparency and Blending
+** 2.6 Viewing
+** 2.7 Putting It All Together
+** 2.8 Conclusion
