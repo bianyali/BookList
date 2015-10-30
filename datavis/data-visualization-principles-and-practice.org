@@ -22,3 +22,16 @@
 ** 2.6 Viewing
 ** 2.7 Putting It All Together
 ** 2.8 Conclusion
+
+* 3 Data Representation
+
+** 3.1 Continuous Data
+** 3.2 Sampled Data
+** 3.3 Discrete Datasets
+** 3.4 Cell Types
+** 3.5 Grid Types
+** 3.6 Attributes
+** 3.7 Computing Derivatives of Sampled Data
+** 3.8 Implementation
+** 3.9 Advanced Data Representation
+** 3.10 Conclusion
