@@ -35,3 +35,10 @@
 ** 3.8 Implementation
 ** 3.9 Advanced Data Representation
 ** 3.10 Conclusion
+
+* 4 The Visualization Pipeline
+
+** 4.1 Conceptual Perspective
+** 4.2 Implementation Perspective
+** 4.3 Algorithm Classification
+** 4.4 Conclusion
