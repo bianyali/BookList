@@ -42,3 +42,11 @@
 ** 4.2 Implementation Perspective
 ** 4.3 Algorithm Classification
 ** 4.4 Conclusion
+
+* Scalar Visualization
+
+** 5.1 ColorMapping
+** 5.2 DesigningEffectiveColormaps
+** 5.3 Contouring
+** 5.4 HeightPlots
+** 5.5 Conclusion
