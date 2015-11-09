@@ -43,10 +43,32 @@
 ** 4.3 Algorithm Classification
 ** 4.4 Conclusion
 
-* Scalar Visualization
+* 5 Scalar Visualization
 
 ** 5.1 ColorMapping
-** 5.2 DesigningEffectiveColormaps
+** 5.2 Designing Effective Colormaps
 ** 5.3 Contouring
-** 5.4 HeightPlots
+** 5.4 Height Plots
 ** 5.5 Conclusion
+
+* 6 Vector Visualization
+
+** 6.1 Divergenceand Vorticity
+** 6.2 Vector Glyphs
+** 6.3 Vector Color Coding
+** 6.4 Displacement Plots
+** 6.5 Stream Objects
+** 6.6 Texture-Based Vector Visualization
+** 6.7 Simplified Representation of Vector Fields
+** 6.8 Illustrative Vector Field Rendering
+** 6.9 Conclusion
+
+* 11 Information Visualization
+
+** 11.1 What Is Infovis?
+** 11.2 Infovis vs. Scivis: A Technical Comparison
+** 11.3 Table Visualization
+** 11.4 Visualization of Relations
+** 11.5 Multivariate Data Visualization
+** 11.6 Text Visualization
+** 11.7 Conclusion
