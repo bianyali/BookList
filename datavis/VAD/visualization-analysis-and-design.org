@@ -1,0 +1,3 @@
+#+TITLE:          边城笔记之VAD: Visauzliation Analysis and Design
+#+AUTHOR:      Yali Bian
+#+EMAIL:         yalibian@aliyun.com
