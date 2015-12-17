@@ -19,3 +19,5 @@
 ** 1.7 Why Use Interactivity?
 
    数据可视化＋交互 是一种将抽象事物（数据）进行实体化的强大工具，通过这种工具，我们可以更加专心的专注事物的特性，掌握事物的本质；而不是空想以致无法专注。
+
+** 1.8 Why Is the Vis Idiom Design Space Huge?
