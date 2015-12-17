@@ -1,3 +1,21 @@
-#+TITLE:          边城笔记之VAD: Visauzliation Analysis and Design
+#+TITLE:          VAD: Visauzliation Analysis and Design
 #+AUTHOR:      Yali Bian
 #+EMAIL:         yalibian@aliyun.com
+
+* 1. What's Vis, and Why Do It?
+
+** 1.3 Why Have a Computer in the Loop
+
+   计算机可以自由的展示海量数据下的信息，这是人类使用画笔所做不到的。计算机可以实时的改变绘图，在时间上，对可视化视图进行改变，挖掘出随着时间变化的信息。
+   当然可视化，并不局限于使用电脑编码继续数据到视觉元素的影射，一张纸，一个笔，或者一个ps软件，都可以形成可视化应用。然而，数据的灵活多变，数据的大量让手工可视化变得力不从心。你总不能，将几百万的数据节点用笔一个个的绘制出来吧。
+
+** 1.4 Why Use an External Representation?
+
+   Vis allows people to offload internal cognition and memory usage to the prexceptual system.
+
+   The advantages of diagrams as external memory is that information can be organized by spatial location, offering the possibility of accelerating both search and recognition.
+   Search can be sped up by grouping all the iterms needed for a specific problem-solving inference together at the same location.
+
+** 1.7 Why Use Interactivity?
+
+   数据可视化＋交互 是一种将抽象事物（数据）进行实体化的强大工具，通过这种工具，我们可以更加专心的专注事物的特性，掌握事物的本质；而不是空想以致无法专注。
