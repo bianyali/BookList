@@ -4,22 +4,22 @@
 #+DATE:        2015-07-06 Mon
 
 
-* PLT
-** ANSI Common Lisp
+** PLT
+*** ANSI Common Lisp
 
    + Name: ANSI Common Lisp
    + Tag: Common-Lisp, Lisp
    + Date:
      - 2014/12/07 - 2014/12/17
 
-** How to Design Programs
+*** How to Design Programs
 
    + Name: How to Design Programs
    + Tag: PLT, Racket, Lisp
    + Date:
      - 2014/12/22 - 2014/12/28
 
-** The Racket Guide
+*** The Racket Guide
 
    + Name: The Racket Guide
    + Tag: Racket, Scheme, Lisp
@@ -27,28 +27,28 @@
      - 2014/12/29 - 2015/01/05
      - 2015/01/05 - 2015/01/14
 
-** The little Schemer
+*** The little Schemer
 
    + Name: The little Schemer
    + Tag: Scheme, Lisp
    + Date:
      - 2015/01/04 - 2015/01/06
 
-** The Seasoned Schemer
+*** The Seasoned Schemer
 
    + Name: [[www.ccs.neu.edu/home/matthias/BTSS][The Seasoned Schemer]]
    + Tag: Scheme, Lisp
    + Date:
      - 2015/01/08 - 2015/10/24
 
-** Thinking in Java
+*** Thinking in Java
 
    + Name: Thinking in Java
    + Directory: tij
    + Tag: Java, Language
    + Date: 2015/06/27 - 2015/10/24
 
-** Racket: Web Server: HTTP Server
+*** Racket: Web Server: HTTP Server
 
   + Name: [[http://docs.racket-lang.org/web-server-internal/index.html][Web Server: HTTP Server]]
   + Tag: Web, HTTP, Web Server, Racket, Scheme, Lisp
@@ -56,7 +56,7 @@
     - 2015/01/18 - 2015/01/18
     - 2015/01/28 - 2015/01/28
 
-** The Scheme Programming Language
+*** The Scheme Programming Language
 
    + Name: The Scheme Programming Language
    + Directory: tspl
@@ -76,7 +76,7 @@
      - [[https://en.wikipedia.org/wiki/Tacit_programming][Tacit programming]]
      - [[http://danthedev.com/2015/09/09/lisp-in-your-language/][Lisp in Your Language]]
 
-** Web Application in Racket
+*** Web Application in Racket
 
    + Name: [[docs.racket-lang.org/web-server/][Web Application in Racket]]
    + Tag: Web, HTTP, Racket, Scheme, Lisp
@@ -86,7 +86,7 @@
      - 2015/01/24 - 2015/01/24
      - 2015/01/27 - 2015/01/28
 
-** Programming Language Theory
+*** Programming Language Theory
 
    + Name: Programming Language Theory
    + Directory: plt
@@ -94,21 +94,21 @@
    + Date: 2015/03/16 - Keep Reading
    + PS: /it's not a single book, but several materials about PLT from wikipedia or blog/
 
-** Teach Yourself Scheme in Fixnum Days
+*** Teach Yourself Scheme in Fixnum Days
 
    + Name: Teach Yourself Scheme in Fixnum Days
    + Directory: tyscheme
    + Tag: Scheme
    + Date: 2015/07/20 - 2015/07/23
 
-** Structure and Interpretation of Computer Programs
+*** Structure and Interpretation of Computer Programs
 
    + Name: Structure and Interpretation of Computer Programs.
    + Directory: sicp
    + Tag: Lisp, PLT
    + Date: 2015/01/28 - Current
 
-** Articles of Matt Might
+*** Articles of Matt Might
 
    + Name: Articles of [[http://matt.might.net][Matt Might]]
    + Directory: matt
@@ -116,7 +116,7 @@
    + Date: 2015/07/30 - Keep Reading
    + PS: /it's not a single book, but papers and articles from [[http://matt.might.net/][Matt Might]]'s blog/
 
-** Types and Programming Languages
+*** Types and Programming Languages
 
    + Name: [[https://www.cis.upenn.edu/~bcpierce/tapl/][Types and Programming Languages]]
    + Directory: tapl
@@ -125,14 +125,14 @@
    + Reference:
      - [[https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form][BNF]]
 
-** How to Design Programs
+*** How to Design Programs
 
    + Name: How to Design Programs
    + Directory: htdp
    + Tag: Lisp, Scheme, Racket, PLT
    + Date: 2014/12/22 - 2014/12/28
 
-** The Racket Reference
+*** The Racket Reference
 
    + Name: [[docs.racket-lang.org/reference/][The Racket Reference]]
    + Directory: racket-refer
@@ -146,7 +146,7 @@
      - [[http://docs.racket-lang.org/raco][raco: Racket Command-Line Tools]]
      - [[http://docs.racket-lang.org/drracket][DrRacket: The Racket Programming Environment]]
 
-** The Racket Guide
+*** The Racket Guide
 
    + Name: The Racket Guide
    + Directory: racket-guide
@@ -158,7 +158,7 @@
    + Reference:
      - [[http://docs.racket-lang.org/continue/index.html][Continue: Web Applications in Racket]]
 
-** Learn You A Haskell for Great Good!
+*** Learn You A Haskell for Great Good!
 
    + Name: [[http://book.douban.com/subject/25803388/][Learn You A Haskell for Great Good!]]
    + Directory: lyah
@@ -169,7 +169,7 @@
      - 2015/09/15/ - 2015/10/18
    + Reference:
 
-** Seven Languages in Seven Weeks
+*** Seven Languages in Seven Weeks
 
    + Name: [[https://pragprog.com/book/btlang/seven-languages-in-seven-weeks][Seven Languages in Seven Weeks]]
    + Directory: 7-langs
@@ -177,8 +177,8 @@
    + Date: 2015/08/27/ - 2015/09/07
    + Reference:
 
-* Visualization
-** Program Visualization
+** Visualization
+*** Program Visualization
 
    + Name: Program Visualization
    + Directory: pro-vis
@@ -190,7 +190,7 @@
      - [[http://www.amazon.com/gp/product/8184898045][Software Visualization: From Theory to Practice]]
      - Milestones in the history of thematic cartography, statistical graphics, and data visualization
 
-** Real World OCaml
+*** Real World OCaml
 
    + Name: [[http://www.amazon.com/Real-World-OCaml-Functional-programming/dp/144932391X][Real World OCaml]]
    + Directory: rwo
@@ -198,7 +198,7 @@
    + Date: 2015/09/07
    + Reference:
 
-** Data Visualization - Principles and Practice
+*** Data Visualization - Principles and Practice
 
    + Name:  [[http://www.cs.rug.nl/svcg/DataVisualizationBook/DataVisualizationBook][Data Visualization - Principles and Practice]]
    + Directory: data-vis
@@ -206,7 +206,7 @@
    + Date: 2015/10/28
    + Reference
 
-** Visualization Analysis and Design
+*** Visualization Analysis and Design
 
    + Name:  [[http://www.cs.ubc.ca/~tmm/vadbook/][Visualization Analysis and Design]]
    + Directory: datavis/VAD/
@@ -214,7 +214,7 @@
    + Date: 2015/12/17
    + Reference
 
-** Thinking in UML
+*** Thinking in UML
 
    + Name: [[http://book.douban.com/subject/10549583/][Thinking in UML]]
    + Directory: uml
@@ -223,7 +223,7 @@
    + Reference:
      - [[http://www.ibm.com/developerworks/cn/rational/r-mda/][模型驱动体系结构介绍]]
 
-** The Elements Of Uml 2.0 Style
+*** The Elements Of Uml 2.0 Style
 
    + Name: [[http://www.cambridge.org/us/academic/subjects/computer-science/software-engineering-and-development/elements-uml-20-style][The Elements Of Uml 2.0 Style]]
    + Directory: uml
@@ -232,8 +232,24 @@
    + Reference:
      - 统一建模语言UML
 
-* Other
-** How Program Works
+** Web
+*** HTTP: The Definitive Guide
+
+   + Name: [[http://shop.oreilly.com/product/9781565925090.do#][HTTP: The Definitive Guide]]
+   + Tag: HTTP, Internet
+   + Date:
+     - 2015/01/07 - 2015/01/18
+
+*** Web Development with Node and Express: Leveraging the JavaScript Stack
+
+   + Name: [[http://www.amazon.com/Web-Development-Node-Express-Leveraging/dp/1491949309][Web Development with Node and Express: Leveraging the JavaScript Stack]]
+   + Directory: node.js
+   + Tag: Node.js, JavaScript, Express
+   + Date: 2015/10/07 - 2015/10/14
+   + Reference:
+
+** Other
+*** How Program Works
 
    + Name: [[http://www.amazon.co.jp/dp/4822283151][How Program Works]]
    + Directory: hpw
@@ -241,7 +257,7 @@
    + Date: 2015/10/06 - 2015/10/08
    + Reference:
 
-** Code Complete
+*** Code Complete
 
    + Name: [[http://www.amazon.com/gp/product/0735619670][Code Complete]]
    + Directory: cc2e
@@ -249,7 +265,7 @@
    + Date: 2015/10/24
    + Reference
 
-** 10PL
+*** 10PL
 
    + Name: [[https://github.com/nuprl/10PL][10 papers that all PhD students in programming languages ought to know, for some value of 10]]
    + Directory: 10pl
@@ -287,20 +303,20 @@
      - Symbolic Expressions
        J. McCarthy. Recursive functions of symbolic expressions and their computation by machine, part I. Communications of the ACM, 1960, 3(4), 184--195 [[http://dl.acm.org/citation.cfm?id=367199][URL]]
 
-** One Two Three... Infinity
+*** One Two Three... Infinity
 
    + Name: [[http://www.amazon.com/One-Two-Three-Infinity-Speculations/dp/0486256642][One Two Three... Infinity]]
    + Date:
      - 2014/12/22 - Present
    + Tag: Math
-** The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine
+*** The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine
 
    + Name: [[http://www.amazon.com/Annotated-Turing-Through-Historic-Computability/dp/0470229055/][The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine]]
    + Tag:  Computation, Turing
    + Date:
      - 2015/01/03 - Present
 
-** Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists, and Iconoclasts
+*** Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists, and Iconoclasts
 
    + Name: [[http://www.amazon.com/Engineers-Scientists-Iconoclasts---Programmers-Revolution/dp/0465042260/ref=sr_1_1?ie=UTF8&qid=1320204968&sr=8-1][Go To: The Story of the Math Majors, Bridge Players, Engineers, Chess Wizards, Maverick Scientists and Iconoclasts--The Programmers Who Created the Software Revolution]]
    + Directory: None
@@ -308,26 +324,10 @@
    + Date: 2015/10/05 - 2015/10/06
    + Reference:
 
-** Mastering Emacs
+*** Mastering Emacs
 
    + Name: [[https://www.masteringemacs.org/book][Mastering Emacs]]
    + Directory: node.js
    + Tag: Node.js, JavaScript, Express
    + Date: 2015/10/14 - Present
-   + Reference:
-
-* Web
-** HTTP: The Definitive Guide
-
-   + Name: [[http://shop.oreilly.com/product/9781565925090.do#][HTTP: The Definitive Guide]]
-   + Tag: HTTP, Internet
-   + Date:
-     - 2015/01/07 - 2015/01/18
-
-** Web Development with Node and Express: Leveraging the JavaScript Stack
-
-   + Name: [[http://www.amazon.com/Web-Development-Node-Express-Leveraging/dp/1491949309][Web Development with Node and Express: Leveraging the JavaScript Stack]]
-   + Directory: node.js
-   + Tag: Node.js, JavaScript, Express
-   + Date: 2015/10/07 - 2015/10/14
    + Reference:
